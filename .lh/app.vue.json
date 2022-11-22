@@ -1,0 +1,42 @@
+{
+    "sourceFile": "app.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1669104728094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669104755341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n   <div>\n-    <NuxtWelcome />\n-    <h1>Welcome to the homeage</h1>\n+    <!-- <NuxtWelcome /> -->\n+    <h1>Welcome to the homepage</h1>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669104763830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n <template>\n   <div>\n-    <!-- <NuxtWelcome /> -->\n     <h1>Welcome to the homepage</h1>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669105089427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <template>\n   <div>\n     <h1>Welcome to the homepage</h1>\n+    <NuxtPage></NuxtPage>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669105323922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n   <div>\n-    <h1>Welcome to the homepage</h1>\n+    <!-- <h1>Welcome to the homepage</h1> -->\n     <NuxtPage></NuxtPage>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669105516757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n   <div>\n-    <!-- <h1>Welcome to the homepage</h1> -->\n+    <h1>Welcome to the homepage</h1>\n     <NuxtPage></NuxtPage>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669115242330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n <template>\n   <div>\n     <h1>Welcome to the homepage</h1>\n-    <NuxtPage></NuxtPage>\n   </div>\n </template>\n"
+                }
+            ],
+            "date": 1669104728094,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>\n    <NuxtWelcome />\n    <h1>Welcome to the homeage</h1>\n  </div>\n</template>\n"
+        }
+    ]
+}

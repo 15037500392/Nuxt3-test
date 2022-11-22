@@ -1,0 +1,18 @@
+{
+    "sourceFile": "pages/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1669105633077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1669105633077,
+            "name": "Commit-0",
+            "content": "<template>\n    <div>index page</div>\n    <NuxtLink to=\"/detail\">Detail Page</NuxtLink>\n</template>"
+        }
+    ]
+}
