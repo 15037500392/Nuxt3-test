@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1669105633077,
@@ -36,6 +36,58 @@
                 {
                     "date": 1669129799103,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,6 @@\n <template>\n     <div>index</div>\n-    <nuxt-link to=\"/test\">to test</nuxt-link>\n-    <n-icon>\n-        <Search/>\n-    </n-icon>\n </template>\n <script setup>\n     import {\n         NIcon\n"
+                },
+                {
+                    "date": 1669203087701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,16 @@\n <template>\n-    <div>index</div>\n+    <div>{{data}}</div>\n </template>\n <script setup>\n-    import {\n-        NIcon\n-    } from \"naive-ui\"\n-    import {\n-        Search\n-    } from '@vicons/ionicons5'\n+import { rmSync } from 'fs';\n+\n+    const { data } = await useFetch(\"http://demonuxtapi.dishait.cn/pc/index\",{\n+        key: \"IndexData\",\n+        headers:{\n+            appid: \"bd9d01ecc75dbbaaefce\"\n+        },\n+        transform:(res) => {\n+            return res.data\n+        }\n+    })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669203101543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n     <div>{{data}}</div>\n </template>\n <script setup>\n-import { rmSync } from 'fs';\n \n+\n     const { data } = await useFetch(\"http://demonuxtapi.dishait.cn/pc/index\",{\n         key: \"IndexData\",\n         headers:{\n             appid: \"bd9d01ecc75dbbaaefce\"\n"
+                },
+                {
+                    "date": 1669203106675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,14 @@\n <template>\n-    <div>{{data}}</div>\n+  <div>{{ data }}</div>\n </template>\n <script setup>\n-\n-\n-    const { data } = await useFetch(\"http://demonuxtapi.dishait.cn/pc/index\",{\n-        key: \"IndexData\",\n-        headers:{\n-            appid: \"bd9d01ecc75dbbaaefce\"\n-        },\n-        transform:(res) => {\n-            return res.data\n-        }\n-    })\n\\ No newline at end of file\n-</script>\n+const { data } = await useFetch(\"http://demonuxtapi.dishait.cn/pc/index\", {\n+  key: \"IndexData\",\n+  headers: {\n+    appid: \"bd9d01ecc75dbbaaefce\",\n+  },\n+  transform: (res) => {\n+    return res.data;\n+  },\n+});\n+</script>\n"
+                },
+                {
+                    "date": 1669203170499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <template>\n   <div>{{ data }}</div>\n </template>\n <script setup>\n-const { data } = await useFetch(\"http://demonuxtapi.dishait.cn/pc/index\", {\n+const { data } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n+  baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n   },\n   transform: (res) => {\n"
+                },
+                {
+                    "date": 1669203631422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,17 @@\n <template>\n-  <div>{{ data }}</div>\n+    <div v-if=\"pending\">加载中。。。</div>\n+  <div v-else>{{ data }}</div>\n </template>\n <script setup>\n-const { data } = await useFetch(\"/index\", {\n+const { data,pending } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n   },\n   transform: (res) => {\n     return res.data;\n   },\n+  lazy:true\n });\n </script>\n"
+                },
+                {
+                    "date": 1669203735183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <template>\n     <div v-if=\"pending\">加载中。。。</div>\n+    <div v-else-if=\"error\">{{error?.data}}</div>\n   <div v-else>{{ data }}</div>\n </template>\n <script setup>\n-const { data,pending } = await useFetch(\"/index\", {\n+const { data,pending,error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n"
+                },
+                {
+                    "date": 1669203883839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n     <div v-else-if=\"error\">{{error?.data}}</div>\n   <div v-else>{{ data }}</div>\n </template>\n <script setup>\n-const { data,pending,error } = await useFetch(\"/index\", {\n+import { throwError } from \"naive-ui/es/_utils\";\n+\n+const { data,pending,error } = await useFetch(\"/index2\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n@@ -14,5 +16,9 @@\n     return res.data;\n   },\n   lazy:true\n });\n+\n+if(process.server && error.value){\n+    throwError(error.value?.data)\n+}\n </script>\n"
+                },
+                {
+                    "date": 1669203889170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,13 @@\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n \n-const { data,pending,error } = await useFetch(\"/index2\", {\n+const { data,pending,error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n-    appid: \"bd9d01ecc75dbbaaefce\",\n+    appid: \"bd9d01ecc75dbbaaefce11\",\n   },\n   transform: (res) => {\n     return res.data;\n   },\n"
+                },
+                {
+                    "date": 1669203896678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,7 +18,7 @@\n   lazy:true\n });\n \n if(process.server && error.value){\n-    throwError(error.value?.data)\n+    throwError(error.value?.data?.data)\n }\n </script>\n"
+                },
+                {
+                    "date": 1669203905788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n     <div v-else-if=\"error\">{{error?.data}}</div>\n   <div v-else>{{ data }}</div>\n </template>\n <script setup>\n-import { throwError } from \"naive-ui/es/_utils\";\n \n const { data,pending,error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n"
+                },
+                {
+                    "date": 1669203913755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <div v-else-if=\"error\">{{error?.data}}</div>\n   <div v-else>{{ data }}</div>\n </template>\n <script setup>\n-\n+import { throwError } from \"naive-ui/es/_utils\";\n const { data,pending,error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n"
+                },
+                {
+                    "date": 1669203935054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n const { data,pending,error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n-    appid: \"bd9d01ecc75dbbaaefce11\",\n+    appid: \"bd9d01ecc75dbbaaefce\",\n   },\n   transform: (res) => {\n     return res.data;\n   },\n"
+                },
+                {
+                    "date": 1669203983559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,23 @@\n <template>\n-    <div v-if=\"pending\">加载中。。。</div>\n-    <div v-else-if=\"error\">{{error?.data}}</div>\n+  <div v-if=\"pending\">加载中。。。</div>\n+  <div v-else-if=\"error\">{{ error?.data }}</div>\n   <div v-else>{{ data }}</div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n-const { data,pending,error } = await useFetch(\"/index\", {\n+const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n   },\n   transform: (res) => {\n     return res.data;\n   },\n-  lazy:true\n+  lazy: true,\n });\n \n-if(process.server && error.value){\n-    throwError(error.value?.data?.data)\n+if (process.server && error.value) {\n+  throwError(error.value?.data?.data);\n }\n </script>\n"
                 }
             ],
             "date": 1669105633077,
