@@ -1,0 +1,42 @@
+{
+    "sourceFile": "nuxt.config.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1669116191287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669116818569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,25 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n+import { defineNuxtConfig } from 'nuxt3'\n+\n export default defineNuxtConfig({\n-    build: {\n-        transpile:\n-          process.env.NODE_ENV === 'production'\n-            ? [\n-                'naive-ui',\n-                'vueuc',\n-                '@css-render/vue3-ssr',\n-                '@juggle/resize-observer'\n-              ]\n-            : ['@juggle/resize-observer']\n-      },\n-      vite: {\n-        optimizeDeps: {\n-          include:\n-            process.env.NODE_ENV === 'development'\n-              ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']\n-              : []\n-        }\n-      }\n-})\n+  buildModules: [\"nuxt-windicss\"],\n+  build: {\n+    transpile:\n+      process.env.NODE_ENV === \"production\"\n+        ? [\n+            \"naive-ui\",\n+            \"vueuc\",\n+            \"@css-render/vue3-ssr\",\n+            \"@juggle/resize-observer\",\n+          ]\n+        : [\"@juggle/resize-observer\"],\n+  },\n+  vite: {\n+    optimizeDeps: {\n+      include:\n+        process.env.NODE_ENV === \"development\"\n+          ? [\"naive-ui\", \"vueuc\", \"date-fns-tz/esm/formatInTimeZone\"]\n+          : [],\n+    },\n+  },\n+});\n"
+                },
+                {
+                    "date": 1669116831514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n-import { defineNuxtConfig } from 'nuxt3'\n+import { defineNuxtConfig } from 'nuxt'\n \n export default defineNuxtConfig({\n   buildModules: [\"nuxt-windicss\"],\n   build: {\n"
+                },
+                {
+                    "date": 1669117145012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n-import { defineNuxtConfig } from 'nuxt'\n \n export default defineNuxtConfig({\n-  buildModules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n       process.env.NODE_ENV === \"production\"\n         ? [\n"
+                },
+                {
+                    "date": 1669117172574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n \n export default defineNuxtConfig({\n+  modules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n       process.env.NODE_ENV === \"production\"\n         ? [\n"
+                },
+                {
+                    "date": 1669120195197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n \n export default defineNuxtConfig({\n+  css:[\"~/assets/main.css\"],\n   modules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n       process.env.NODE_ENV === \"production\"\n"
+                },
+                {
+                    "date": 1669120212430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n \n export default defineNuxtConfig({\n-  css:[\"~/assets/main.css\"],\n+  css:[\"@/assets/main.css\"],\n   modules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n       process.env.NODE_ENV === \"production\"\n"
+                }
+            ],
+            "date": 1669116191287,
+            "name": "Commit-0",
+            "content": "// https://nuxt.com/docs/api/configuration/nuxt-config\nexport default defineNuxtConfig({\n    build: {\n        transpile:\n          process.env.NODE_ENV === 'production'\n            ? [\n                'naive-ui',\n                'vueuc',\n                '@css-render/vue3-ssr',\n                '@juggle/resize-observer'\n              ]\n            : ['@juggle/resize-observer']\n      },\n      vite: {\n        optimizeDeps: {\n          include:\n            process.env.NODE_ENV === 'development'\n              ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']\n              : []\n        }\n      }\n})\n"
+        }
+    ]
+}

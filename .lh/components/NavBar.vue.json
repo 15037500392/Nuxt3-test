@@ -1,0 +1,166 @@
+{
+    "sourceFile": "components/NavBar.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 37,
+            "patches": [
+                {
+                    "date": 1669119842224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669127777260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n <template>\n-    <div>\n-        头部\n+    <div class=\"navbar\">\n+        <div class=\"container flex items-center\">\n+            11\n+        </div>\n     </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669127904514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,12 @@\n <template>\n     <div class=\"navbar\">\n-        <div class=\"container flex items-center\">\n+        <div class=\"container flex items-center h-[60px]\">\n             11\n         </div>\n     </div>\n\\ No newline at end of file\n-</template>\n+</template>\n+<style scoped>\n+.navbar{\n+    @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n+}\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669127929282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,8 @@\n     </div>\n </template>\n <style scoped>\n .navbar{\n+    z-index:1000;\n     @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n }\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669127942685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n     <div class=\"navbar\">\n         <div class=\"container flex items-center h-[60px]\">\n             11\n         </div>\n+        <div></div>\n     </div>\n </template>\n <style scoped>\n .navbar{\n"
+                },
+                {
+                    "date": 1669127961718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n     <div class=\"navbar\">\n         <div class=\"container flex items-center h-[60px]\">\n             11\n         </div>\n-        <div></div>\n+        <div class=\"w-[100%] h-[80px]\"></div>\n     </div>\n </template>\n <style scoped>\n .navbar{\n"
+                },
+                {
+                    "date": 1669127981599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,14 @@\n <template>\n-    <div class=\"navbar\">\n+    <div class=\"w-[100%] h-[80px]\">\n+        <div class=\"navbar\">\n         <div class=\"container flex items-center h-[60px]\">\n             11\n         </div>\n-        <div class=\"w-[100%] h-[80px]\"></div>\n+        \n     </div>\n+    </div>\n+    \n </template>\n <style scoped>\n .navbar{\n     z-index:1000;\n"
+                },
+                {
+                    "date": 1669127987698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,13 @@\n <template>\n-    <div class=\"w-[100%] h-[80px]\">\n-        <div class=\"navbar\">\n-        <div class=\"container flex items-center h-[60px]\">\n-            11\n-        </div>\n-        \n+  <div class=\"w-[100%] h-[80px]\">\n+    <div class=\"navbar\">\n+      <div class=\"container flex items-center h-[60px]\">11</div>\n     </div>\n-    </div>\n-    \n+  </div>\n </template>\n <style scoped>\n-.navbar{\n\\ No newline at end of file\n-    z-index:1000;\n-    @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n+.navbar {\n+  z-index: 1000;\n+  @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n }\n-</style>\n+</style>\n"
+                },
+                {
+                    "date": 1669128081049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,20 @@\n <template>\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n-      <div class=\"container flex items-center h-[60px]\">11</div>\n+      <div class=\"container flex items-center h-[60px]\">\n+        <n-button>帝纱编程</n-button>\n+        <div>导航栏</div>\n+        \n+      </div>\n     </div>\n   </div>\n </template>\n+<script setup>\n+    import {\n+        NButton\n+    } from 'naive-ui'\n+</script>\n <style scoped>\n .navbar {\n   z-index: 1000;\n   @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n"
+                },
+                {
+                    "date": 1669128168493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,25 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button>帝纱编程</n-button>\n         <div>导航栏</div>\n-        \n+        <n-button strong secondary circle type=\"error\">\n+      <template #icon>\n+        <n-icon><Search /></n-icon>\n+      </template>\n+    </n-button>\n       </div>\n     </div>\n   </div>\n </template>\n <script setup>\n     import {\n-        NButton\n+        NButton,\n+        NIcon\n     } from 'naive-ui'\n+    import {\n+        Search\n+    } from '@vicons/ionicons5'\n </script>\n <style scoped>\n .navbar {\n   z-index: 1000;\n"
+                },
+                {
+                    "date": 1669128201934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button>帝纱编程</n-button>\n         <div>导航栏</div>\n-        <n-button strong secondary circle type=\"error\">\n+        <n-button circle>\n       <template #icon>\n         <n-icon><Search /></n-icon>\n       </template>\n     </n-button>\n"
+                },
+                {
+                    "date": 1669128246177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,10 @@\n       <template #icon>\n         <n-icon><Search /></n-icon>\n       </template>\n     </n-button>\n+    <n-button type=\"primary\" size=\"medium\" strong secondary >登录</n-button>\n+    \n       </div>\n     </div>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669128254728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       <template #icon>\n         <n-icon><Search /></n-icon>\n       </template>\n     </n-button>\n-    <n-button type=\"primary\" size=\"medium\" strong secondary >登录</n-button>\n+    <n-button strong secondary >登录</n-button>\n     \n       </div>\n     </div>\n   </div>\n"
+                },
+                {
+                    "date": 1669128278841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n-        <n-button>帝纱编程</n-button>\n+        <n-button class=\"text-xl\">帝纱编程</n-button>\n         <div>导航栏</div>\n         <n-button circle>\n       <template #icon>\n         <n-icon><Search /></n-icon>\n"
+                },
+                {
+                    "date": 1669128297407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n-        <n-button class=\"text-xl\">帝纱编程</n-button>\n+        <n-button text class=\"text-xl\">帝纱编程</n-button>\n         <div>导航栏</div>\n         <n-button circle>\n       <template #icon>\n         <n-icon><Search /></n-icon>\n"
+                },
+                {
+                    "date": 1669128311307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n-        <n-button text class=\"text-xl\">帝纱编程</n-button>\n+        <n-button text class=\"text-xl !font-bold\">帝纱编程</n-button>\n         <div>导航栏</div>\n         <n-button circle>\n       <template #icon>\n         <n-icon><Search /></n-icon>\n"
+                },
+                {
+                    "date": 1669128347063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n-        <n-button text class=\"text-xl !font-bold\">帝纱编程</n-button>\n+        <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div>导航栏</div>\n         <n-button circle>\n       <template #icon>\n         <n-icon><Search /></n-icon>\n"
+                },
+                {
+                    "date": 1669128391325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div>导航栏</div>\n-        <n-button circle>\n+        <n-button circle class=\"ml-auto \">\n       <template #icon>\n         <n-icon><Search /></n-icon>\n       </template>\n     </n-button>\n"
+                },
+                {
+                    "date": 1669128590449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,27 +3,44 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div>导航栏</div>\n-        <n-button circle class=\"ml-auto \">\n-      <template #icon>\n-        <n-icon><Search /></n-icon>\n-      </template>\n-    </n-button>\n-    <n-button strong secondary >登录</n-button>\n-    \n+        <n-button circle class=\"ml-auto mr-3\">\n+          <template #icon>\n+            <n-icon><Search /></n-icon>\n+          </template>\n+        </n-button>\n+        <!-- <n-button strong secondary >登录</n-button> -->\n+        <n-dropdown trigger=\"hover\" :options=\"userOptions\" @select=\"handleSelect\">\n+            <n-avatar\n+      round\n+      size=\"medium\"\n+      src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\"\n+    />\n+        </n-dropdown>\n       </div>\n     </div>\n   </div>\n </template>\n <script setup>\n-    import {\n-        NButton,\n-        NIcon\n-    } from 'naive-ui'\n-    import {\n-        Search\n-    } from '@vicons/ionicons5'\n+import { NButton, NIcon, NDropdown,NAvatar } from \"naive-ui\";\n+import { Search } from \"@vicons/ionicons5\";\n+const userOptions = [\n+  {\n+    label: \"用户中心\",\n+    key: \"center\",\n+    disabled: true,\n+  },\n+  {\n+    label: \"推出\",\n+    key: \"logout\",\n+  },\n+];\n+\n+// 用户中心下拉\n+const handleSelect = (e) => {\n+    console.log(e)\n+}\n </script>\n <style scoped>\n .navbar {\n   z-index: 1000;\n"
+                },
+                {
+                    "date": 1669128605421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,27 +9,30 @@\n             <n-icon><Search /></n-icon>\n           </template>\n         </n-button>\n         <!-- <n-button strong secondary >登录</n-button> -->\n-        <n-dropdown trigger=\"hover\" :options=\"userOptions\" @select=\"handleSelect\">\n-            <n-avatar\n-      round\n-      size=\"medium\"\n-      src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\"\n-    />\n+        <n-dropdown\n+          trigger=\"hover\"\n+          :options=\"userOptions\"\n+          @select=\"handleSelect\"\n+        >\n+          <n-avatar\n+            round\n+            size=\"medium\"\n+            src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\"\n+          />\n         </n-dropdown>\n       </div>\n     </div>\n   </div>\n </template>\n <script setup>\n-import { NButton, NIcon, NDropdown,NAvatar } from \"naive-ui\";\n+import { NButton, NIcon, NDropdown, NAvatar } from \"naive-ui\";\n import { Search } from \"@vicons/ionicons5\";\n const userOptions = [\n   {\n     label: \"用户中心\",\n-    key: \"center\",\n-    disabled: true,\n+    key: \"center\"\n   },\n   {\n     label: \"推出\",\n     key: \"logout\",\n@@ -37,10 +40,10 @@\n ];\n \n // 用户中心下拉\n const handleSelect = (e) => {\n-    console.log(e)\n-}\n+  console.log(e);\n+};\n </script>\n <style scoped>\n .navbar {\n   z-index: 1000;\n"
+                },
+                {
+                    "date": 1669128616506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n     label: \"用户中心\",\n     key: \"center\"\n   },\n   {\n-    label: \"推出\",\n+    label: \"退出\",\n     key: \"logout\",\n   },\n ];\n \n"
+                },
+                {
+                    "date": 1669128668387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n           @select=\"handleSelect\"\n         >\n           <n-avatar\n             round\n-            size=\"medium\"\n+            size=\"small\"\n             src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\"\n           />\n         </n-dropdown>\n       </div>\n@@ -30,9 +30,9 @@\n import { Search } from \"@vicons/ionicons5\";\n const userOptions = [\n   {\n     label: \"用户中心\",\n-    key: \"center\"\n+    key: \"center\",\n   },\n   {\n     label: \"退出\",\n     key: \"logout\",\n"
+                },
+                {
+                    "date": 1669128796470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n-        <div>导航栏</div>\n+        <div class=\"menu\">\n+            <div ></div>\n+        </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n           </template>\n@@ -48,5 +50,11 @@\n .navbar {\n   z-index: 1000;\n   @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n }\n+.menu{\n+    @apply flex items-center px-4;\n+}\n+.menu-item{\n+    @apply px-2 py-1 mx-1;\n+}\n </style>\n"
+                },
+                {
+                    "date": 1669128912475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n-            <div ></div>\n+            <div class=\"menu-item\" v-for=\"i in 8\" :key=\"i\">分类{{i}}</div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n@@ -54,7 +54,7 @@\n .menu{\n     @apply flex items-center px-4;\n }\n .menu-item{\n-    @apply px-2 py-1 mx-1;\n+    @apply px-2 py-1 mx-1 rounded hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n }\n </style>\n"
+                },
+                {
+                    "date": 1669128934276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,7 +54,8 @@\n .menu{\n     @apply flex items-center px-4;\n }\n .menu-item{\n+    transition: all 0.2s;\n     @apply px-2 py-1 mx-1 rounded hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n }\n </style>\n"
+                },
+                {
+                    "date": 1669129011736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n+            <div class=\"menu-item menu-item-active\" >分类</div>\n             <div class=\"menu-item\" v-for=\"i in 8\" :key=\"i\">分类{{i}}</div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n@@ -57,5 +58,8 @@\n .menu-item{\n     transition: all 0.2s;\n     @apply px-2 py-1 mx-1 rounded hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n }\n+.menu-item-active{\n+    @apply !bg-blue-100 !text-blue-600;\n+}\n </style>\n"
+                },
+                {
+                    "date": 1669129337833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n             <div class=\"menu-item menu-item-active\" >分类</div>\n-            <div class=\"menu-item\" v-for=\"i in 8\" :key=\"i\">分类{{i}}</div>\n+            <div class=\"menu-item\" v-for=\"item in menus\" :key=\"item.path\">{{item.name}}</div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n@@ -40,8 +40,43 @@\n     label: \"退出\",\n     key: \"logout\",\n   },\n ];\n+const menus = [{\n+    name: '首页',\n+    path:'/',\n+    \n+},\n+{\n+    name: '考试',\n+    path:'/paper/1'\n+},\n+{\n+    name: '拼团',\n+    path:'/list/group/1'\n+},{\n+    name: '秒杀',\n+    path:'/list/flashSale/1'\n+},\n+{\n+    name: '直播',\n+    path:'/list/live/1'\n+},\n+{\n+    name: '专栏',\n+    path:'/list/live/1'\n+},{\n+    name: '电子书',\n+    path:'/list/book/1'\n+},\n+{\n+    name: '社区',\n+    path:'/bbs/0/1'\n+},{\n+    name: '课程',\n+    path:'/list/course/1'\n+}\n+]\n \n // 用户中心下拉\n const handleSelect = (e) => {\n   console.log(e);\n"
+                },
+                {
+                    "date": 1669129663119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,11 @@\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n             <div class=\"menu-item menu-item-active\" >分类</div>\n-            <div class=\"menu-item\" v-for=\"item in menus\" :key=\"item.path\">{{item.name}}</div>\n+            <div class=\"menu-item\" \n+            :class=\"{'menu-item-active':(router.path === item.path)}\"\n+            v-for=\"(item,index) of menus\" :key=\"index\">{{item.name}}</div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n@@ -30,8 +32,10 @@\n </template>\n <script setup>\n import { NButton, NIcon, NDropdown, NAvatar } from \"naive-ui\";\n import { Search } from \"@vicons/ionicons5\";\n+const router = useRouter()\n+console.log(router,'router')\n const userOptions = [\n   {\n     label: \"用户中心\",\n     key: \"center\",\n"
+                },
+                {
+                    "date": 1669129700695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n </template>\n <script setup>\n import { NButton, NIcon, NDropdown, NAvatar } from \"naive-ui\";\n import { Search } from \"@vicons/ionicons5\";\n-const router = useRouter()\n-console.log(router,'router')\n+const route = useRoute()\n+console.log(route,'router')\n const userOptions = [\n   {\n     label: \"用户中心\",\n     key: \"center\",\n"
+                },
+                {
+                    "date": 1669129707226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n             <div class=\"menu-item menu-item-active\" >分类</div>\n             <div class=\"menu-item\" \n-            :class=\"{'menu-item-active':(router.path === item.path)}\"\n+            :class=\"{'menu-item-active':(route.path === item.path)}\"\n             v-for=\"(item,index) of menus\" :key=\"index\">{{item.name}}</div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n"
+                },
+                {
+                    "date": 1669129718613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n-            <div class=\"menu-item menu-item-active\" >分类</div>\n             <div class=\"menu-item\" \n             :class=\"{'menu-item-active':(route.path === item.path)}\"\n             v-for=\"(item,index) of menus\" :key=\"index\">{{item.name}}</div>\n         </div>\n"
+                },
+                {
+                    "date": 1669130133729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n             <div class=\"menu-item\" \n+            @click=\"handleOpen(item.path)\"\n             :class=\"{'menu-item-active':(route.path === item.path)}\"\n             v-for=\"(item,index) of menus\" :key=\"index\">{{item.name}}</div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n@@ -78,8 +79,11 @@\n     name: '课程',\n     path:'/list/course/1'\n }\n ]\n+function handleOpen (path){\n+    navigateTo(path)\n+}\n \n // 用户中心下拉\n const handleSelect = (e) => {\n   console.log(e);\n"
+                },
+                {
+                    "date": 1669130226272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -98,9 +98,9 @@\n     @apply flex items-center px-4;\n }\n .menu-item{\n     transition: all 0.2s;\n-    @apply px-2 py-1 mx-1 rounded hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n+    @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n }\n .menu-item-active{\n     @apply !bg-blue-100 !text-blue-600;\n }\n"
+                },
+                {
+                    "date": 1669130249935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,17 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <div class=\"menu\">\n-            <div class=\"menu-item\" \n+          <div\n+            class=\"menu-item\"\n             @click=\"handleOpen(item.path)\"\n-            :class=\"{'menu-item-active':(route.path === item.path)}\"\n-            v-for=\"(item,index) of menus\" :key=\"index\">{{item.name}}</div>\n+            :class=\"{ 'menu-item-active': route.path === item.path }\"\n+            v-for=\"(item, index) of menus\"\n+            :key=\"index\"\n+          >\n+            {{ item.name }}\n+          </div>\n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n@@ -32,10 +37,10 @@\n </template>\n <script setup>\n import { NButton, NIcon, NDropdown, NAvatar } from \"naive-ui\";\n import { Search } from \"@vicons/ionicons5\";\n-const route = useRoute()\n-console.log(route,'router')\n+const route = useRoute();\n+console.log(route, \"router\");\n const userOptions = [\n   {\n     label: \"用户中心\",\n     key: \"center\",\n@@ -44,46 +49,49 @@\n     label: \"退出\",\n     key: \"logout\",\n   },\n ];\n-const menus = [{\n-    name: '首页',\n-    path:'/',\n-    \n-},\n-{\n-    name: '考试',\n-    path:'/paper/1'\n-},\n-{\n-    name: '拼团',\n-    path:'/list/group/1'\n-},{\n-    name: '秒杀',\n-    path:'/list/flashSale/1'\n-},\n-{\n-    name: '直播',\n-    path:'/list/live/1'\n-},\n-{\n-    name: '专栏',\n-    path:'/list/live/1'\n-},{\n-    name: '电子书',\n-    path:'/list/book/1'\n-},\n-{\n-    name: '社区',\n-    path:'/bbs/0/1'\n-},{\n-    name: '课程',\n-    path:'/list/course/1'\n+const menus = [\n+  {\n+    name: \"首页\",\n+    path: \"/\",\n+  },\n+  {\n+    name: \"考试\",\n+    path: \"/paper/1\",\n+  },\n+  {\n+    name: \"拼团\",\n+    path: \"/list/group/1\",\n+  },\n+  {\n+    name: \"秒杀\",\n+    path: \"/list/flashSale/1\",\n+  },\n+  {\n+    name: \"直播\",\n+    path: \"/list/live/1\",\n+  },\n+  {\n+    name: \"专栏\",\n+    path: \"/list/live/1\",\n+  },\n+  {\n+    name: \"电子书\",\n+    path: \"/list/book/1\",\n+  },\n+  {\n+    name: \"社区\",\n+    path: \"/bbs/0/1\",\n+  },\n+  {\n+    name: \"课程\",\n+    path: \"/list/course/1\",\n+  },\n+];\n+function handleOpen(path) {\n+  navigateTo(path);\n }\n-]\n-function handleOpen (path){\n-    navigateTo(path)\n-}\n \n // 用户中心下拉\n const handleSelect = (e) => {\n   console.log(e);\n@@ -93,15 +101,15 @@\n .navbar {\n   z-index: 1000;\n   @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n }\n-.menu{\n-    @apply flex items-center px-4;\n+.menu {\n+  @apply flex items-center px-4;\n }\n-.menu-item{\n-    transition: all 0.2s;\n-    @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n+.menu-item {\n+  transition: all 0.2s;\n+  @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n }\n-.menu-item-active{\n-    @apply !bg-blue-100 !text-blue-600;\n+.menu-item-active {\n+  @apply !bg-blue-100 !text-blue-600;\n }\n </style>\n"
+                },
+                {
+                    "date": 1669130396080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n-        <div class=\"menu\">\n+       \n           <div\n             class=\"menu-item\"\n             @click=\"handleOpen(item.path)\"\n             :class=\"{ 'menu-item-active': route.path === item.path }\"\n@@ -101,11 +101,9 @@\n .navbar {\n   z-index: 1000;\n   @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n }\n-.menu {\n-  @apply flex items-center px-4;\n-}\n+\n .menu-item {\n   transition: all 0.2s;\n   @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n }\n"
+                },
+                {
+                    "date": 1669130412305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,18 +2,20 @@\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n-       \n-          <div\n+        <UiMenu>\n+            <div\n             class=\"menu-item\"\n             @click=\"handleOpen(item.path)\"\n             :class=\"{ 'menu-item-active': route.path === item.path }\"\n             v-for=\"(item, index) of menus\"\n             :key=\"index\"\n           >\n             {{ item.name }}\n           </div>\n+        </UiMenu>\n+         \n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n"
+                },
+                {
+                    "date": 1669130432480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div class=\"w-[100%] h-[80px]\">\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n-        <UiMenu>\n+        <ui-menu>\n             <div\n             class=\"menu-item\"\n             @click=\"handleOpen(item.path)\"\n             :class=\"{ 'menu-item-active': route.path === item.path }\"\n@@ -12,9 +12,9 @@\n             :key=\"index\"\n           >\n             {{ item.name }}\n           </div>\n-        </UiMenu>\n+        </ui-menu>\n          \n         </div>\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n"
+                },
+                {
+                    "date": 1669130676563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,20 +3,18 @@\n     <div class=\"navbar\">\n       <div class=\"container flex items-center h-[60px]\">\n         <n-button text class=\"text-xl !font-bold\">山谣编程</n-button>\n         <ui-menu>\n-            <div\n-            class=\"menu-item\"\n-            @click=\"handleOpen(item.path)\"\n-            :class=\"{ 'menu-item-active': route.path === item.path }\"\n+          <ui-menu-item\n             v-for=\"(item, index) of menus\"\n             :key=\"index\"\n+            :active=\"route.path == item.path\"\n+            @click=\"handleOpen(item.path)\"\n           >\n             {{ item.name }}\n-          </div>\n+          </ui-menu-item>\n         </ui-menu>\n-         \n-        </div>\n+\n         <n-button circle class=\"ml-auto mr-3\">\n           <template #icon>\n             <n-icon><Search /></n-icon>\n           </template>\n@@ -103,13 +101,5 @@\n .navbar {\n   z-index: 1000;\n   @apply bg-white fixed top-0 left-0 right-0 shadow-sm;\n }\n-\n-.menu-item {\n-  transition: all 0.2s;\n-  @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n-}\n-.menu-item-active {\n-  @apply !bg-blue-100 !text-blue-600;\n-}\n </style>\n"
+                }
+            ],
+            "date": 1669119842224,
+            "name": "Commit-0",
+            "content": "<template>\n    <div>\n        头部\n    </div>\n</template>"
+        }
+    ]
+}

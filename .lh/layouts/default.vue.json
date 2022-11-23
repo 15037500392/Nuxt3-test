@@ -1,0 +1,38 @@
+{
+    "sourceFile": "layouts/default.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1669119587713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669119604192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <template>\n     <div>\n         布局\n+        <slot/>\n     </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669119866102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n <template>\n     <div>\n-        布局\n+        <NavBar></NavBar>\n         <slot/>\n+        <PageFooter></PageFooter>\n     </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669119943000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,13 @@\n <template>\n-    <div>\n+    <div class=\"body\">\n         <NavBar></NavBar>\n         <slot/>\n         <PageFooter></PageFooter>\n     </div>\n\\ No newline at end of file\n-</template>\n+</template>\n+<style>\n+    .body{\n+        min-width: 1000px;\n+        @apply bg-gray-100 flex flex-col;\n+    }\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669119973689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,8 @@\n </template>\n <style>\n     .body{\n         min-width: 1000px;\n+        min-height: 100vh;\n         @apply bg-gray-100 flex flex-col;\n     }\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669120253082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n <template>\n     <div class=\"body\">\n         <NavBar></NavBar>\n-        <slot/>\n+        <main class=\"container\">\n+            <slot/>\n+        </main>\n+       \n         <PageFooter></PageFooter>\n     </div>\n </template>\n <style>\n"
+                }
+            ],
+            "date": 1669119587713,
+            "name": "Commit-0",
+            "content": "<template>\n    <div>\n        布局\n    </div>\n</template>"
+        }
+    ]
+}

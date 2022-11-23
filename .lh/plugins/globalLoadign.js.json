@@ -1,0 +1,38 @@
+{
+    "sourceFile": "plugins/globalLoadign.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1669118757241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669119161563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,14 @@\n+import {\n+    createDiscreteApi\n+} from \"naive-ui\"\n export default defineNuxtPlugin((nuxtApp) => {\n+    const bar = ref(null)\n     nuxtApp.hook(\"app:mounted\",(e) => {\n         console.log('app:mounted')\n+        if(!bar.value){\n+            const {loadingBar} = createDiscreteApi([\"loadingBar\"])\n+        }\n     })\n     nuxtApp.hook(\"page:start\",(e) => {\n         console.log('page:start')\n     })\n"
+                },
+                {
+                    "date": 1669119245528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,18 @@\n     nuxtApp.hook(\"app:mounted\",(e) => {\n         console.log('app:mounted')\n         if(!bar.value){\n             const {loadingBar} = createDiscreteApi([\"loadingBar\"])\n+            bar.value = loadingBar\n         }\n     })\n     nuxtApp.hook(\"page:start\",(e) => {\n         console.log('page:start')\n+       \n+         bar.value?.start();\n     })\n     nuxtApp.hook(\"page:finish\",(e) => {\n+        bar.value?.finish();\n         console.log('page:finish')\n     })\n     nuxtApp.hook(\"app:error\",(e) => {\n         console.log('app:error')\n"
+                },
+                {
+                    "date": 1669119330367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,12 @@\n        \n          bar.value?.start();\n     })\n     nuxtApp.hook(\"page:finish\",(e) => {\n-        bar.value?.finish();\n+        setTimeout(() => {\n+            bar.value?.finish();\n+        },150)\n+        \n         console.log('page:finish')\n     })\n     nuxtApp.hook(\"app:error\",(e) => {\n         console.log('app:error')\n"
+                },
+                {
+                    "date": 1669119361590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,23 @@\n-import {\n-    createDiscreteApi\n-} from \"naive-ui\"\n+import { createDiscreteApi } from \"naive-ui\";\n export default defineNuxtPlugin((nuxtApp) => {\n-    const bar = ref(null)\n-    nuxtApp.hook(\"app:mounted\",(e) => {\n-        console.log('app:mounted')\n-        if(!bar.value){\n-            const {loadingBar} = createDiscreteApi([\"loadingBar\"])\n-            bar.value = loadingBar\n-        }\n-    })\n-    nuxtApp.hook(\"page:start\",(e) => {\n-        console.log('page:start')\n-       \n-         bar.value?.start();\n-    })\n-    nuxtApp.hook(\"page:finish\",(e) => {\n-        setTimeout(() => {\n-            bar.value?.finish();\n-        },150)\n-        \n-        console.log('page:finish')\n-    })\n-    nuxtApp.hook(\"app:error\",(e) => {\n-        console.log('app:error')\n-    })\n\\ No newline at end of file\n-})\n+  const bar = ref(null);\n+  nuxtApp.hook(\"app:mounted\", (e) => {\n+    if (!bar.value) {\n+      const { loadingBar } = createDiscreteApi([\"loadingBar\"]);\n+      bar.value = loadingBar;\n+    }\n+  });\n+  nuxtApp.hook(\"page:start\", (e) => {\n+    bar.value?.start();\n+  });\n+  nuxtApp.hook(\"page:finish\", (e) => {\n+    setTimeout(() => {\n+      bar.value?.finish();\n+    }, 150);\n+  });\n+  nuxtApp.hook(\"app:error\", (e) => {\n+    setTimeout(() => {\n+      bar.value?.finish();\n+    }, 150);\n+  });\n+});\n"
+                },
+                {
+                    "date": 1669119409572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,11 @@\n       bar.value?.finish();\n     }, 150);\n   });\n   nuxtApp.hook(\"app:error\", (e) => {\n-    setTimeout(() => {\n-      bar.value?.finish();\n-    }, 150);\n+    if (process.client) {\n+      setTimeout(() => {\n+        bar.value?.finish();\n+      }, 150);\n+    }\n   });\n });\n"
+                }
+            ],
+            "date": 1669118757241,
+            "name": "Commit-0",
+            "content": "export default defineNuxtPlugin((nuxtApp) => {\n    nuxtApp.hook(\"app:mounted\",(e) => {\n        console.log('app:mounted')\n    })\n    nuxtApp.hook(\"page:start\",(e) => {\n        console.log('page:start')\n    })\n    nuxtApp.hook(\"page:finish\",(e) => {\n        console.log('page:finish')\n    })\n    nuxtApp.hook(\"app:error\",(e) => {\n        console.log('app:error')\n    })\n})"
+        }
+    ]
+}

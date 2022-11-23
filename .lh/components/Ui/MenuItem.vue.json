@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/Ui/MenuItem.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1669130657092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1669130657092,
+            "name": "Commit-0",
+            "content": "<template>\n  <div class=\"menu-item\" :class=\"{ 'menu-item-active': active }\">\n    <slot />\n  </div>\n</template>\n<script setup>\ndefineProps({\n  active: {\n    type: Boolean,\n    default: false,\n  },\n});\n</script>\n<style>\n.menu-item {\n  transition: all 0.2s;\n  @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);\n}\n.menu-item-active {\n  @apply !bg-blue-100 !text-blue-600;\n}\n</style>\n"
+        }
+    ]
+}

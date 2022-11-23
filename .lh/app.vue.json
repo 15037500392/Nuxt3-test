@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1669104728094,
@@ -32,6 +32,38 @@
                 {
                     "date": 1669115242330,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n <template>\n   <div>\n     <h1>Welcome to the homepage</h1>\n-    <NuxtPage></NuxtPage>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669116284879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,13 @@\n <template>\n   <div>\n+    <n-button type=\"primary\" size=\"medium\" >按钮</n-button>\n+    \n     <h1>Welcome to the homepage</h1>\n   </div>\n </template>\n+<script setup>\n+  import {\n+    NButton\n+  } from \"naive-ui\"\n+</script>\n+\n"
+                },
+                {
+                    "date": 1669117335302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div>\n-    <n-button type=\"primary\" size=\"medium\" >按钮</n-button>\n+    <n-button type=\"primary\" size=\"medium\" class=\"bg-light-50\">按钮</n-button>\n     \n     <h1>Welcome to the homepage</h1>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669117342126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div>\n-    <n-button type=\"primary\" size=\"medium\" class=\"bg-light-50\">按钮</n-button>\n+    <n-button type=\"primary\" size=\"medium\">按钮</n-button>\n     \n     <h1>Welcome to the homepage</h1>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669117664521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,7 @@\n <script setup>\n   import {\n     NButton\n   } from \"naive-ui\"\n+  throw('故意报错')\n </script>\n \n"
+                },
+                {
+                    "date": 1669118128205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,5 @@\n <template>\n-  <div>\n-    <n-button type=\"primary\" size=\"medium\">按钮</n-button>\n-    \n-    <h1>Welcome to the homepage</h1>\n-  </div>\n </template>\n <script setup>\n-  import {\n-    NButton\n-  } from \"naive-ui\"\n-  throw('故意报错')\n </script>\n \n"
+                },
+                {
+                    "date": 1669118146474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <template>\n+  <NuxtPage/>\n </template>\n <script setup>\n </script>\n \n"
+                },
+                {
+                    "date": 1669119543996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <NuxtPage/>\n+  <NuxtLayout>\n+    <NuxtPage />\n+  </NuxtLayout>\n </template>\n-<script setup>\n-</script>\n-\n+<script setup></script>\n"
+                },
+                {
+                    "date": 1669119717623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n <template>\n-  <NuxtLayout>\n-    <NuxtPage />\n-  </NuxtLayout>\n+  <n-config-provider inline-theme-disabled>\n+    <NuxtLayout>\n+      <NuxtPage />\n+    </NuxtLayout>\n+  </n-config-provider>\n </template>\n-<script setup></script>\n+<script setup>\n+import { NConfigProvider } from \"naive-ui\";\n+</script>\n"
                 }
             ],
             "date": 1669104728094,

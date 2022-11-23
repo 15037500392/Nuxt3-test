@@ -1,0 +1,46 @@
+{
+    "sourceFile": "error.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1669117630274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669117639128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <template>\n+    {{error.message}}\n     <button @click=\"handleError\">Clear errors</button>\n   </template>\n   <script setup>\n   const props = defineProps({\n"
+                },
+                {
+                    "date": 1669117692378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n     {{error.message}}\n-    <button @click=\"handleError\">Clear errors</button>\n+    <button @click=\"handleError\">Clear errors22</button>\n   </template>\n   <script setup>\n   const props = defineProps({\n     error: Object\n"
+                },
+                {
+                    "date": 1669117830312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,14 @@\n <template>\n-    {{error.message}}\n-    <button @click=\"handleError\">Clear errors22</button>\n-  </template>\n-  <script setup>\n-  const props = defineProps({\n-    error: Object\n-  })\n-  const handleError = () => clearError({ redirect: '/' })\n-  </script>\n\\ No newline at end of file\n+  <n-result\n+    status=\"500\"\n+    title=\"500 服务器错误\"\n+    description=\"服务器出错可能说明该雇更多程序员了\"\n+  >\n+    <template #footer>\n+      <n-button>散财消灾</n-button>\n+    </template>\n+  </n-result>\n+</template>\n+<script setup>\n+import { NResult, NButton } from \"naive-ui\";\n+</script>\n"
+                },
+                {
+                    "date": 1669117902465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <n-result\n     status=\"500\"\n     title=\"500 服务器错误\"\n-    description=\"服务器出错可能说明该雇更多程序员了\"\n+    description=\"error.message\"\n   >\n     <template #footer>\n       <n-button>散财消灾</n-button>\n     </template>\n"
+                },
+                {
+                    "date": 1669117994366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,18 @@\n <template>\n   <n-result\n     status=\"500\"\n     title=\"500 服务器错误\"\n-    description=\"error.message\"\n+    :description=\"error.message\"\n   >\n     <template #footer>\n       <n-button>散财消灾</n-button>\n     </template>\n   </n-result>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n+const props = defineProps({\n+    error: Object\n+})\n+const handleError = () => clearError({redirect: '/'})\n </script>\n"
+                },
+                {
+                    "date": 1669118041834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n   <n-result\n     status=\"500\"\n     title=\"500 服务器错误\"\n     :description=\"error.message\"\n+    class=\"pt-10\"\n   >\n     <template #footer>\n       <n-button>散财消灾</n-button>\n     </template>\n"
+                },
+                {
+                    "date": 1669118057846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <n-result\n     status=\"500\"\n     title=\"500 服务器错误\"\n     :description=\"error.message\"\n-    class=\"pt-10\"\n+    class=\"pt-[800px]\"\n   >\n     <template #footer>\n       <n-button>散财消灾</n-button>\n     </template>\n"
+                }
+            ],
+            "date": 1669117630274,
+            "name": "Commit-0",
+            "content": "<template>\n    <button @click=\"handleError\">Clear errors</button>\n  </template>\n  <script setup>\n  const props = defineProps({\n    error: Object\n  })\n  const handleError = () => clearError({ redirect: '/' })\n  </script>"
+        }
+    ]
+}
