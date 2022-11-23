@@ -3,11 +3,23 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1669119841045,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669202072945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n <template>\n-    <div>尾部</div>\n+    <div class=\"mt-auto bg-dark-400 text-gray-100\">尾部</div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669202128794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,7 @@\n <template>\n-    <div class=\"mt-auto bg-dark-400 text-gray-100\">尾部</div>\n+    <div class=\"mt-auto bg-dark-400 text-gray-100\">\n+        <div class=\"flex items-center justify-center\">\n+            <a href=\"#\" v-for=\"i in 5\" :key=\"i\">友情链接</a>\n+        </div>\n+    </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669202248362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n <template>\n     <div class=\"mt-auto bg-dark-400 text-gray-100\">\n-        <div class=\"flex items-center justify-center\">\n-            <a href=\"#\" v-for=\"i in 5\" :key=\"i\">友情链接</a>\n+        <div class=\"flex items-center justify-center py-5\">\n+            <a href=\"#\" v-for=\"i in 5\" :key=\"i\" class=\"p-3\">友情链接</a>\n         </div>\n+        <div class=\"container border-t border-gray-700\">\n+            <small>Copyright @ 2022 </small>\n+        </div>\n     </div>\n </template>\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1669119841045,

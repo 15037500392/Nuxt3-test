@@ -1,3 +1,10 @@
 <template>
-    <div>尾部</div>
+    <div class="mt-auto bg-dark-400 text-gray-100">
+        <div class="flex items-center justify-center py-5">
+            <a href="#" v-for="i in 5" :key="i" class="p-3">友情链接</a>
+        </div>
+        <div class="container border-t border-gray-700">
+            <small>Copyright @ 2022 </small>
+        </div>
+    </div>
 </template>
