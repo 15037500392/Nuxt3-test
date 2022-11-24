@@ -1,0 +1,58 @@
+{
+    "sourceFile": "components/Ui/ListCard.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1669289253095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669289658969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <template>\n-    <div>\n+  <div class=\"flex mb-3\">\n+    <span class=\"text-lg\">标题</span>\n+    <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n+    \n \n-    </div>\n+  </div>\n </template>\n <script setup>\n-import {\n-    NButton\n-} from \"naive-ui\"\n+import { NButton } from \"naive-ui\";\n </script>\n"
+                },
+                {
+                    "date": 1669290037843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,25 @@\n <template>\n   <div class=\"flex mb-3\">\n     <span class=\"text-lg\">标题</span>\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n-    \n+    <n-grid x-gap=\"12\" :cols=\"4\">\n+    <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n+      <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n+        <template #cover>\n+          <img class=\"w-[100%] h-[90px]\" :src=\"item.src\" />\n+        </template>\n+        <div class=\"text-center pt-4\">\n+          {{ item.name }}\n+        </div>\n+      </n-card>\n+    </n-gi>\n+  </n-grid>\n \n   </div>\n </template>\n <script setup>\n-import { NButton } from \"naive-ui\";\n+import { NButton, NGrid, NGi } from \"naive-ui\";\n+defineProps({\n+  data: Array,\n+});\n </script>\n"
+                },
+                {
+                    "date": 1669290521104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div class=\"flex mb-3\">\n-    <span class=\"text-lg\">标题</span>\n+    <span class=\"text-lg\">{{data.title}}</span>\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n     <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n"
+                },
+                {
+                    "date": 1669290572485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div class=\"flex mb-3\">\n     <span class=\"text-lg\">{{data.title}}</span>\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n     <n-grid x-gap=\"12\" :cols=\"4\">\n-    <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n+    <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n         <template #cover>\n           <img class=\"w-[100%] h-[90px]\" :src=\"item.src\" />\n         </template>\n"
+                },
+                {
+                    "date": 1669290585226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n <template>\n   <div class=\"flex mb-3\">\n     <span class=\"text-lg\">{{data.title}}</span>\n+    {{data}}\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n     <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n"
+                },
+                {
+                    "date": 1669290608407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         <template #cover>\n           <img class=\"w-[100%] h-[90px]\" :src=\"item.src\" />\n         </template>\n         <div class=\"text-center pt-4\">\n-          {{ item.name }}\n+          111\n         </div>\n       </n-card>\n     </n-gi>\n   </n-grid>\n"
+                },
+                {
+                    "date": 1669290615491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n <template>\n   <div class=\"flex mb-3\">\n     <span class=\"text-lg\">{{data.title}}</span>\n-    {{data}}\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n     <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n"
+                },
+                {
+                    "date": 1669290626081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n <template>\n   <div class=\"flex mb-3\">\n     <span class=\"text-lg\">{{data.title}}</span>\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n-    <n-grid x-gap=\"12\" :cols=\"4\">\n+  </div>\n+  <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n         <template #cover>\n           <img class=\"w-[100%] h-[90px]\" :src=\"item.src\" />\n@@ -13,10 +14,8 @@\n         </div>\n       </n-card>\n     </n-gi>\n   </n-grid>\n-\n-  </div>\n </template>\n <script setup>\n import { NButton, NGrid, NGi } from \"naive-ui\";\n defineProps({\n"
+                },
+                {
+                    "date": 1669290708816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,14 +5,9 @@\n   </div>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n-        <template #cover>\n-          <img class=\"w-[100%] h-[90px]\" :src=\"item.src\" />\n-        </template>\n-        <div class=\"text-center pt-4\">\n-          111\n-        </div>\n+        <UiCourseList :data=\"item\"></UiCourseList>\n       </n-card>\n     </n-gi>\n   </n-grid>\n </template>\n"
+                },
+                {
+                    "date": 1669290723454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n   </div>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n-      <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n+      <n-card class=\"cursor-pointer\">\n         <UiCourseList :data=\"item\"></UiCourseList>\n       </n-card>\n     </n-gi>\n   </n-grid>\n"
+                }
+            ],
+            "date": 1669289253095,
+            "name": "Commit-0",
+            "content": "<template>\n    <div>\n\n    </div>\n</template>\n<script setup>\nimport {\n    NButton\n} from \"naive-ui\"\n</script>\n"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/Price.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1669291834793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669292032838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,17 @@\n <template>\n-    <span>\n+    <span :class=\"through ? 'text-gray-500 text-xs line-through': 'text-rose-500 font-bold'\">\n         {{ parseFloat(value) == 0 ? '免费' : `¥${value}`}}\n     </span>\n </template>\n <script setup>\n defineProps({\n     value:{\n       type:[String,Number],\n       default: 0\n-    }\n+    },\n+    through: {\n+    type: Boolean,\n+    default: false\n+  }\n })\n </script>\n"
+                }
+            ],
+            "date": 1669291834793,
+            "name": "Commit-0",
+            "content": "<template>\n    <span>\n        {{ parseFloat(value) == 0 ? '免费' : `¥${value}`}}\n    </span>\n</template>\n<script setup>\ndefineProps({\n    value:{\n      type:[String,Number],\n      default: 0\n    }\n})\n</script>\n"
+        }
+    ]
+}

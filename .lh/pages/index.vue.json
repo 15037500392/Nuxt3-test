@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 90,
             "patches": [
                 {
                     "date": 1669105633077,
@@ -88,6 +88,286 @@
                 {
                     "date": 1669203983559,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,23 @@\n <template>\n-    <div v-if=\"pending\">加载中。。。</div>\n-    <div v-else-if=\"error\">{{error?.data}}</div>\n+  <div v-if=\"pending\">加载中。。。</div>\n+  <div v-else-if=\"error\">{{ error?.data }}</div>\n   <div v-else>{{ data }}</div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n-const { data,pending,error } = await useFetch(\"/index\", {\n+const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n   },\n   transform: (res) => {\n     return res.data;\n   },\n-  lazy:true\n+  lazy: true,\n });\n \n-if(process.server && error.value){\n-    throwError(error.value?.data?.data)\n+if (process.server && error.value) {\n+  throwError(error.value?.data?.data);\n }\n </script>\n"
+                },
+                {
+                    "date": 1669204404905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,13 @@\n <template>\n-  <div v-if=\"pending\">加载中。。。</div>\n-  <div v-else-if=\"error\">{{ error?.data }}</div>\n-  <div v-else>{{ data }}</div>\n+    <div>\n+        <template v-if=\"pending\">加载中。。。</template>\n+        <template v-else-if=\"error\">{{ error?.data }}</template>\n+        <template v-else>{{ data }}</template>\n+    </div>\n+  \n+ \n+  \n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n const { data, pending, error } = await useFetch(\"/index\", {\n"
+                },
+                {
+                    "date": 1669204511476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n <template>\n-    <div>\n-        <template v-if=\"pending\">加载中。。。</template>\n-        <template v-else-if=\"error\">{{ error?.data }}</template>\n-        <template v-else>{{ data }}</template>\n-    </div>\n-  \n- \n-  \n+  <div>\n+    <template v-if=\"pending\">加载中。。。</template>\n+    <template v-else-if=\"error\">{{ error?.data }}</template>\n+    <template v-else>\n+        <UiBanner></UiBanner>\n+    </template>\n+  </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n const { data, pending, error } = await useFetch(\"/index\", {\n"
+                },
+                {
+                    "date": 1669204677382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <UiBanner></UiBanner>\n+        <UiBanner :data=\"data[1].data\"></UiBanner>\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669204815087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,15 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <UiBanner :data=\"data[1].data\"></UiBanner>\n+        <UiBanner :data=\"swiperData.data\"></UiBanner>\n     </template>\n   </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n+import { reactive, computed } from \"vue\";\n const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n@@ -23,5 +24,13 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n+\n+// 轮播图数据\n+const swiperData = computed(()=>{\n+    return data.filter(item => {\n+        return item.type === 'swiper'\n+    })\n+})\n+\n </script>\n"
+                },
+                {
+                    "date": 1669204835921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n }\n \n // 轮播图数据\n const swiperData = computed(()=>{\n+    console.log(data,'data')\n     return data.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n"
+                },
+                {
+                    "date": 1669204846663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n }\n \n // 轮播图数据\n const swiperData = computed(()=>{\n-    console.log(data,'data')\n+    console.log(data.value,'data')\n     return data.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n"
+                },
+                {
+                    "date": 1669204858495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n }\n \n // 轮播图数据\n const swiperData = computed(()=>{\n-    console.log(data.value,'data')\n+    console.log(data,'data')\n     return data.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n"
+                },
+                {
+                    "date": 1669204888903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n // 轮播图数据\n const swiperData = computed(()=>{\n     console.log(data,'data')\n-    return data.filter(item => {\n+    return data.value.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n \n"
+                },
+                {
+                    "date": 1669204911485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n }\n \n // 轮播图数据\n const swiperData = computed(()=>{\n-    console.log(data,'data')\n+    console.log(data.value,'data')\n     return data.value.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n"
+                },
+                {
+                    "date": 1669205031886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,12 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <UiBanner :data=\"swiperData.data\"></UiBanner>\n+        <template v-for=\"(item,index) in data\" :key=\"index\">\n+            <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n+        </template>\n+        \n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669205171927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <template v-for=\"(item,index) in data\" :key=\"index\">\n+        <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n-        </template>\n+        </template> -->\n+        <!-- <UiBanner :data=\"item.data\" ></UiBanner> -->\n         \n     </template>\n   </div>\n </template>\n@@ -35,6 +36,7 @@\n     return data.value.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n+console.log(swiperData,'swiperData')\n \n </script>\n"
+                },
+                {
+                    "date": 1669205193578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-\n+console.log(data,'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n     console.log(data.value,'data')\n     return data.value.filter(item => {\n"
+                },
+                {
+                    "date": 1669205226528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n-import { reactive, computed } from \"vue\";\n+import { reactive, computed,isRef} from \"vue\";\n const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n@@ -28,9 +28,9 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-console.log(data,'data')\n+console.log(data,isRef(data),'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n     console.log(data.value,'data')\n     return data.value.filter(item => {\n"
+                },
+                {
+                    "date": 1669205238722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-console.log(data,isRef(data),'data')\n+console.log(data,data.value,'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n     console.log(data.value,'data')\n     return data.value.filter(item => {\n"
+                },
+                {
+                    "date": 1669205254997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-console.log(data,data.value,'data')\n+console.log(data,data.value,typeof data.value'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n     console.log(data.value,'data')\n     return data.value.filter(item => {\n"
+                },
+                {
+                    "date": 1669205352179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,13 +28,13 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-console.log(data,data.value,typeof data.value'data')\n+// console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n-    console.log(data.value,'data')\n-    return data.value.filter(item => {\n+    // console.log(data.value,'data')\n+    return data.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n console.log(swiperData,'swiperData')\n"
+                },
+                {
+                    "date": 1669205391662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n // console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n     // console.log(data.value,'data')\n-    return data.filter(item => {\n+    return data.value.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n console.log(swiperData,'swiperData')\n"
+                },
+                {
+                    "date": 1669205429336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n // console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n const swiperData = computed(()=>{\n     // console.log(data.value,'data')\n+    console.log(data.value,'data.value')\n     return data.value.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n"
+                },
+                {
+                    "date": 1669205462937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n+        <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n-        </template> -->\n+        </template>\n         <!-- <UiBanner :data=\"item.data\" ></UiBanner> -->\n         \n     </template>\n   </div>\n@@ -30,14 +30,14 @@\n   throwError(error.value?.data?.data);\n }\n // console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n-const swiperData = computed(()=>{\n-    // console.log(data.value,'data')\n-    console.log(data.value,'data.value')\n-    return data.value.filter(item => {\n-        return item.type === 'swiper'\n-    })\n-})\n-console.log(swiperData,'swiperData')\n+// const swiperData = computed(()=>{\n+//     // console.log(data.value,'data')\n+//     console.log(data.value,'data.value')\n+//     return data.value.filter(item => {\n+//         return item.type === 'swiper'\n+//     })\n+// })\n+// console.log(swiperData,'swiperData')\n \n </script>\n"
+                },
+                {
+                    "date": 1669205660863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n-import { reactive, computed,isRef} from \"vue\";\n+import { reactive, computed,isRef,ref} from \"vue\";\n const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n@@ -28,8 +28,13 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n+const testData = ref([1,3,5])\n+const computedData = computed(() => {\n+    return testData.value[0]\n+})\n+console.log(computedData,'computedData')\n // console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n // const swiperData = computed(()=>{\n //     // console.log(data.value,'data')\n"
+                },
+                {
+                    "date": 1669205697271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n   throwError(error.value?.data?.data);\n }\n const testData = ref([1,3,5])\n const computedData = computed(() => {\n+    console.log(testData.value,'testData.value')\n     return testData.value[0]\n })\n console.log(computedData,'computedData')\n // console.log(data,data.,typeof data.value ,'data')\n"
+                },
+                {
+                    "date": 1669205723115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n         <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template>\n         <!-- <UiBanner :data=\"item.data\" ></UiBanner> -->\n-        \n+        {{computedData}}\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669205744050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,13 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <template v-for=\"(item,index) in data\" :key=\"index\">\n+        <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n-        </template>\n-        <!-- <UiBanner :data=\"item.data\" ></UiBanner> -->\n-        {{computedData}}\n+        </template> -->\n+        <UiBanner :data=\"swiperData.data\" ></UiBanner>\n+        <!-- {{computedData}} -->\n     </template>\n   </div>\n </template>\n <script setup>\n@@ -36,14 +36,14 @@\n })\n console.log(computedData,'computedData')\n // console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n-// const swiperData = computed(()=>{\n-//     // console.log(data.value,'data')\n-//     console.log(data.value,'data.value')\n-//     return data.value.filter(item => {\n-//         return item.type === 'swiper'\n-//     })\n-// })\n+const swiperData = computed(()=>{\n+    // console.log(data.value,'data')\n+    console.log(data.value,'data.value')\n+    return data.value.filter(item => {\n+        return item.type === 'swiper'\n+    })\n+})\n // console.log(swiperData,'swiperData')\n \n </script>\n"
+                },
+                {
+                    "date": 1669205755804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        <UiBanner :data=\"swiperData.data\" ></UiBanner>\n+        <UiBanner :data=\"swiperData.value.data\" ></UiBanner>\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669205770994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        <UiBanner :data=\"swiperData.value.data\" ></UiBanner>\n+        <UiBanner :data=\"swiperData.value\" ></UiBanner>\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669205791289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        <UiBanner :data=\"swiperData.value\" ></UiBanner>\n+        {{swiperData}}\n+        <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner>\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669205801989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        {{swiperData}}\n+        {{swiperData.value}}\n         <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner>\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669205812024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        {{swiperData.value}}\n-        <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner>\n+        {{swiperData[0].value}}\n+        <!-- <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner> -->\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669205821186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        {{swiperData[0].value}}\n+        {{swiperData.value}}\n         <!-- <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner> -->\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669205851479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,7 +44,7 @@\n     return data.value.filter(item => {\n         return item.type === 'swiper'\n     })\n })\n-// console.log(swiperData,'swiperData')\n+console.log(swiperData,'swiperData')\n \n </script>\n"
+                },
+                {
+                    "date": 1669205891453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        {{swiperData.value}}\n+        {{swiperData}}\n         <!-- <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner> -->\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n@@ -42,9 +42,9 @@\n     // console.log(data.value,'data')\n     console.log(data.value,'data.value')\n     return data.value.filter(item => {\n         return item.type === 'swiper'\n-    })\n+    })[0]\n })\n console.log(swiperData,'swiperData')\n \n </script>\n"
+                },
+                {
+                    "date": 1669205933980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,11 +40,16 @@\n // 轮播图数据\n const swiperData = computed(()=>{\n     // console.log(data.value,'data')\n     console.log(data.value,'data.value')\n-    return data.value.filter(item => {\n+    let filterData = data.value.filter(item => {\n         return item.type === 'swiper'\n-    })[0]\n+    })|| []\n+    if(filterData.length){\n+        return filterData[0]\n+    }else {\n+        retrun []\n+    }\n })\n console.log(swiperData,'swiperData')\n \n </script>\n"
+                },
+                {
+                    "date": 1669205945032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <template v-else>\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n-        {{swiperData}}\n+        {{swiperData.data}}\n         <!-- <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner> -->\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n@@ -46,9 +46,9 @@\n     })|| []\n     if(filterData.length){\n         return filterData[0]\n     }else {\n-        retrun []\n+        return []\n     }\n })\n console.log(swiperData,'swiperData')\n \n"
+                },
+                {
+                    "date": 1669205957108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n         <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n             <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n         </template> -->\n         {{swiperData.data}}\n-        <!-- <UiBanner :data=\"swiperData.value[0].data\" ></UiBanner> -->\n+        <UiBanner :data=\"swiperData.data\" ></UiBanner>\n         <!-- {{computedData}} -->\n     </template>\n   </div>\n </template>\n"
+                },
+                {
+                    "date": 1669206234593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,20 +2,19 @@\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n-        <!-- <template v-for=\"(item,index) in data\" :key=\"index\">\n-            <UiBanner :data=\"item.data\" v-if=\"item.type==='swiper'\"></UiBanner>\n-        </template> -->\n-        {{swiperData.data}}\n-        <UiBanner :data=\"swiperData.data\" ></UiBanner>\n-        <!-- {{computedData}} -->\n+      <!-- 轮播图-start -->\n+      <UiBanner :data=\"swiperData.data\"></UiBanner>\n+      <!-- 轮播图-end -->\n+      <!-- 图片分栏 -->\n+      <UiImageNav></UiImageNav>\n     </template>\n   </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n-import { reactive, computed,isRef,ref} from \"vue\";\n+import { reactive, computed, isRef, ref } from \"vue\";\n const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n@@ -29,27 +28,27 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-const testData = ref([1,3,5])\n+const testData = ref([1, 3, 5]);\n const computedData = computed(() => {\n-    console.log(testData.value,'testData.value')\n-    return testData.value[0]\n-})\n-console.log(computedData,'computedData')\n+  console.log(testData.value, \"testData.value\");\n+  return testData.value[0];\n+});\n+console.log(computedData, \"computedData\");\n // console.log(data,data.,typeof data.value ,'data')\n // 轮播图数据\n-const swiperData = computed(()=>{\n-    // console.log(data.value,'data')\n-    console.log(data.value,'data.value')\n-    let filterData = data.value.filter(item => {\n-        return item.type === 'swiper'\n-    })|| []\n-    if(filterData.length){\n-        return filterData[0]\n-    }else {\n-        return []\n-    }\n-})\n-console.log(swiperData,'swiperData')\n-\n+const swiperData = computed(() => {\n+  // console.log(data.value,'data')\n+  console.log(data.value, \"data.value\");\n+  let filterData =\n+    data.value.filter((item) => {\n+      return item.type === \"swiper\";\n+    }) || [];\n+  if (filterData.length) {\n+    return filterData[0];\n+  } else {\n+    return [];\n+  }\n+});\n+console.log(swiperData, \"swiperData\");\n </script>\n"
+                },
+                {
+                    "date": 1669206426564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n       <!-- 轮播图-start -->\n       <UiBanner :data=\"swiperData.data\"></UiBanner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n-      <UiImageNav></UiImageNav>\n+      <UiImageNav :data=\"iconData.data\"></UiImageNav>\n     </template>\n   </div>\n </template>\n <script setup>\n@@ -28,19 +28,11 @@\n \n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n-const testData = ref([1, 3, 5]);\n-const computedData = computed(() => {\n-  console.log(testData.value, \"testData.value\");\n-  return testData.value[0];\n-});\n-console.log(computedData, \"computedData\");\n-// console.log(data,data.,typeof data.value ,'data')\n+\n // 轮播图数据\n const swiperData = computed(() => {\n-  // console.log(data.value,'data')\n-  console.log(data.value, \"data.value\");\n   let filterData =\n     data.value.filter((item) => {\n       return item.type === \"swiper\";\n     }) || [];\n@@ -48,7 +40,19 @@\n     return filterData[0];\n   } else {\n     return [];\n   }\n-});\n-console.log(swiperData, \"swiperData\");\n+})\n+\n+// 图片分类\n+const iconData = computed(() => {\n+  let filterData =\n+    data.value.filter((item) => {\n+      return item.type === \"icons\";\n+    }) || [];\n+  if (filterData.length) {\n+    return filterData[0];\n+  } else {\n+    return [];\n+  }\n+})\n </script>\n"
+                },
+                {
+                    "date": 1669206577187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n import { reactive, computed, isRef, ref } from \"vue\";\n+// 获取首页数据\n const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n@@ -25,8 +26,9 @@\n   },\n   lazy: true,\n });\n \n+// 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n \n@@ -42,9 +44,9 @@\n     return [];\n   }\n })\n \n-// 图片分类\n+// 图片分类数据\n const iconData = computed(() => {\n   let filterData =\n     data.value.filter((item) => {\n       return item.type === \"icons\";\n@@ -54,5 +56,8 @@\n   } else {\n     return [];\n   }\n })\n+\n+// 广告位数据\n+// const \n </script>\n"
+                },
+                {
+                    "date": 1669206662359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,6 +58,16 @@\n   }\n })\n \n // 广告位数据\n-// const \n+const imageAd = computed(() => {\n+  let filterData =\n+    data.value.filter((item) => {\n+      return item.type === \"imageAd\";\n+    }) || [];\n+  if (filterData.length) {\n+    return filterData[0];\n+  } else {\n+    return [];\n+  }\n+})\n </script>\n"
+                },
+                {
+                    "date": 1669207064581,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n       <UiBanner :data=\"swiperData.data\"></UiBanner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n       <UiImageNav :data=\"iconData.data\"></UiImageNav>\n+      <!-- 图片广告 -->\n+      <UiImageAd :src=\"imageAd.data[0]\"></UiImageAd>\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669207086767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n       <UiImageNav :data=\"iconData.data\"></UiImageNav>\n       <!-- 图片广告 -->\n-      <UiImageAd :src=\"imageAd.data[0]\"></UiImageAd>\n+      <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669290215494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,10 @@\n       <!-- 图片分栏 -->\n       <UiImageNav :data=\"iconData.data\"></UiImageNav>\n       <!-- 图片广告 -->\n       <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n+      <!-- 列表 -->\n+      <UiListCard></UiListCard>\n     </template>\n   </div>\n </template>\n <script setup>\n@@ -44,9 +46,9 @@\n     return filterData[0];\n   } else {\n     return [];\n   }\n-})\n+});\n \n // 图片分类数据\n const iconData = computed(() => {\n   let filterData =\n@@ -57,9 +59,9 @@\n     return filterData[0];\n   } else {\n     return [];\n   }\n-})\n+});\n \n // 广告位数据\n const imageAd = computed(() => {\n   let filterData =\n@@ -70,6 +72,15 @@\n     return filterData[0];\n   } else {\n     return [];\n   }\n-})\n+});\n+\n+// 列表数据\n+const listData = computed(() => {\n+  let filterData =\n+    data.value.filter((item) => {\n+      return item.type === \"list\";\n+    }) || [];\n+  return filterData;\n+});\n </script>\n"
+                },
+                {
+                    "date": 1669290371129,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       <UiImageNav :data=\"iconData.data\"></UiImageNav>\n       <!-- 图片广告 -->\n       <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n       <!-- 列表 -->\n-      <UiListCard></UiListCard>\n+      <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></UiListCard>\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669290413156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       <UiImageNav :data=\"iconData.data\"></UiImageNav>\n       <!-- 图片广告 -->\n       <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n       <!-- 列表 -->\n-      <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></UiListCard>\n+      <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item.data\"></UiListCard>\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669290434899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,5 +82,6 @@\n       return item.type === \"list\";\n     }) || [];\n   return filterData;\n });\n+console.log(listData,'listData')\n </script>\n"
+                },
+                {
+                    "date": 1669290494513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,10 @@\n       <UiImageNav :data=\"iconData.data\"></UiImageNav>\n       <!-- 图片广告 -->\n       <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n       <!-- 列表 -->\n-      <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item.data\"></UiListCard>\n+      <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></UiListCard>\n+      {{listData}}\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669290640428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n       <!-- 图片广告 -->\n       <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n       <!-- 列表 -->\n       <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></UiListCard>\n-      {{listData}}\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669292863970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,16 +3,16 @@\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n     <template v-else>\n       <!-- 轮播图-start -->\n-      <UiBanner :data=\"swiperData.data\"></UiBanner>\n+      <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n-      <UiImageNav :data=\"iconData.data\"></UiImageNav>\n+      <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n-      <UiImageAd :data=\"imageAd.data\"></UiImageAd>\n+      <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 列表 -->\n-      <UiListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></UiListCard>\n+      <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n </template>\n <script setup>\n@@ -30,8 +30,21 @@\n   },\n   lazy: true,\n });\n \n+// 获取拼团数据\n+const { pinData } = await useFetch(\"/index\", {\n+  key: \"pinData\",\n+  baseURL: \"/pc/group/list?page=1&usable=8\",\n+  headers: {\n+    appid: \"bd9d01ecc75dbbaaefce\",\n+  },\n+  transform: (res) => {\n+    return res.data;\n+  },\n+  lazy: true,\n+});\n+console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n"
+                },
+                {
+                    "date": 1669292894899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,11 @@\n   lazy: true,\n });\n \n // 获取拼团数据\n-const { pinData } = await useFetch(\"/index\", {\n+const { pinData } = await useFetch(\"list?page=1&usable=8\", {\n   key: \"pinData\",\n-  baseURL: \"/pc/group/list?page=1&usable=8\",\n+  baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n   },\n   transform: (res) => {\n"
+                },
+                {
+                    "date": 1669292984366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n   lazy: true,\n });\n \n // 获取拼团数据\n-const { pinData } = await useFetch(\"list?page=1&usable=8\", {\n+const { pinData } = await useFetch(\"/group/list?page=1&usable=8\", {\n   key: \"pinData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n"
+                },
+                {
+                    "date": 1669293041878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,10 @@\n       <!-- 图片分栏 -->\n       <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n+      <!-- 拼团 -->\n+      <ListCard :data=\"pinData.rows\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293060387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n-      <ListCard :data=\"pinData.rows\"></ListCard>\n+      <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293065764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n       <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n+      {{pinData}}\n       <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n"
+                },
+                {
+                    "date": 1669293072040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <ListCard :data=\"pinData\"></ListCard>\n+      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293138573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n+      <ListCard :data=\"pinData.data.rows\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n@@ -34,9 +34,9 @@\n   lazy: true,\n });\n \n // 获取拼团数据\n-const { pinData } = await useFetch(\"/group/list?page=1&usable=8\", {\n+const pinData= await useFetch(\"/group/list?page=1&usable=8\", {\n   key: \"pinData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n"
+                },
+                {
+                    "date": 1669293155610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <ListCard :data=\"pinData.data.rows\"></ListCard>\n+      <!-- <ListCard :data=\"pinData.data.rows\"></ListCard> -->\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293266476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <!-- <ListCard :data=\"pinData.data.rows\"></ListCard> -->\n+      <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n@@ -46,8 +46,12 @@\n   },\n   lazy: true,\n });\n console.log(pinData,'pinData')\n+pinData.value = {\n+  title: '拼团',\n+  data: pinData.value.rows\n+}\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n"
+                },
+                {
+                    "date": 1669293279239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,12 +46,12 @@\n   },\n   lazy: true,\n });\n console.log(pinData,'pinData')\n-pinData.value = {\n-  title: '拼团',\n-  data: pinData.value.rows\n-}\n+// pinData.value = {\n+//   title: '拼团',\n+//   data: pinData.value.rows\n+// }\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n"
+                },
+                {
+                    "date": 1669293287121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <ListCard :data=\"pinData\"></ListCard>\n+      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293311488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,13 +45,14 @@\n     return res.data;\n   },\n   lazy: true,\n });\n+\n+pinData.value = {\n+  title: '拼团',\n+  data: pinData.value.rows\n+}\n console.log(pinData,'pinData')\n-// pinData.value = {\n-//   title: '拼团',\n-//   data: pinData.value.rows\n-// }\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n"
+                },
+                {
+                    "date": 1669293323957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n });\n \n pinData.value = {\n   title: '拼团',\n-  data: pinData.value.rows\n+  data: pinData.rows\n }\n console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n"
+                },
+                {
+                    "date": 1669293334554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n   },\n   lazy: true,\n });\n \n-pinData.value = {\n+pinData = {\n   title: '拼团',\n   data: pinData.rows\n }\n console.log(pinData,'pinData')\n"
+                },
+                {
+                    "date": 1669293341018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n   },\n   lazy: true,\n });\n \n-pinData = {\n+pinData.value = {\n   title: '拼团',\n   data: pinData.rows\n }\n console.log(pinData,'pinData')\n"
+                },
+                {
+                    "date": 1669293348706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n+      <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293359130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <ListCard :data=\"pinData\"></ListCard>\n+      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293376904,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n });\n \n pinData.value = {\n   title: '拼团',\n-  data: pinData.rows\n+  data: pinData.data.rows\n }\n console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n"
+                },
+                {
+                    "date": 1669293393235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n });\n \n pinData.value = {\n   title: '拼团',\n-  data: pinData.data.rows\n+  data: pinData.rows\n }\n console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n"
+                },
+                {
+                    "date": 1669293418210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n });\n \n pinData.value = {\n   title: '拼团',\n-  data: pinData.rows\n+  data: pinData.value.rows\n }\n console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n"
+                },
+                {
+                    "date": 1669293502206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n   lazy: true,\n });\n \n // 获取拼团数据\n-const pinData= await useFetch(\"/group/list?page=1&usable=8\", {\n+const {data:pinData }= await useFetch(\"/group/list?page=1&usable=8\", {\n   key: \"pinData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n   headers: {\n     appid: \"bd9d01ecc75dbbaaefce\",\n@@ -45,14 +45,14 @@\n     return res.data;\n   },\n   lazy: true,\n });\n-\n-pinData.value = {\n-  title: '拼团',\n-  data: pinData.value.rows\n-}\n console.log(pinData,'pinData')\n+// pinData.value = {\n+//   title: '拼团',\n+//   data: pinData.value.rows\n+// }\n+// console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n"
+                },
+                {
+                    "date": 1669293517025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       {{pinData}}\n-      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n+      <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n   </div>\n"
+                },
+                {
+                    "date": 1669293645982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n       <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n-      {{pinData}}\n       <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n"
                 }
             ],
             "date": 1669105633077,

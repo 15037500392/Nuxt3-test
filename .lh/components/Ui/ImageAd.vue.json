@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/Ui/ImageAd.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1669207022197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669207119021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n-    <img :src=\"src\" />\n+    <img v-for=\"(item, index) in data\" :key=\"index\" :src=\"item.src\"/>\n </template>\n <script setup>\n defineProps({\n-    src: String,\n+  data: Array,\n });\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669207184099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-    <img v-for=\"(item, index) in data\" :key=\"index\" :src=\"item.src\"/>\n+    <img class=\"w-[100%] h-[100px] rounded mb-6 cursor-pointer\" v-for=\"(item, index) in data\" :key=\"index\" :src=\"item.src\"/>\n </template>\n <script setup>\n defineProps({\n   data: Array,\n"
+                },
+                {
+                    "date": 1669207196571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-    <img class=\"w-[100%] h-[100px] rounded mb-6 cursor-pointer\" v-for=\"(item, index) in data\" :key=\"index\" :src=\"item.src\"/>\n+    <img class=\"w-[100%] h-[100px] rounded mt-6 mb-6 cursor-pointer\" v-for=\"(item, index) in data\" :key=\"index\" :src=\"item.src\"/>\n </template>\n <script setup>\n defineProps({\n   data: Array,\n"
+                }
+            ],
+            "date": 1669207022197,
+            "name": "Commit-0",
+            "content": "<template>\n    <img :src=\"src\" />\n</template>\n<script setup>\ndefineProps({\n    src: String,\n});\n</script>"
+        }
+    ]
+}

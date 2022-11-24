@@ -1,0 +1,78 @@
+{
+    "sourceFile": "components/Ui/CourseList.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1669289840404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669290661702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,5 @@\n <template>\n+    <div>\n+        11\n+    </div>\n </template>\n"
+                },
+                {
+                    "date": 1669290707623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n <template>\n-    <div>\n-        11\n-    </div>\n+  <div>11</div>\n </template>\n+<script>\n+defineProps({\n+  data: Array,\n+});\n+</script>\n"
+                },
+                {
+                    "date": 1669290747584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <div>11</div>\n </template>\n-<script>\n+<script setup>\n defineProps({\n   data: Array,\n });\n </script>\n"
+                },
+                {
+                    "date": 1669290785734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,11 @@\n <template>\n-  <div>11</div>\n+    <n-card >\n+    <template #cover>\n+      <img src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\">\n+    </template>\n+    卡片内容\n+  </n-card>\n </template>\n <script setup>\n defineProps({\n   data: Array,\n"
+                },
+                {
+                    "date": 1669290813851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,16 @@\n <template>\n+  data: Array,\n+    <div>{{}}</div>\n     <n-card >\n     <template #cover>\n       <img src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\">\n     </template>\n     卡片内容\n   </n-card>\n </template>\n <script setup>\n+import { NCard} from 'naive-ui'\n defineProps({\n   data: Array,\n });\n </script>\n"
+                },
+                {
+                    "date": 1669290825176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   data: Array,\n-    <div>{{}}</div>\n+    <div>{{data}}</div>\n     <n-card >\n     <template #cover>\n       <img src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\">\n     </template>\n"
+                },
+                {
+                    "date": 1669290852691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n <template>\n-  data: Array,\n     <div>{{data}}</div>\n     <n-card >\n     <template #cover>\n-      <img src=\"https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg\">\n+      <img :src=\"data.cover\">\n     </template>\n-    卡片内容\n+    <div>{{data.title}}</div>\n   </n-card>\n </template>\n <script setup>\n import { NCard} from 'naive-ui'\n"
+                },
+                {
+                    "date": 1669290864282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,14 @@\n <template>\n-    <div>{{data}}</div>\n-    <n-card >\n+  <n-card>\n     <template #cover>\n-      <img :src=\"data.cover\">\n+      <img :src=\"data.cover\" />\n     </template>\n-    <div>{{data.title}}</div>\n+    <div>{{ data.title }}</div>\n   </n-card>\n </template>\n <script setup>\n-import { NCard} from 'naive-ui'\n+import { NCard } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n </script>\n"
+                },
+                {
+                    "date": 1669290884648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <n-card>\n     <template #cover>\n       <img :src=\"data.cover\" />\n     </template>\n-    <div>{{ data.title }}</div>\n+    <div class=\"flex\">{{ data.title }}</div>\n   </n-card>\n </template>\n <script setup>\n import { NCard } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1669290899188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <n-card>\n+  <n-card class=\"mb-6\">\n     <template #cover>\n       <img :src=\"data.cover\" />\n     </template>\n     <div class=\"flex\">{{ data.title }}</div>\n"
+                },
+                {
+                    "date": 1669290941124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n   <n-card class=\"mb-6\">\n     <template #cover>\n-      <img :src=\"data.cover\" />\n+      <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n-    <div class=\"flex\">{{ data.title }}</div>\n+    <div class=\"pt-4\">{{ data.title }}</div>\n   </n-card>\n </template>\n <script setup>\n import { NCard } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1669290986691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <n-card class=\"mb-6\">\n+  <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n     <template #cover>\n       <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n     <div class=\"pt-4\">{{ data.title }}</div>\n"
+                },
+                {
+                    "date": 1669291050415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n   <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n     <template #cover>\n       <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n-    <div class=\"pt-4\">{{ data.title }}</div>\n+    <div class=\"pt-4\">\n+        <span class=\"font-bold w-full truncate font-semibold\"> {{ data.title }}</span>\n+        </div>\n   </n-card>\n </template>\n <script setup>\n import { NCard } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1669291065441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n     </template>\n     <div class=\"pt-4\">\n         <span class=\"font-bold w-full truncate font-semibold\"> {{ data.title }}</span>\n         </div>\n+        <div>价格</div>\n   </n-card>\n </template>\n <script setup>\n import { NCard } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1669291073473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n     <template #cover>\n       <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n-    <div class=\"pt-4\">\n+    <div class=\"pt-2\">\n         <span class=\"font-bold w-full truncate font-semibold\"> {{ data.title }}</span>\n         </div>\n         <div>价格</div>\n   </n-card>\n"
+                }
+            ],
+            "date": 1669289840404,
+            "name": "Commit-0",
+            "content": "<template>\n</template>\n"
+        }
+    ]
+}

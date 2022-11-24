@@ -1,0 +1,54 @@
+{
+    "sourceFile": "components/ListCard.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1669291309423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669293526245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div class=\"flex mb-3\">\n-    <span class=\"text-lg\">{{data.title}}</span>\n+    <span class=\"text-lg\">{{data.title || '拼团'}}</span>\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n   </div>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n"
+                },
+                {
+                    "date": 1669293639119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,25 @@\n     <span class=\"text-lg\">{{data.title || '拼团'}}</span>\n     <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n   </div>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n-    <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n+    <n-gi v-for=\"(item, index) in CourseData\" :key=\"index\">\n       <n-card class=\"cursor-pointer\">\n         <CourseList :data=\"item\"></CourseList>\n       </n-card>\n     </n-gi>\n   </n-grid>\n </template>\n <script setup>\n+import { computed } from 'vue'\n import { NButton, NGrid, NGi } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n+const CourseData = computed(() => {\n+  if(data.value.title){\n+    return data.data\n+  }else {\n+    return data.rows\n+  }\n+})\n </script>\n"
+                },
+                {
+                    "date": 1669293667095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <div class=\"flex mb-3\">\n-    <span class=\"text-lg\">{{data.title || '拼团'}}</span>\n-    <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n+    <span class=\"text-lg\">{{ data.title || \"拼团\" }}</span>\n+    <n-button quaternary class=\"ml-auto\">查看更多</n-button>\n   </div>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in CourseData\" :key=\"index\">\n       <n-card class=\"cursor-pointer\">\n@@ -11,17 +11,17 @@\n     </n-gi>\n   </n-grid>\n </template>\n <script setup>\n-import { computed } from 'vue'\n+import { computed } from \"vue\";\n import { NButton, NGrid, NGi } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n const CourseData = computed(() => {\n-  if(data.value.title){\n-    return data.data\n-  }else {\n-    return data.rows\n+  if (data.value.title) {\n+    return data.data;\n+  } else {\n+    return data.rows;\n   }\n-})\n+});\n </script>\n"
+                },
+                {
+                    "date": 1669293683009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,10 @@\n   data: Array,\n });\n const CourseData = computed(() => {\n   if (data.value.title) {\n-    return data.data;\n+    return data.value.data;\n   } else {\n-    return data.rows;\n+    return data.value.rows;\n   }\n });\n </script>\n"
+                },
+                {
+                    "date": 1669293694274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n import { NButton, NGrid, NGi } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n+console.log(data,'ddd')\n const CourseData = computed(() => {\n   if (data.value.title) {\n     return data.value.data;\n   } else {\n"
+                },
+                {
+                    "date": 1669293727059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <span class=\"text-lg\">{{ data.title || \"拼团\" }}</span>\n     <n-button quaternary class=\"ml-auto\">查看更多</n-button>\n   </div>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n-    <n-gi v-for=\"(item, index) in CourseData\" :key=\"index\">\n+    <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\">\n         <CourseList :data=\"item\"></CourseList>\n       </n-card>\n     </n-gi>\n@@ -18,11 +18,12 @@\n   data: Array,\n });\n console.log(data,'ddd')\n const CourseData = computed(() => {\n-  if (data.value.title) {\n-    return data.value.data;\n-  } else {\n-    return data.value.rows;\n-  }\n+  return \n+  // if (data.value.title) {\n+  //   return data.value.data;\n+  // } else {\n+  //   return data.value.rows;\n+  // }\n });\n </script>\n"
+                },
+                {
+                    "date": 1669293777672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n import { NButton, NGrid, NGi } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n-console.log(data,'ddd')\n+console.log(data.value,'ddd')\n const CourseData = computed(() => {\n   return \n   // if (data.value.title) {\n   //   return data.value.data;\n"
+                },
+                {
+                    "date": 1669293786026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n import { NButton, NGrid, NGi } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n-console.log(data.value,'ddd')\n+// console.log(data.value,'ddd')\n const CourseData = computed(() => {\n   return \n   // if (data.value.title) {\n   //   return data.value.data;\n"
+                },
+                {
+                    "date": 1669293819248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,22 @@\n   <div class=\"flex mb-3\">\n     <span class=\"text-lg\">{{ data.title || \"拼团\" }}</span>\n     <n-button quaternary class=\"ml-auto\">查看更多</n-button>\n   </div>\n-  <n-grid x-gap=\"12\" :cols=\"4\">\n+  <n-grid x-gap=\"12\" :cols=\"4\" v-if=\"data.title\">\n     <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n       <n-card class=\"cursor-pointer\">\n         <CourseList :data=\"item\"></CourseList>\n       </n-card>\n     </n-gi>\n   </n-grid>\n+  <n-grid x-gap=\"12\" :cols=\"4\" v-else>\n+    <n-gi v-for=\"(item, index) in data.rows\" :key=\"index\">\n+      <n-card class=\"cursor-pointer\">\n+        <CourseList :data=\"item\"></CourseList>\n+      </n-card>\n+    </n-gi>\n+  </n-grid>\n </template>\n <script setup>\n import { computed } from \"vue\";\n import { NButton, NGrid, NGi } from \"naive-ui\";\n"
+                }
+            ],
+            "date": 1669291309423,
+            "name": "Commit-0",
+            "content": "<template>\n  <div class=\"flex mb-3\">\n    <span class=\"text-lg\">{{data.title}}</span>\n    <n-button quaternary class=\"ml-auto\" >查看更多</n-button>\n  </div>\n  <n-grid x-gap=\"12\" :cols=\"4\">\n    <n-gi v-for=\"(item, index) in data.data\" :key=\"index\">\n      <n-card class=\"cursor-pointer\">\n        <CourseList :data=\"item\"></CourseList>\n      </n-card>\n    </n-gi>\n  </n-grid>\n</template>\n<script setup>\nimport { NButton, NGrid, NGi } from \"naive-ui\";\ndefineProps({\n  data: Array,\n});\n</script>\n"
+        }
+    ]
+}

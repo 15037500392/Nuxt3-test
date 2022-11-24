@@ -1,0 +1,54 @@
+{
+    "sourceFile": "components/Ui/Banner.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1669204512572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669204554645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,4 +20,11 @@\n </template>\n <script setup>\n import { NCarousel } from \"naive-ui\";\n </script>\n+<style>\n+.carousel-img {\n+  width: 100%;\n+  height: 240px;\n+  object-fit: cover;\n+}\n+</style>\n"
+                },
+                {
+                    "date": 1669204678850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,19 @@\n <template>\n   <n-carousel autoplay>\n     <img\n       class=\"carousel-img\"\n-      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg\"\n+      v-for=\"(item,index) in data\"\n+      :key=\"index\"\n+      :src=\"item.src\"\n     />\n-    <img\n-      class=\"carousel-img\"\n-      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg\"\n-    />\n-    <img\n-      class=\"carousel-img\"\n-      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg\"\n-    />\n-    <img\n-      class=\"carousel-img\"\n-      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg\"\n-    />\n   </n-carousel>\n </template>\n <script setup>\n import { NCarousel } from \"naive-ui\";\n+defineProps({\n+    data: Array\n+})\n </script>\n <style>\n .carousel-img {\n   width: 100%;\n"
+                },
+                {
+                    "date": 1669204695237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,8 @@\n </script>\n <style>\n .carousel-img {\n   width: 100%;\n-  height: 240px;\n+  height: 400px;\n   object-fit: cover;\n }\n </style>\n"
+                },
+                {
+                    "date": 1669205063285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <n-carousel autoplay>\n+  <n-carousel autoplay show-arrow class=\"mb-6\">\n     <img\n       class=\"carousel-img\"\n       v-for=\"(item,index) in data\"\n       :key=\"index\"\n"
+                },
+                {
+                    "date": 1669205072887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <n-carousel autoplay show-arrow class=\"mb-6\">\n+  <n-carousel  show-arrow class=\"mb-6\">\n     <img\n       class=\"carousel-img\"\n       v-for=\"(item,index) in data\"\n       :key=\"index\"\n"
+                },
+                {
+                    "date": 1669205096688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n-  <n-carousel  show-arrow class=\"mb-6\">\n+  <n-carousel show-arrow class=\"mb-6\">\n     <img\n-      class=\"carousel-img\"\n+      class=\"carousel-img rounded cursor-pointer\"\n       v-for=\"(item,index) in data\"\n       :key=\"index\"\n       :src=\"item.src\"\n     />\n"
+                },
+                {
+                    "date": 1669205568983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,16 +4,22 @@\n       class=\"carousel-img rounded cursor-pointer\"\n       v-for=\"(item,index) in data\"\n       :key=\"index\"\n       :src=\"item.src\"\n+      @click=\"open(item)\"\n     />\n   </n-carousel>\n </template>\n <script setup>\n import { NCarousel } from \"naive-ui\";\n defineProps({\n     data: Array\n })\n+const open = (item) => {\n+    if(item.type==='webview'){\n+        window.open(item.url)\n+    }\n+}\n </script>\n <style>\n .carousel-img {\n   width: 100%;\n"
+                },
+                {
+                    "date": 1669206726697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <n-carousel show-arrow class=\"mb-6\">\n     <img\n       class=\"carousel-img rounded cursor-pointer\"\n-      v-for=\"(item,index) in data\"\n+      v-for=\"(item, index) in data\"\n       :key=\"index\"\n       :src=\"item.src\"\n       @click=\"open(item)\"\n     />\n@@ -11,15 +11,15 @@\n </template>\n <script setup>\n import { NCarousel } from \"naive-ui\";\n defineProps({\n-    data: Array\n-})\n+  data: Array,\n+});\n const open = (item) => {\n-    if(item.type==='webview'){\n-        window.open(item.url)\n-    }\n-}\n+  if (item.type === \"webview\") {\n+    window.open(item.url);\n+  }\n+};\n </script>\n <style>\n .carousel-img {\n   width: 100%;\n"
+                },
+                {
+                    "date": 1669206888082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,22 +4,17 @@\n       class=\"carousel-img rounded cursor-pointer\"\n       v-for=\"(item, index) in data\"\n       :key=\"index\"\n       :src=\"item.src\"\n-      @click=\"open(item)\"\n+      @click=\"$commonOpen(item)\"\n     />\n   </n-carousel>\n </template>\n <script setup>\n import { NCarousel } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n-const open = (item) => {\n-  if (item.type === \"webview\") {\n-    window.open(item.url);\n-  }\n-};\n </script>\n <style>\n .carousel-img {\n   width: 100%;\n"
+                }
+            ],
+            "date": 1669204512572,
+            "name": "Commit-0",
+            "content": "<template>\n  <n-carousel autoplay>\n    <img\n      class=\"carousel-img\"\n      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg\"\n    />\n    <img\n      class=\"carousel-img\"\n      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg\"\n    />\n    <img\n      class=\"carousel-img\"\n      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg\"\n    />\n    <img\n      class=\"carousel-img\"\n      src=\"https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg\"\n    />\n  </n-carousel>\n</template>\n<script setup>\nimport { NCarousel } from \"naive-ui\";\n</script>\n"
+        }
+    ]
+}

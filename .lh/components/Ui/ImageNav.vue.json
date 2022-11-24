@@ -1,0 +1,46 @@
+{
+    "sourceFile": "components/Ui/ImageNav.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1669206203211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669206271558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,4 +16,14 @@\n </template>\n <script setup>\n import { NGrid, NGi } from \"naive-ui\";\n </script>\n+<style scoped>\n+.light-green {\n+  height: 108px;\n+  background-color: rgba(0, 128, 0, 0.12);\n+}\n+.green {\n+  height: 108px;\n+  background-color: rgba(0, 128, 0, 0.24);\n+}\n+</style>\n"
+                },
+                {
+                    "date": 1669206421310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,20 @@\n <template>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n-    <n-gi>\n-      <div class=\"light-green\" />\n+    <n-gi v-for=\"(item,index) in data\" :key=\"index\">\n+      <div>\n+        <img :src=\"item.src\"/>\n+        <span>{{item.name}}</span>\n+      </div>\n     </n-gi>\n-    <n-gi>\n-      <div class=\"green\" />\n-    </n-gi>\n-    <n-gi>\n-      <div class=\"light-green\" />\n-    </n-gi>\n-    <n-gi>\n-      <div class=\"green\" />\n-    </n-gi>\n+   \n   </n-grid>\n </template>\n <script setup>\n import { NGrid, NGi } from \"naive-ui\";\n+defineProps({\n+    data: Array\n+})\n </script>\n <style scoped>\n .light-green {\n   height: 108px;\n"
+                },
+                {
+                    "date": 1669206572623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,26 @@\n <template>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n-    <n-gi v-for=\"(item,index) in data\" :key=\"index\">\n-      <div>\n-        <img :src=\"item.src\"/>\n-        <span>{{item.name}}</span>\n-      </div>\n+    <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n+      <n-card>\n+        <template #cover>\n+          <img\n+          :src=\"item.src\"\n+          />\n+        </template>\n+        <div class=\"text-center\">\n+            {{ item.name }}\n+        </div>\n+       \n+      </n-card>\n     </n-gi>\n-   \n   </n-grid>\n </template>\n <script setup>\n-import { NGrid, NGi } from \"naive-ui\";\n+import { NGrid, NGi,NCard } from \"naive-ui\";\n defineProps({\n-    data: Array\n-})\n+  data: Array,\n+});\n </script>\n <style scoped>\n .light-green {\n   height: 108px;\n"
+                },
+                {
+                    "date": 1669206590787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n           <img\n           :src=\"item.src\"\n           />\n         </template>\n-        <div class=\"text-center\">\n+        <div class=\"text-center pt-4\">\n             {{ item.name }}\n         </div>\n        \n       </n-card>\n"
+                },
+                {
+                    "date": 1669206700638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <template>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n-      <n-card>\n+      <n-card class=\"cursor-pointer\">\n         <template #cover>\n           <img\n+          class=\"w-[100%] h-[90px]\"\n           :src=\"item.src\"\n           />\n         </template>\n         <div class=\"text-center pt-4\">\n"
+                },
+                {
+                    "date": 1669206719391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n-      <n-card class=\"cursor-pointer\">\n+      <n-card class=\"cursor-pointer\"   @click=\"open(item)\">\n         <template #cover>\n           <img\n           class=\"w-[100%] h-[90px]\"\n           :src=\"item.src\"\n@@ -20,8 +20,13 @@\n import { NGrid, NGi,NCard } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n+const open = (item) => {\n+    if(item.type==='webview'){\n+        window.open(item.url)\n+    }\n+}\n </script>\n <style scoped>\n .light-green {\n   height: 108px;\n"
+                },
+                {
+                    "date": 1669206886830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,28 @@\n <template>\n   <n-grid x-gap=\"12\" :cols=\"4\">\n     <n-gi v-for=\"(item, index) in data\" :key=\"index\">\n-      <n-card class=\"cursor-pointer\"   @click=\"open(item)\">\n+      <n-card class=\"cursor-pointer\" @click=\"$commonOpen(item)\">\n         <template #cover>\n-          <img\n-          class=\"w-[100%] h-[90px]\"\n-          :src=\"item.src\"\n-          />\n+          <img class=\"w-[100%] h-[90px]\" :src=\"item.src\" />\n         </template>\n         <div class=\"text-center pt-4\">\n-            {{ item.name }}\n+          {{ item.name }}\n         </div>\n-       \n       </n-card>\n     </n-gi>\n   </n-grid>\n </template>\n <script setup>\n-import { NGrid, NGi,NCard } from \"naive-ui\";\n+import { NGrid, NGi, NCard } from \"naive-ui\";\n defineProps({\n   data: Array,\n });\n const open = (item) => {\n-    if(item.type==='webview'){\n-        window.open(item.url)\n-    }\n-}\n+  if (item.type === \"webview\") {\n+    window.open(item.url);\n+  }\n+};\n </script>\n <style scoped>\n .light-green {\n   height: 108px;\n"
+                }
+            ],
+            "date": 1669206203211,
+            "name": "Commit-0",
+            "content": "<template>\n  <n-grid x-gap=\"12\" :cols=\"4\">\n    <n-gi>\n      <div class=\"light-green\" />\n    </n-gi>\n    <n-gi>\n      <div class=\"green\" />\n    </n-gi>\n    <n-gi>\n      <div class=\"light-green\" />\n    </n-gi>\n    <n-gi>\n      <div class=\"green\" />\n    </n-gi>\n  </n-grid>\n</template>\n<script setup>\nimport { NGrid, NGi } from \"naive-ui\";\n</script>\n"
+        }
+    ]
+}

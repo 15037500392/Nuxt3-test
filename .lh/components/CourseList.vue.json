@@ -1,0 +1,50 @@
+{
+    "sourceFile": "components/CourseList.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1669291972533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669291979079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-\n+{{data}}\n   <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n     <template #cover>\n       <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n"
+                },
+                {
+                    "date": 1669292031176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n         {{ data.title }}</span\n       >\n     </div>\n     <div>\n-      <Price></Price>\n-      <Price></Price>\n+      <Price :value=\"data.price\"></Price>\n+      <Price :value=\"data.t_price\"></Price>\n     </div>\n   </n-card>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669292038265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n <template>\n-{{data}}\n   <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n     <template #cover>\n       <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n"
+                },
+                {
+                    "date": 1669292068163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       >\n     </div>\n     <div>\n       <Price :value=\"data.price\"></Price>\n-      <Price :value=\"data.t_price\"></Price>\n+      <Price :value=\"data.t_price\" :through=\"true\"></Price>\n     </div>\n   </n-card>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669292400993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,11 @@\n       <span class=\"font-bold w-full truncate font-semibold\">\n         {{ data.title }}</span\n       >\n     </div>\n-    <div>\n+    <div class=\"mt-2 flex items-end\">\n       <Price :value=\"data.price\"></Price>\n-      <Price :value=\"data.t_price\" :through=\"true\"></Price>\n+      <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n   </n-card>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1669293864763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n       <span class=\"font-bold w-full truncate font-semibold\">\n         {{ data.title }}</span\n       >\n     </div>\n-    <div class=\"mt-2 flex items-end\">\n+    <div class=\" flex items-end\">\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n   </n-card>\n"
+                },
+                {
+                    "date": 1669293880868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n         {{ data.title }}</span\n       >\n     </div>\n     <div class=\" flex items-end\">\n-      <Price :value=\"data.price\"></Price>\n+      <Price :value=\"data.price\" class=\"mt-2\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n   </n-card>\n </template>\n"
+                },
+                {
+                    "date": 1669293920535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n       <span class=\"font-bold w-full truncate font-semibold\">\n         {{ data.title }}</span\n       >\n     </div>\n-    <div class=\" flex items-end\">\n-      <Price :value=\"data.price\" class=\"mt-2\"></Price>\n+    <div class=\" mt-2 flex items-end\">\n+      <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n   </n-card>\n </template>\n"
+                }
+            ],
+            "date": 1669291972533,
+            "name": "Commit-0",
+            "content": "<template>\n\n  <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n    <template #cover>\n      <img :src=\"data.cover\" class=\"h-[150px]\" />\n    </template>\n    <div class=\"pt-2\">\n      <span class=\"font-bold w-full truncate font-semibold\">\n        {{ data.title }}</span\n      >\n    </div>\n    <div>\n      <Price></Price>\n      <Price></Price>\n    </div>\n  </n-card>\n</template>\n<script setup>\nimport { NCard } from \"naive-ui\";\ndefineProps({\n  data: Array\n});\n</script>\n"
+        }
+    ]
+}

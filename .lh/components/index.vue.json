@@ -1,0 +1,18 @@
+{
+    "sourceFile": "components/index.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1669291293566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1669291293566,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>\n    <template v-if=\"pending\">加载中。。。</template>\n    <template v-else-if=\"error\">{{ error?.data }}</template>\n    <template v-else>\n      <!-- 轮播图-start -->\n      <Banner :data=\"swiperData.data\"></Banner>\n      <!-- 轮播图-end -->\n      <!-- 图片分栏 -->\n      <ImageNav :data=\"iconData.data\"></ImageNav>\n      <!-- 图片广告 -->\n      <ImageAd :data=\"imageAd.data\"></ImageAd>\n      <!-- 列表 -->\n      <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n    </template>\n  </div>\n</template>\n<script setup>\nimport { throwError } from \"naive-ui/es/_utils\";\nimport { reactive, computed, isRef, ref } from \"vue\";\n// 获取首页数据\nconst { data, pending, error } = await useFetch(\"/index\", {\n  key: \"IndexData\",\n  baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n  headers: {\n    appid: \"bd9d01ecc75dbbaaefce\",\n  },\n  transform: (res) => {\n    return res.data;\n  },\n  lazy: true,\n});\n\n// 服务器错误处理\nif (process.server && error.value) {\n  throwError(error.value?.data?.data);\n}\n\n// 轮播图数据\nconst swiperData = computed(() => {\n  let filterData =\n    data.value.filter((item) => {\n      return item.type === \"swiper\";\n    }) || [];\n  if (filterData.length) {\n    return filterData[0];\n  } else {\n    return [];\n  }\n});\n\n// 图片分类数据\nconst iconData = computed(() => {\n  let filterData =\n    data.value.filter((item) => {\n      return item.type === \"icons\";\n    }) || [];\n  if (filterData.length) {\n    return filterData[0];\n  } else {\n    return [];\n  }\n});\n\n// 广告位数据\nconst imageAd = computed(() => {\n  let filterData =\n    data.value.filter((item) => {\n      return item.type === \"imageAd\";\n    }) || [];\n  if (filterData.length) {\n    return filterData[0];\n  } else {\n    return [];\n  }\n});\n\n// 列表数据\nconst listData = computed(() => {\n  let filterData =\n    data.value.filter((item) => {\n      return item.type === \"list\";\n    }) || [];\n  return filterData;\n});\nconsole.log(listData,'listData')\n</script>\n"
+        }
+    ]
+}
