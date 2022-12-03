@@ -1,0 +1,162 @@
+{
+    "sourceFile": "components/CountDown.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 36,
+            "patches": [
+                {
+                    "date": 1669431906684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669432378074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,23 @@\n <template>\n-    \n-</template>\n\\ No newline at end of file\n+    <div>{{dateData}}</div>\n+</template>\n+<script setup>\n+import { computed } from 'vue'\n+const props = defineProps({\n+    time: {\n+        type: [String, Number],\n+        default: \"\"\n+    }\n+});\n+const data = useCountDown(props.time)\n+const dateData = computed(() => {\n+    return props.time\n+})\n+function useCountDown(end_time) {\n+    if (typeof end_time === 'string') {\n+        end_time = (new Date(end_time).getTime())\n+    }\n+\n+    // 结束时间戳 - 当前时间戳\n+}\n+</script>\n"
+                },
+                {
+                    "date": 1669432385638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,16 +8,10 @@\n         type: [String, Number],\n         default: \"\"\n     }\n });\n-const data = useCountDown(props.time)\n+\n const dateData = computed(() => {\n     return props.time\n })\n-function useCountDown(end_time) {\n-    if (typeof end_time === 'string') {\n-        end_time = (new Date(end_time).getTime())\n-    }\n \n-    // 结束时间戳 - 当前时间戳\n-}\n </script>\n"
+                },
+                {
+                    "date": 1669432835211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,21 @@\n     }\n });\n \n const dateData = computed(() => {\n+    let endTime = (new Date(time)).getTime()\n+    let current = (new Date()).getTime()\n+    let interval = 0\n+    if (endTime < current) {\n+        return '拼团已结束'\n+    } else {\n+        interval = endTime - current\n+        let hour = interval / 3600000\n+        let minute = (interval % 3600000) / 60000\n+        let second = (interval % 60000) / 1000\n+        return `${hour}:${minute}:${second}`\n+\n+    }\n     return props.time\n })\n \n </script>\n"
+                },
+                {
+                    "date": 1669432852480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     }\n });\n \n const dateData = computed(() => {\n-    let endTime = (new Date(time)).getTime()\n+    let endTime = (new Date(props.time)).getTime()\n     let current = (new Date()).getTime()\n     let interval = 0\n     if (endTime < current) {\n         return '拼团已结束'\n"
+                },
+                {
+                    "date": 1669432868998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n });\n \n const dateData = computed(() => {\n     let endTime = (new Date(props.time)).getTime()\n-    let current = (new Date()).getTime()\n+    let current = (new Date('2022-05-01')).getTime()\n     let interval = 0\n     if (endTime < current) {\n         return '拼团已结束'\n     } else {\n"
+                },
+                {
+                    "date": 1669432886748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <template>\n+    <div>{{props.time}}</div>\n     <div>{{dateData}}</div>\n </template>\n <script setup>\n import { computed } from 'vue'\n"
+                },
+                {
+                    "date": 1669433063929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,14 +18,27 @@\n     if (endTime < current) {\n         return '拼团已结束'\n     } else {\n         interval = endTime - current\n-        let hour = interval / 3600000\n-        let minute = (interval % 3600000) / 60000\n-        let second = (interval % 60000) / 1000\n-        return `${hour}:${minute}:${second}`\n \n+\n+        var sec = setDb(interval % 60); //06 秒\n+\tvar min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n+\tvar hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n+        var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n+    \n+    \n+        return `${day}天${hour}时${minute}分${second}秒`\n+\n     }\n     return props.time\n })\n+function setDb(num) {\n+\t//补零操作\n+\tif (num < 10) {\n+\t\treturn '0' + num;\n+\t} else {\n+\t\treturn '' + num;\n+\t}\n+}\n \n </script>\n"
+                },
+                {
+                    "date": 1669433082326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \tvar hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n         var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n     \n     \n-        return `${day}天${hour}时${minute}分${second}秒`\n+        return `${day}天${hour}时${min}分${sec}秒`\n \n     }\n     return props.time\n })\n"
+                },
+                {
+                    "date": 1669433105616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n });\n \n const dateData = computed(() => {\n     let endTime = (new Date(props.time)).getTime()\n-    let current = (new Date('2022-05-01')).getTime()\n+    let current = (new Date('2022-08-20')).getTime()\n     let interval = 0\n     if (endTime < current) {\n         return '拼团已结束'\n     } else {\n"
+                },
+                {
+                    "date": 1669433117496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,8 @@\n     if (endTime < current) {\n         return '拼团已结束'\n     } else {\n         interval = endTime - current\n-\n-\n         var sec = setDb(interval % 60); //06 秒\n \tvar min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n \tvar hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n         var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n"
+                },
+                {
+                    "date": 1669433123795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,42 +1,38 @@\n <template>\n-    <div>{{props.time}}</div>\n-    <div>{{dateData}}</div>\n+  <div>{{ props.time }}</div>\n+  <div>{{ dateData }}</div>\n </template>\n <script setup>\n-import { computed } from 'vue'\n+import { computed } from \"vue\";\n const props = defineProps({\n-    time: {\n-        type: [String, Number],\n-        default: \"\"\n-    }\n+  time: {\n+    type: [String, Number],\n+    default: \"\",\n+  },\n });\n \n const dateData = computed(() => {\n-    let endTime = (new Date(props.time)).getTime()\n-    let current = (new Date('2022-08-20')).getTime()\n-    let interval = 0\n-    if (endTime < current) {\n-        return '拼团已结束'\n-    } else {\n-        interval = endTime - current\n-        var sec = setDb(interval % 60); //06 秒\n-\tvar min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n-\tvar hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n-        var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n-    \n-    \n-        return `${day}天${hour}时${min}分${sec}秒`\n-\n-    }\n-    return props.time\n-})\n+  let endTime = new Date(props.time).getTime();\n+  let current = new Date(\"2022-08-20\").getTime();\n+  let interval = 0;\n+  if (endTime < current) {\n+    return \"拼团已结束\";\n+  } else {\n+    interval = endTime - current;\n+    var sec = setDb(interval % 60); //06 秒\n+    var min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n+    var hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n+    var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n+    return `${day}天${hour}时${min}分${sec}秒`;\n+  }\n+  return props.time;\n+});\n function setDb(num) {\n-\t//补零操作\n-\tif (num < 10) {\n-\t\treturn '0' + num;\n-\t} else {\n-\t\treturn '' + num;\n-\t}\n+  //补零操作\n+  if (num < 10) {\n+    return \"0\" + num;\n+  } else {\n+    return \"\" + num;\n+  }\n }\n-\n </script>\n"
+                },
+                {
+                    "date": 1669433167484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   let interval = 0;\n   if (endTime < current) {\n     return \"拼团已结束\";\n   } else {\n-    interval = endTime - current;\n+    interval = (endTime - current)/1000;\n     var sec = setDb(interval % 60); //06 秒\n     var min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n     var hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n     var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n"
+                },
+                {
+                    "date": 1669473990348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n <template>\n-  <div>{{ props.time }}</div>\n-  <div>{{ dateData }}</div>\n+  <div class=\"\">\n+\n+  </div>\n </template>\n <script setup>\n import { computed } from \"vue\";\n const props = defineProps({\n@@ -10,16 +11,26 @@\n     default: \"\",\n   },\n });\n \n+const emit = defineEmits([\"start\", \"end\"])\n+const data = useCountDown(props.time)\n+\n+// \n+function useCountDown(end_time) {\n+    const timeout = ref(0)\n+    const Timer = ref(null)\n+\n+}\n+\n const dateData = computed(() => {\n   let endTime = new Date(props.time).getTime();\n   let current = new Date(\"2022-08-20\").getTime();\n   let interval = 0;\n   if (endTime < current) {\n     return \"拼团已结束\";\n   } else {\n-    interval = (endTime - current)/1000;\n+      interval = (endTime - current) / 1000;\n     var sec = setDb(interval % 60); //06 秒\n     var min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n     var hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n     var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n@@ -34,5 +45,11 @@\n   } else {\n     return \"\" + num;\n   }\n }\n+\n+\n+\n+function close() {\n+    // if(Time.va)\n+}\n </script>\n"
+                },
+                {
+                    "date": 1669519441701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,36 +1,75 @@\n <template>\n-  <div class=\"\">\n-\n-  </div>\n+  <div class=\"\"></div>\n </template>\n <script setup>\n+import { Timer } from \"@vicons/ionicons5\";\n+import { padStart } from \"lodash\";\n import { computed } from \"vue\";\n const props = defineProps({\n   time: {\n     type: [String, Number],\n     default: \"\",\n   },\n });\n \n-const emit = defineEmits([\"start\", \"end\"])\n-const data = useCountDown(props.time)\n+const emit = defineEmits([\"start\", \"end\"]);\n+const data = useCountDown(props.time);\n \n-// \n+//\n function useCountDown(end_time) {\n-    const timeout = ref(0)\n-    const Timer = ref(null)\n+  const timeout = ref(0);\n+  const Timer = ref(null);\n+  if (typeof end_time === \"string\") {\n+    end_time = new Date(end_time).getTime();\n+  }\n+  timeout.value = (end_time - Date.now()) / 1000\n \n+  if (timeout.value <= 0) {\n+    return emit('end')\n+  }\n+  close()\n+  Timer.value = setInterval(() => {\n+    timeout.value--\n+    if (timeout.value <= 0) {\n+      close()\n+      emit(\"end\")\n+    }\n+  }, 1000);\n }\n+function close() {\n+  if (Timer.value) {\n+    clearInterval(Timer.value)\n+  }\n+}\n \n+// 将秒转成天时分秒\n+function formatDiffDate(seconds) {\n+  let time = {\n+    days: 0,\n+    hours: 0,\n+    minutes: 0,\n+    seconds:0\n+  }\n+  if (seconds > 0) {\n+    time.days = (Math.floor(seconds / (60 * 60 * 24))).padStart(2, '0')\n+    time.hours = (Math.floor(seconds / (60 * 60) - time.days * 24)).padStart(2,'0')\n+    time.minutes = (Math.floor(seconds / 60) - time.days * 24 * 60 - time.hours * 60).padStart(2,'0')\n+    time.seconds = (Math.floor(seconds) - time.days*24*60*60 -time.hours *60*60 -time.minutes * 60).padStart(2,'0')\n+  }\n+  return time\n+}\n+\n+\n+\n const dateData = computed(() => {\n   let endTime = new Date(props.time).getTime();\n   let current = new Date(\"2022-08-20\").getTime();\n   let interval = 0;\n   if (endTime < current) {\n     return \"拼团已结束\";\n   } else {\n-      interval = (endTime - current) / 1000;\n+    interval = (endTime - current) / 1000;\n     var sec = setDb(interval % 60); //06 秒\n     var min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n     var hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n     var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n@@ -46,10 +85,8 @@\n     return \"\" + num;\n   }\n }\n \n-\n-\n function close() {\n-    // if(Time.va)\n+  // if(Time.va)\n }\n </script>\n"
+                },
+                {
+                    "date": 1669519507897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,47 +21,60 @@\n   const Timer = ref(null);\n   if (typeof end_time === \"string\") {\n     end_time = new Date(end_time).getTime();\n   }\n-  timeout.value = (end_time - Date.now()) / 1000\n+  timeout.value = (end_time - Date.now()) / 1000;\n \n   if (timeout.value <= 0) {\n-    return emit('end')\n+    return emit(\"end\");\n   }\n-  close()\n+  close();\n   Timer.value = setInterval(() => {\n-    timeout.value--\n+    timeout.value--;\n     if (timeout.value <= 0) {\n-      close()\n-      emit(\"end\")\n+      close();\n+      emit(\"end\");\n     }\n   }, 1000);\n-}\n-function close() {\n-  if (Timer.value) {\n-    clearInterval(Timer.value)\n+\n+  function close() {\n+    if (Timer.value) {\n+      clearInterval(Timer.value);\n+    }\n   }\n+\n+  return formatDiffDate(timeout.value);\n }\n \n // 将秒转成天时分秒\n function formatDiffDate(seconds) {\n   let time = {\n     days: 0,\n     hours: 0,\n     minutes: 0,\n-    seconds:0\n-  }\n+    seconds: 0,\n+  };\n   if (seconds > 0) {\n-    time.days = (Math.floor(seconds / (60 * 60 * 24))).padStart(2, '0')\n-    time.hours = (Math.floor(seconds / (60 * 60) - time.days * 24)).padStart(2,'0')\n-    time.minutes = (Math.floor(seconds / 60) - time.days * 24 * 60 - time.hours * 60).padStart(2,'0')\n-    time.seconds = (Math.floor(seconds) - time.days*24*60*60 -time.hours *60*60 -time.minutes * 60).padStart(2,'0')\n+    time.days = Math.floor(seconds / (60 * 60 * 24)).padStart(2, \"0\");\n+    time.hours = Math.floor(seconds / (60 * 60) - time.days * 24).padStart(\n+      2,\n+      \"0\"\n+    );\n+    time.minutes = (\n+      Math.floor(seconds / 60) -\n+      time.days * 24 * 60 -\n+      time.hours * 60\n+    ).padStart(2, \"0\");\n+    time.seconds = (\n+      Math.floor(seconds) -\n+      time.days * 24 * 60 * 60 -\n+      time.hours * 60 * 60 -\n+      time.minutes * 60\n+    ).padStart(2, \"0\");\n   }\n-  return time\n+  return time;\n }\n \n-\n-\n const dateData = computed(() => {\n   let endTime = new Date(props.time).getTime();\n   let current = new Date(\"2022-08-20\").getTime();\n   let interval = 0;\n"
+                },
+                {
+                    "date": 1669519541468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,12 @@\n     if (Timer.value) {\n       clearInterval(Timer.value);\n     }\n   }\n-\n-  return formatDiffDate(timeout.value);\n+  const d = computed(() => {\n+    return formatDiffDate(timeout.value);\n+  })\n+  return d\n }\n \n // 将秒转成天时分秒\n function formatDiffDate(seconds) {\n"
+                },
+                {
+                    "date": 1669519553380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <div class=\"\"></div>\n+  <div class=\"\">{{data}}</div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n import { padStart } from \"lodash\";\n"
+                },
+                {
+                    "date": 1669519581764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -75,33 +75,5 @@\n   }\n   return time;\n }\n \n-const dateData = computed(() => {\n-  let endTime = new Date(props.time).getTime();\n-  let current = new Date(\"2022-08-20\").getTime();\n-  let interval = 0;\n-  if (endTime < current) {\n-    return \"拼团已结束\";\n-  } else {\n-    interval = (endTime - current) / 1000;\n-    var sec = setDb(interval % 60); //06 秒\n-    var min = setDb(Math.floor(interval / 60) % 60); //Math.floor(num / 60) % 60     分\n-    var hour = setDb(Math.floor(interval / 60 / 60) % 24); //时\n-    var day = setDb(Math.floor(interval / 60 / 60 / 24)); //天数\n-    return `${day}天${hour}时${min}分${sec}秒`;\n-  }\n-  return props.time;\n-});\n-function setDb(num) {\n-  //补零操作\n-  if (num < 10) {\n-    return \"0\" + num;\n-  } else {\n-    return \"\" + num;\n-  }\n-}\n-\n-function close() {\n-  // if(Time.va)\n-}\n </script>\n"
+                },
+                {
+                    "date": 1669519646311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   const Timer = ref(null);\n   if (typeof end_time === \"string\") {\n     end_time = new Date(end_time).getTime();\n   }\n-  timeout.value = (end_time - Date.now()) / 1000;\n+  timeout.value = (end_time - (new Date('2022-05-01')).getTime()) / 1000;\n \n   if (timeout.value <= 0) {\n     return emit(\"end\");\n   }\n"
+                },
+                {
+                    "date": 1669519658559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n function useCountDown(end_time) {\n   const timeout = ref(0);\n   const Timer = ref(null);\n   if (typeof end_time === \"string\") {\n-    end_time = new Date(end_time).getTime();\n+    end_time = (new Date(end_time)).getTime();\n   }\n   timeout.value = (end_time - (new Date('2022-05-01')).getTime()) / 1000;\n \n   if (timeout.value <= 0) {\n"
+                },
+                {
+                    "date": 1669519699131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <div class=\"\">{{data}}</div>\n+  <div class=\"\">{{ data }}</div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n import { padStart } from \"lodash\";\n@@ -19,11 +19,11 @@\n function useCountDown(end_time) {\n   const timeout = ref(0);\n   const Timer = ref(null);\n   if (typeof end_time === \"string\") {\n-    end_time = (new Date(end_time)).getTime();\n+    end_time = new Date(end_time).getTime();\n   }\n-  timeout.value = (end_time - (new Date('2022-05-01')).getTime()) / 1000;\n+  timeout.value = (end_time - new Date(\"2022-05-01\").getTime()) / 1000;\n \n   if (timeout.value <= 0) {\n     return emit(\"end\");\n   }\n@@ -42,10 +42,10 @@\n     }\n   }\n   const d = computed(() => {\n     return formatDiffDate(timeout.value);\n-  })\n-  return d\n+  });\n+  return d;\n }\n \n // 将秒转成天时分秒\n function formatDiffDate(seconds) {\n@@ -55,25 +55,18 @@\n     minutes: 0,\n     seconds: 0,\n   };\n   if (seconds > 0) {\n-    time.days = Math.floor(seconds / (60 * 60 * 24)).padStart(2, \"0\");\n-    time.hours = Math.floor(seconds / (60 * 60) - time.days * 24).padStart(\n-      2,\n-      \"0\"\n-    );\n-    time.minutes = (\n-      Math.floor(seconds / 60) -\n-      time.days * 24 * 60 -\n-      time.hours * 60\n-    ).padStart(2, \"0\");\n-    time.seconds = (\n+    time.days = Math.floor(seconds / (60 * 60 * 24));\n+    time.hours = Math.floor(seconds / (60 * 60) - time.days * 24);\n+\n+    time.minutes =\n+      Math.floor(seconds / 60) - time.days * 24 * 60 - time.hours * 60;\n+    time.seconds =\n       Math.floor(seconds) -\n       time.days * 24 * 60 * 60 -\n       time.hours * 60 * 60 -\n-      time.minutes * 60\n-    ).padStart(2, \"0\");\n+      time.minutes * 60;\n   }\n   return time;\n }\n-\n </script>\n"
+                },
+                {
+                    "date": 1669519765862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,11 @@\n <template>\n-  <div class=\"\">{{ data }}</div>\n+  <div class=\"count-down\">\n+    <small>{{data.days}}</small>天\n+    <small>{{data.hours}}</small>:\n+    <small>{{data.minutes}}</small>:\n+    <small>{{data.seconds}}</small>:\n+  </div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n import { padStart } from \"lodash\";\n"
+                },
+                {
+                    "date": 1669519791890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div class=\"count-down\">\n-    <small>{{data.days}}</small>天\n+    <!-- <small>{{data.days}}</small>天 -->\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n     <small>{{data.seconds}}</small>:\n   </div>\n"
+                },
+                {
+                    "date": 1669519806173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n <template>\n   <div class=\"count-down\">\n-    <!-- <small>{{data.days}}</small>天 -->\n+    {{data}}\n+    <small>{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n     <small>{{data.seconds}}</small>:\n   </div>\n"
+                },
+                {
+                    "date": 1669519814712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <template>\n   <div class=\"count-down\">\n-    {{data}}\n     <small>{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n     <small>{{data.seconds}}</small>:\n"
+                },
+                {
+                    "date": 1669519833042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n });\n \n const emit = defineEmits([\"start\", \"end\"]);\n const data = useCountDown(props.time);\n-\n+console.log(data,'data')\n //\n function useCountDown(end_time) {\n   const timeout = ref(0);\n   const Timer = ref(null);\n"
+                },
+                {
+                    "date": 1669519843479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n   <div class=\"count-down\">\n-    <small>{{data.days}}</small>天\n+    <!-- <small>{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n-    <small>{{data.seconds}}</small>:\n+    <small>{{data.seconds}}</small>: -->\n   </div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n"
+                },
+                {
+                    "date": 1669519902941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n   <div class=\"count-down\">\n-    <!-- <small>{{data.days}}</small>天\n+    <small>{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n-    <small>{{data.seconds}}</small>: -->\n+    <small>{{data.seconds}}</small>:\n   </div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n@@ -48,9 +48,15 @@\n   }\n   const d = computed(() => {\n     return formatDiffDate(timeout.value);\n   });\n-  return d;\n+  \n+  return d & d || {\n+    days: '',\n+    hours: '',\n+    minutes: '',\n+    seconds: '',\n+  };\n }\n \n // 将秒转成天时分秒\n function formatDiffDate(seconds) {\n"
+                },
+                {
+                    "date": 1669519918425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,14 +49,9 @@\n   const d = computed(() => {\n     return formatDiffDate(timeout.value);\n   });\n   \n-  return d & d || {\n-    days: '',\n-    hours: '',\n-    minutes: '',\n-    seconds: '',\n-  };\n+  return d & d ;\n }\n \n // 将秒转成天时分秒\n function formatDiffDate(seconds) {\n"
+                },
+                {
+                    "date": 1669519926984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n   const d = computed(() => {\n     return formatDiffDate(timeout.value);\n   });\n   \n-  return d & d ;\n+  return d\n }\n \n // 将秒转成天时分秒\n function formatDiffDate(seconds) {\n"
+                },
+                {
+                    "date": 1669519933360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <div class=\"count-down\">\n+  <div class=\"count-down\" v-if=\"data\">\n     <small>{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n     <small>{{data.seconds}}</small>:\n"
+                },
+                {
+                    "date": 1669520030839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,7 +72,11 @@\n       time.days * 24 * 60 * 60 -\n       time.hours * 60 * 60 -\n       time.minutes * 60;\n   }\n+  time.days = time.days > 10 ? time.days : `0${time.days}`\n+  time.hours = time.hours > 10 ? time.hours : `0${time.hours}`\n+  time.minutes = time.minutes > 10 ? time.minutes : `0${time.minutes}`\n+  time.seconds = time.seconds > 10 ? time.seconds: `0${time.seconds}`\n   return time;\n }\n </script>\n"
+                },
+                {
+                    "date": 1669520042118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <div class=\"count-down\" v-if=\"data\">\n     <small>{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n-    <small>{{data.seconds}}</small>:\n+    <small>{{data.seconds}}</small>\n   </div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n"
+                },
+                {
+                    "date": 1669520065301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div class=\"count-down\" v-if=\"data\">\n-    <small>{{data.days}}</small>天\n+    <small style=\"border: 1px solid #000;\">{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n     <small>{{data.seconds}}</small>\n   </div>\n"
+                },
+                {
+                    "date": 1669520160465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div class=\"count-down\" v-if=\"data\">\n-    <small style=\"border: 1px solid #000;\">{{data.days}}</small>天\n+    <small class=\"count-box\">{{data.days}}</small>天\n     <small>{{data.hours}}</small>:\n     <small>{{data.minutes}}</small>:\n     <small>{{data.seconds}}</small>\n   </div>\n@@ -79,4 +79,13 @@\n   time.seconds = time.seconds > 10 ? time.seconds: `0${time.seconds}`\n   return time;\n }\n </script>\n+<style scoped>\n+  .count-box{\n+    background: white;\n+    border-radius: 2px;\n+    padding: 2px 3px;\n+    margin: 0 3px;\n+    @apply text-yellow-500\n+  }\n+</style>\n"
+                },
+                {
+                    "date": 1669520176787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n   <div class=\"count-down\" v-if=\"data\">\n     <small class=\"count-box\">{{data.days}}</small>天\n-    <small>{{data.hours}}</small>:\n-    <small>{{data.minutes}}</small>:\n-    <small>{{data.seconds}}</small>\n+    <small class=\"count-box\">{{data.hours}}</small>:\n+    <small class=\"count-box\">{{data.minutes}}</small>:\n+    <small class=\"count-box\">{{data.seconds}}</small>\n   </div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n@@ -85,7 +85,7 @@\n     background: white;\n     border-radius: 2px;\n     padding: 2px 3px;\n     margin: 0 3px;\n-    @apply text-yellow-500\n+    @apply text-yellow-500;\n   }\n </style>\n"
+                }
+            ],
+            "date": 1669431906684,
+            "name": "Commit-0",
+            "content": "<template>\n    \n</template>"
+        }
+    ]
+}

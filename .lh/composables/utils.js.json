@@ -1,0 +1,18 @@
+{
+    "sourceFile": "composables/utils.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1669559721601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1669559721601,
+            "name": "Commit-0",
+            "content": "// 将对象转url 参数\nexport function useQueryToString(query = {}) {\n    let q = \"\"\n    for (const key in query) {\n        if (q == \"\") {\n            q = `?${key}=${query[key]}`\n        } else {\n            q = `&${key}=${query[key]}`\n        }\n    }\n    return q\n}"
+        }
+    ]
+}

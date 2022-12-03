@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/Loading/Skeleton.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1670052763344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1670053530828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <template>\n     <n-card>\n-        <n-skeleton text :repeat=\"2\" />\n-        <n-skeleton text :repeat=\"2\" />\n+        <n-skeleton text style=\"width:30%;\"/>\n+        <n-skeleton text :repeat=\"3\"/>\n+        <n-skeleton text style=\"width:60%\"/>\n     </n-card>  \n </template>\n <script setup>\n import {\n"
+                },
+                {
+                    "date": 1670054142513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-    <n-card>\n+    <n-card v-for=\"i in 3\" :key=\"i\">\n         <n-skeleton text style=\"width:30%;\"/>\n         <n-skeleton text :repeat=\"3\"/>\n         <n-skeleton text style=\"width:60%\"/>\n     </n-card>  \n"
+                },
+                {
+                    "date": 1670054152455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-    <n-card v-for=\"i in 3\" :key=\"i\">\n+    <n-card v-for=\"i in 3\" :key=\"i\" class=\"mb-5\">\n         <n-skeleton text style=\"width:30%;\"/>\n         <n-skeleton text :repeat=\"3\"/>\n         <n-skeleton text style=\"width:60%\"/>\n     </n-card>  \n"
+                }
+            ],
+            "date": 1670052763344,
+            "name": "Commit-0",
+            "content": "<template>\n    <n-card>\n        <n-skeleton text :repeat=\"2\" />\n        <n-skeleton text :repeat=\"2\" />\n    </n-card>  \n</template>\n<script setup>\nimport {\n    NCard,\n    NSkeleton\n    } from \"naive-ui\"\n</script>"
+        }
+    ]
+}

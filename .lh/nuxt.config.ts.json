@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 11,
             "patches": [
                 {
                     "date": 1669116191287,
@@ -32,6 +32,26 @@
                 {
                     "date": 1669120212430,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n \n export default defineNuxtConfig({\n-  css:[\"~/assets/main.css\"],\n+  css:[\"@/assets/main.css\"],\n   modules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n       process.env.NODE_ENV === \"production\"\n"
+                },
+                {
+                    "date": 1669520498296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,12 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n \n export default defineNuxtConfig({\n+  app: {\n+    head: {\n+      title:\"山谣编程\"\n+    }\n+  },\n   css:[\"@/assets/main.css\"],\n   modules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n"
+                },
+                {
+                    "date": 1669520887046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n export default defineNuxtConfig({\n   app: {\n     head: {\n-      title:\"山谣编程\"\n+      titleTemplate:\"%s - 山谣编程\"\n     }\n   },\n   css:[\"@/assets/main.css\"],\n   modules: [\"nuxt-windicss\"],\n"
+                },
+                {
+                    "date": 1669521171075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n // https://nuxt.com/docs/api/configuration/nuxt-config\n \n export default defineNuxtConfig({\n+  css:[\"@/assets/main.css\"],\n+  modules: [\"nuxt-windicss\"],\n   app: {\n     head: {\n-      titleTemplate:\"%s - 山谣编程\"\n+      titleTemplate:\"$s - 山谣编程\"\n     }\n   },\n-  css:[\"@/assets/main.css\"],\n-  modules: [\"nuxt-windicss\"],\n   build: {\n     transpile:\n       process.env.NODE_ENV === \"production\"\n         ? [\n"
+                },
+                {
+                    "date": 1669521446240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   css:[\"@/assets/main.css\"],\n   modules: [\"nuxt-windicss\"],\n   app: {\n     head: {\n-      titleTemplate:\"$s - 山谣编程\"\n+      titleTemplate:\"山谣编程\"\n     }\n   },\n   build: {\n     transpile:\n"
+                },
+                {
+                    "date": 1669559152706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,5 +26,8 @@\n           ? [\"naive-ui\", \"vueuc\", \"date-fns-tz/esm/formatInTimeZone\"]\n           : [],\n     },\n   },\n+  imports: {\n+    dirs:[\"apis\"]\n+  }\n });\n"
                 }
             ],
             "date": 1669116191287,

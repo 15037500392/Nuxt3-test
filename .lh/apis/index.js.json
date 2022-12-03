@@ -1,0 +1,42 @@
+{
+    "sourceFile": "apis/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1669559108074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669559126655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n export function useIndexDataApi() {\n     return useHttpGet('IndexData', '/index', {\n         lazy:true\n-      })\n+    })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669559340901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n export function useIndexDataApi() {\n-    return useHttpGet('IndexData', '/index', {\n+    return useHttpGet('IndexData', '/pc/index', {\n         lazy:true\n     })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669559501173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,13 @@\n+// 获取首页数据\n export function useIndexDataApi() {\n     return useHttpGet('IndexData', '/pc/index', {\n         lazy:true\n     })\n+}\n+\n+// 获取拼团数据\n+export function usePinTeamApi() {\n+    return useHttpGet('pinData', '/pc/group/list?page=1&usable=8', {\n+        lazy:true\n+    })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669559720383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n     })\n }\n \n // 获取拼团数据\n-export function usePinTeamApi() {\n-    return useHttpGet('pinData', '/pc/group/list?page=1&usable=8', {\n+export function usePinTeamApi(query) {\n+   \n+    return useHttpGet('pinData', `/pc/group/list${useQueryToString(query)}`, {\n         lazy:true\n     })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669559980026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n }\n \n // 获取拼团数据\n export function usePinTeamApi(query) {\n-   \n-    return useHttpGet('pinData', `/pc/group/list${useQueryToString(query)}`, {\n+   let q = useQueryToString(query)\n+    return useHttpGet('pinData', `/pc/group/list${useQueryToString(q)}`, {\n         lazy:true\n     })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669559997984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,8 @@\n \n // 获取拼团数据\n export function usePinTeamApi(query) {\n    let q = useQueryToString(query)\n-    return useHttpGet('pinData', `/pc/group/list${useQueryToString(q)}`, {\n+    return useHttpGet('pinData', `/pc/group/list${q}`, {\n         lazy:true\n     })\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1669559108073,
+            "name": "Commit-0",
+            "content": "export function useIndexDataApi() {\n    return useHttpGet('IndexData', '/index', {\n        lazy:true\n      })\n}"
+        }
+    ]
+}

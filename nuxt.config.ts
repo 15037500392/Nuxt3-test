@@ -3,6 +3,11 @@
 export default defineNuxtConfig({
   css:["@/assets/main.css"],
   modules: ["nuxt-windicss"],
+  app: {
+    head: {
+      titleTemplate:"山谣编程"
+    }
+  },
   build: {
     transpile:
       process.env.NODE_ENV === "production"
@@ -22,4 +27,7 @@ export default defineNuxtConfig({
           : [],
     },
   },
+  imports: {
+    dirs:["apis"]
+  }
 });

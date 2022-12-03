@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 90,
+            "activePatchIndex": 106,
             "patches": [
                 {
                     "date": 1669105633077,
@@ -368,6 +368,70 @@
                 {
                     "date": 1669293645982,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n       <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n-      {{pinData}}\n       <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n"
+                },
+                {
+                    "date": 1669521419742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,11 @@\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n import { reactive, computed, isRef, ref } from \"vue\";\n+useHead({\n+  title:'首页'\n+})\n // 获取首页数据\n const { data, pending, error } = await useFetch(\"/index\", {\n   key: \"IndexData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n"
+                },
+                {
+                    "date": 1669558937486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,20 +22,21 @@\n import { reactive, computed, isRef, ref } from \"vue\";\n useHead({\n   title:'首页'\n })\n+const { data, pending, error } = await useHttpGet('IndexData','/index')\n // 获取首页数据\n-const { data, pending, error } = await useFetch(\"/index\", {\n-  key: \"IndexData\",\n-  baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n-  headers: {\n-    appid: \"bd9d01ecc75dbbaaefce\",\n-  },\n-  transform: (res) => {\n-    return res.data;\n-  },\n-  lazy: true,\n-});\n+// const { data, pending, error } = await useFetch(\"/index\", {\n+//   key: \"IndexData\",\n+//   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n+//   headers: {\n+//     appid: \"bd9d01ecc75dbbaaefce\",\n+//   },\n+//   transform: (res) => {\n+//     return res.data;\n+//   },\n+//   lazy: true,\n+// });\n \n // 获取拼团数据\n const {data:pinData }= await useFetch(\"/group/list?page=1&usable=8\", {\n   key: \"pinData\",\n"
+                },
+                {
+                    "date": 1669558955018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n import { reactive, computed, isRef, ref } from \"vue\";\n useHead({\n   title:'首页'\n })\n-const { data, pending, error } = await useHttpGet('IndexData','/index')\n+const { data, pending, error } = await useHttpGet('IndexData', '/index', {\n+  lazy:true\n+})\n // 获取首页数据\n // const { data, pending, error } = await useFetch(\"/index\", {\n //   key: \"IndexData\",\n //   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n"
+                },
+                {
+                    "date": 1669559122303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,11 +22,9 @@\n import { reactive, computed, isRef, ref } from \"vue\";\n useHead({\n   title:'首页'\n })\n-const { data, pending, error } = await useHttpGet('IndexData', '/index', {\n-  lazy:true\n-})\n+const { data, pending, error } = await useIndexDataApi\n // 获取首页数据\n // const { data, pending, error } = await useFetch(\"/index\", {\n //   key: \"IndexData\",\n //   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n"
+                },
+                {
+                    "date": 1669559262883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,10 @@\n import { reactive, computed, isRef, ref } from \"vue\";\n useHead({\n   title:'首页'\n })\n-const { data, pending, error } = await useIndexDataApi\n+const { data, pending, error } = await useIndexDataApi()\n+console.log(data,'ddd')\n // 获取首页数据\n // const { data, pending, error } = await useFetch(\"/index\", {\n //   key: \"IndexData\",\n //   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n@@ -36,8 +37,9 @@\n //   },\n //   lazy: true,\n // });\n \n+\n // 获取拼团数据\n const {data:pinData }= await useFetch(\"/group/list?page=1&usable=8\", {\n   key: \"pinData\",\n   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n"
+                },
+                {
+                    "date": 1669559290266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,19 +51,14 @@\n   },\n   lazy: true,\n });\n console.log(pinData,'pinData')\n-// pinData.value = {\n-//   title: '拼团',\n-//   data: pinData.value.rows\n-// }\n-// console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n \n-// 轮播图数据\n+// // 轮播图数据\n const swiperData = computed(() => {\n   let filterData =\n     data.value.filter((item) => {\n       return item.type === \"swiper\";\n"
+                },
+                {
+                    "date": 1669559316441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,21 @@\n <template>\n   <div>\n-    <template v-if=\"pending\">加载中。。。</template>\n+    <!-- <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n-    <template v-else>\n+    <template v-else> -->\n       <!-- 轮播图-start -->\n-      <Banner :data=\"swiperData.data\"></Banner>\n+      <!-- <Banner :data=\"swiperData.data\"></Banner> -->\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n-      <ImageNav :data=\"iconData.data\"></ImageNav>\n+      <!-- <ImageNav :data=\"iconData.data\"></ImageNav> -->\n       <!-- 图片广告 -->\n-      <ImageAd :data=\"imageAd.data\"></ImageAd>\n+      <!-- <ImageAd :data=\"imageAd.data\"></ImageAd> -->\n       <!-- 拼团 -->\n-      <ListCard :data=\"pinData\"></ListCard>\n+      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n       <!-- 列表 -->\n-      <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n-    </template>\n+      <!-- <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard> -->\n+    <!-- </template> -->\n   </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n"
+                },
+                {
+                    "date": 1669559363638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,21 @@\n <template>\n   <div>\n-    <!-- <template v-if=\"pending\">加载中。。。</template>\n+    <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">{{ error?.data }}</template>\n-    <template v-else> -->\n+    <template v-else>\n       <!-- 轮播图-start -->\n-      <!-- <Banner :data=\"swiperData.data\"></Banner> -->\n+      <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n-      <!-- <ImageNav :data=\"iconData.data\"></ImageNav> -->\n+      <ImageNav :data=\"iconData.data\"></ImageNav>\n       <!-- 图片广告 -->\n-      <!-- <ImageAd :data=\"imageAd.data\"></ImageAd> -->\n+      <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n-      <!-- <ListCard :data=\"pinData\"></ListCard> -->\n+      <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n-      <!-- <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard> -->\n-    <!-- </template> -->\n+      <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n+    </template>\n   </div>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n"
+                },
+                {
+                    "date": 1669559499656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,36 +23,12 @@\n useHead({\n   title:'首页'\n })\n const { data, pending, error } = await useIndexDataApi()\n-console.log(data,'ddd')\n-// 获取首页数据\n-// const { data, pending, error } = await useFetch(\"/index\", {\n-//   key: \"IndexData\",\n-//   baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n-//   headers: {\n-//     appid: \"bd9d01ecc75dbbaaefce\",\n-//   },\n-//   transform: (res) => {\n-//     return res.data;\n-//   },\n-//   lazy: true,\n-// });\n \n+// 获取拼团数据\n+const {data:pinData }= await usePinTeamApi()\n \n-// 获取拼团数据\n-const {data:pinData }= await useFetch(\"/group/list?page=1&usable=8\", {\n-  key: \"pinData\",\n-  baseURL: \"http://demonuxtapi.dishait.cn/pc\",\n-  headers: {\n-    appid: \"bd9d01ecc75dbbaaefce\",\n-  },\n-  transform: (res) => {\n-    return res.data;\n-  },\n-  lazy: true,\n-});\n-console.log(pinData,'pinData')\n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n }\n"
+                },
+                {
+                    "date": 1669559737913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,12 @@\n })\n const { data, pending, error } = await useIndexDataApi()\n \n // 获取拼团数据\n-const {data:pinData }= await usePinTeamApi()\n+const { data: pinData } = await usePinTeamApi({\n+  page: 1,\n+  usable:8\n+})\n \n // 服务器错误处理\n if (process.server && error.value) {\n   throwError(error.value?.data?.data);\n"
+                },
+                {
+                    "date": 1669686956865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n <template>\n   <div>\n-    <template v-if=\"pending\">加载中。。。</template>\n-    <template v-else-if=\"error\">{{ error?.data }}</template>\n+  \n     <template v-else>\n       <!-- 轮播图-start -->\n       <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n"
+                },
+                {
+                    "date": 1670051163146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div>\n-  \n+    <LoadingGroup v-if=\"pending\"></LoadingGroup>\n     <template v-else>\n       <!-- 轮播图-start -->\n       <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n"
+                },
+                {
+                    "date": 1670051645580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n-  <div>\n-    <LoadingGroup v-if=\"pending\"></LoadingGroup>\n-    <template v-else>\n+ \n+    <LoadingGroup :pending=\"pending\" :error=\"error\">\n+      <template >\n       <!-- 轮播图-start -->\n       <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n@@ -13,9 +13,11 @@\n       <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n       <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n     </template>\n-  </div>\n+    </LoadingGroup>\n+\n+  \n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n import { reactive, computed, isRef, ref } from \"vue\";\n"
+                },
+                {
+                    "date": 1670051724608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,12 +31,12 @@\n   page: 1,\n   usable:8\n })\n \n-// 服务器错误处理\n-if (process.server && error.value) {\n-  throwError(error.value?.data?.data);\n-}\n+// // 服务器错误处理\n+// if (process.server && error.value) {\n+//   throwError(error.value?.data?.data);\n+// }\n \n // // 轮播图数据\n const swiperData = computed(() => {\n   let filterData =\n"
+                },
+                {
+                    "date": 1670052000625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n  \n     <LoadingGroup :pending=\"pending\" :error=\"error\">\n-      <template >\n+      <template>\n       <!-- 轮播图-start -->\n       <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n"
+                },
+                {
+                    "date": 1670052327677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n <template>\n- \n-    <LoadingGroup :pending=\"pending\" :error=\"error\">\n-      <template>\n+  <LoadingGroup :pending=\"pending\" :error=\"error\">\n+    <div>\n       <!-- 轮播图-start -->\n       <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n@@ -11,27 +10,29 @@\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n-      <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n-    </template>\n-    </LoadingGroup>\n-\n-  \n+      <ListCard\n+        v-for=\"(item, index) in listData\"\n+        :key=\"index\"\n+        :data=\"item\"\n+      ></ListCard>\n+    </div>\n+  </LoadingGroup>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n import { reactive, computed, isRef, ref } from \"vue\";\n useHead({\n-  title:'首页'\n-})\n-const { data, pending, error } = await useIndexDataApi()\n+  title: \"首页\",\n+});\n+const { data, pending, error } = await useIndexDataApi();\n \n // 获取拼团数据\n const { data: pinData } = await usePinTeamApi({\n   page: 1,\n-  usable:8\n-})\n+  usable: 8,\n+});\n \n // // 服务器错误处理\n // if (process.server && error.value) {\n //   throwError(error.value?.data?.data);\n@@ -83,6 +84,6 @@\n       return item.type === \"list\";\n     }) || [];\n   return filterData;\n });\n-console.log(listData,'listData')\n+console.log(listData, \"listData\");\n </script>\n"
                 }
             ],
             "date": 1669105633077,

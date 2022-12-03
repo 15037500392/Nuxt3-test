@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <template v-if="pending">加载中。。。</template>
-    <template v-else-if="error">{{ error?.data }}</template>
-    <template v-else>
+  <LoadingGroup :pending="pending" :error="error">
+    <div>
       <!-- 轮播图-start -->
       <Banner :data="swiperData.data"></Banner>
       <!-- 轮播图-end -->
@@ -13,50 +11,34 @@
       <!-- 拼团 -->
       <ListCard :data="pinData"></ListCard>
       <!-- 列表 -->
-      <ListCard v-for="(item,index) in listData" :key="index" :data="item"></ListCard>
-    </template>
-  </div>
+      <ListCard
+        v-for="(item, index) in listData"
+        :key="index"
+        :data="item"
+      ></ListCard>
+    </div>
+  </LoadingGroup>
 </template>
 <script setup>
 import { throwError } from "naive-ui/es/_utils";
 import { reactive, computed, isRef, ref } from "vue";
-// 获取首页数据
-const { data, pending, error } = await useFetch("/index", {
-  key: "IndexData",
-  baseURL: "http://demonuxtapi.dishait.cn/pc",
-  headers: {
-    appid: "bd9d01ecc75dbbaaefce",
-  },
-  transform: (res) => {
-    return res.data;
-  },
-  lazy: true,
+useHead({
+  title: "首页",
 });
+const { data, pending, error } = await useIndexDataApi();
 
 // 获取拼团数据
-const {data:pinData }= await useFetch("/group/list?page=1&usable=8", {
-  key: "pinData",
-  baseURL: "http://demonuxtapi.dishait.cn/pc",
-  headers: {
-    appid: "bd9d01ecc75dbbaaefce",
-  },
-  transform: (res) => {
-    return res.data;
-  },
-  lazy: true,
+const { data: pinData } = await usePinTeamApi({
+  page: 1,
+  usable: 8,
 });
-console.log(pinData,'pinData')
-// pinData.value = {
-//   title: '拼团',
-//   data: pinData.value.rows
-// }
-// console.log(pinData,'pinData')
-// 服务器错误处理
-if (process.server && error.value) {
-  throwError(error.value?.data?.data);
-}
 
-// 轮播图数据
+// // 服务器错误处理
+// if (process.server && error.value) {
+//   throwError(error.value?.data?.data);
+// }
+
+// // 轮播图数据
 const swiperData = computed(() => {
   let filterData =
     data.value.filter((item) => {
@@ -103,5 +85,5 @@ const listData = computed(() => {
     }) || [];
   return filterData;
 });
-console.log(listData,'listData')
+console.log(listData, "listData");
 </script>

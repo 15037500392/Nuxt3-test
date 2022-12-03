@@ -1,0 +1,142 @@
+{
+    "sourceFile": "components/Loading/Group.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 31,
+            "patches": [
+                {
+                    "date": 1669686952891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1670051245682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n </template>\n <script setup>\n defineProps({\n     pending: {\n-        type:\n+    type: Boolean,\n+        default: false\n     }\n  })\n </script>\n"
+                },
+                {
+                    "date": 1670051359932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n-    <template v-else-if=\"error\">{{ error?.data }}</template>\n+    <template v-else-if=\"error\">{{ error?.data }}11</template>\n   </div>\n </template>\n <script setup>\n defineProps({\n"
+                },
+                {
+                    "date": 1670051432475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,26 @@\n <template>\n   <div>\n     <template v-if=\"pending\">加载中。。。</template>\n-    <template v-else-if=\"error\">{{ error?.data }}11</template>\n+    <template v-else-if=\"error\">\n+      <n-result\n+        status=\"500\"\n+        title=\"500 服务器错误\"\n+        :description=\"error.message\"\n+        class=\"pt-[180px]\"\n+      >\n+        <template #footer>\n+          <n-button>散财消灾</n-button>\n+        </template>\n+      </n-result></template\n+    >\n   </div>\n </template>\n <script setup>\n+import { NResult, NButton } from \"naive-ui\";\n defineProps({\n-    pending: {\n+  pending: {\n     type: Boolean,\n-        default: false\n-    }\n- })\n+    default: false,\n+  },\n+});\n </script>\n"
+                },
+                {
+                    "date": 1670051445961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,5 +22,6 @@\n     type: Boolean,\n     default: false,\n   },\n });\n+const handleError = () => clearError({redirect: '/'})\n </script>\n"
+                },
+                {
+                    "date": 1670051648424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,7 +21,11 @@\n   pending: {\n     type: Boolean,\n     default: false,\n   },\n+  error: {\n+    type: [String, Boolean, Symbol],\n+    default:false\n+  }\n });\n const handleError = () => clearError({redirect: '/'})\n </script>\n"
+                },
+                {
+                    "date": 1670051660165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n         :description=\"error.message\"\n         class=\"pt-[180px]\"\n       >\n         <template #footer>\n-          <n-button>散财消灾</n-button>\n+          <n-button>hhh </n-button>\n         </template>\n       </n-result></template\n     >\n   </div>\n"
+                },
+                {
+                    "date": 1670051745437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n         :description=\"error.message\"\n         class=\"pt-[180px]\"\n       >\n         <template #footer>\n-          <n-button>hhh </n-button>\n+          <n-button>返回上一页</n-button>\n         </template>\n       </n-result></template\n     >\n   </div>\n"
+                },
+                {
+                    "date": 1670051782147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n     <template v-if=\"pending\">加载中。。。</template>\n     <template v-else-if=\"error\">\n       <n-result\n         status=\"500\"\n-        title=\"500 服务器错误\"\n+        title=\"错误提示\"\n         :description=\"error.message\"\n         class=\"pt-[180px]\"\n       >\n         <template #footer>\n"
+                },
+                {
+                    "date": 1670051800776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     <template v-else-if=\"error\">\n       <n-result\n         status=\"500\"\n         title=\"错误提示\"\n-        :description=\"error.message\"\n+        :description=\"error.message|| '页面走丢了'\"\n         class=\"pt-[180px]\"\n       >\n         <template #footer>\n           <n-button>返回上一页</n-button>\n"
+                },
+                {
+                    "date": 1670051822992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n         :description=\"error.message|| '页面走丢了'\"\n         class=\"pt-[180px]\"\n       >\n         <template #footer>\n-          <n-button>返回上一页</n-button>\n+          <n-button @click=\"$router.go(-1)\">返回上一页</n-button>\n         </template>\n       </n-result></template\n     >\n   </div>\n"
+                },
+                {
+                    "date": 1670051875464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,11 @@\n           <n-button @click=\"$router.go(-1)\">返回上一页</n-button>\n         </template>\n       </n-result></template\n     >\n+    <template v-else>\n+      <slot></slot>\n+    </template>\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1670051920054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n         </template>\n       </n-result></template\n     >\n     <template v-else>\n-      <slot></slot>\n+      <slot/>\n     </template>\n   </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1670051964101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,18 +4,18 @@\n     <template v-else-if=\"error\">\n       <n-result\n         status=\"500\"\n         title=\"错误提示\"\n-        :description=\"error.message|| '页面走丢了'\"\n+        :description=\"error.message || '页面走丢了'\"\n         class=\"pt-[180px]\"\n       >\n         <template #footer>\n           <n-button @click=\"$router.go(-1)\">返回上一页</n-button>\n         </template>\n       </n-result></template\n     >\n     <template v-else>\n-      <slot/>\n+      <slot />\n     </template>\n   </div>\n </template>\n <script setup>\n@@ -26,9 +26,9 @@\n     default: false,\n   },\n   error: {\n     type: [String, Boolean, Symbol],\n-    default:false\n-  }\n+    default: false,\n+  },\n });\n-const handleError = () => clearError({redirect: '/'})\n+const handleError = () => clearError({ redirect: \"/\" });\n </script>\n"
+                },
+                {
+                    "date": 1670053011555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n <template>\n   <div>\n-    <template v-if=\"pending\">加载中。。。</template>\n+    <template v-if=\"pending\">\n+      <LoadingSkeleton></LoadingSkeleton>\n+    </template>\n     <template v-else-if=\"error\">\n       <n-result\n         status=\"500\"\n         title=\"错误提示\"\n"
+                },
+                {
+                    "date": 1670054008318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,10 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-defineProps({\n+import { onBeforeMount } from \"vue\";\n+const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n   },\n@@ -31,6 +32,17 @@\n     type: [String, Boolean, Symbol],\n     default: false,\n   },\n });\n-const handleError = () => clearError({ redirect: \"/\" });\n+const loading = ref(false)\n+const stop = watchEffect(() => {\n+  if (props.pending && !loading.value) {\n+    loading.value = true\n+  } else {\n+    setTimeout(() => {\n+      loading.value = false\n+    },1000)\n+  }\n+})\n+onBeforeMount(() => stop())\n+\n </script>\n"
+                },
+                {
+                    "date": 1670054019892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n     loading.value = true\n   } else {\n     setTimeout(() => {\n       loading.value = false\n-    },1000)\n+    },10000)\n   }\n })\n onBeforeMount(() => stop())\n \n"
+                },
+                {
+                    "date": 1670054055179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div>\n-    <template v-if=\"pending\">\n+    <template v-if=\"(pending && loading)\">\n       <LoadingSkeleton></LoadingSkeleton>\n     </template>\n     <template v-else-if=\"error\">\n       <n-result\n"
+                },
+                {
+                    "date": 1670054199078,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n   <div>\n-    <template v-if=\"(pending && loading)\">\n+    <template v-if=\"loading\">\n       <LoadingSkeleton></LoadingSkeleton>\n     </template>\n     <template v-else-if=\"error\">\n       <n-result\n"
+                },
+                {
+                    "date": 1670054206049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n     loading.value = true\n   } else {\n     setTimeout(() => {\n       loading.value = false\n-    },10000)\n+    },1000)\n   }\n })\n onBeforeMount(() => stop())\n \n"
+                },
+                {
+                    "date": 1670054225800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n     loading.value = true\n   } else {\n     setTimeout(() => {\n       loading.value = false\n-    },1000)\n+    },200)\n   }\n })\n onBeforeMount(() => stop())\n \n"
+                },
+                {
+                    "date": 1670054314459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,9 @@\n   if (props.pending && !loading.value) {\n     loading.value = true\n   } else {\n     setTimeout(() => {\n+      console.log('ee')\n       loading.value = false\n     },200)\n   }\n })\n"
+                },
+                {
+                    "date": 1670054446859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n     default: false,\n   },\n });\n const loading = ref(false)\n+console.log(loading,'loading')\n const stop = watchEffect(() => {\n   if (props.pending && !loading.value) {\n     loading.value = true\n   } else {\n"
+                },
+                {
+                    "date": 1670054485620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n });\n const loading = ref(false)\n console.log(loading,'loading')\n const stop = watchEffect(() => {\n+  console.log(props.pending,'props.pending')\n   if (props.pending && !loading.value) {\n     loading.value = true\n   } else {\n     setTimeout(() => {\n"
+                },
+                {
+                    "date": 1670054507229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n });\n const loading = ref(false)\n console.log(loading,'loading')\n const stop = watchEffect(() => {\n-  console.log(props.pending,'props.pending')\n+  console.log(props.pending,loading.value,'props.pending')\n   if (props.pending && !loading.value) {\n     loading.value = true\n   } else {\n     setTimeout(() => {\n"
+                },
+                {
+                    "date": 1670054530703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount } from \"vue\";\n+import { onBeforeMount,watchEffect } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n"
+                },
+                {
+                    "date": 1670054563309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount,watchEffect } from \"vue\";\n+import { onBeforeMount,watchEffect,ref } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n"
+                },
+                {
+                    "date": 1670054590844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount,watchEffect,ref } from \"vue\";\n+import { onBeforeMount,watchEffect,ref,watch } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n"
+                },
+                {
+                    "date": 1670054627614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount,watchEffect,ref,watch } from \"vue\";\n+import { onBeforeMount,watchEffect,ref } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n"
+                },
+                {
+                    "date": 1670054636288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount,watchEffect,ref } from \"vue\";\n+import { onBeforeMount,watchEffect,ref,defineProps } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n"
+                },
+                {
+                    "date": 1670054848472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount,watchEffect,ref,defineProps } from \"vue\";\n+import { onBeforeMount } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n"
+                },
+                {
+                    "date": 1670054857127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   </div>\n </template>\n <script setup>\n import { NResult, NButton } from \"naive-ui\";\n-import { onBeforeMount } from \"vue\";\n+import { onBeforeUnmount } from \"vue\";\n const props = defineProps({\n   pending: {\n     type: Boolean,\n     default: false,\n@@ -45,7 +45,7 @@\n       loading.value = false\n     },200)\n   }\n })\n-onBeforeMount(() => stop())\n+onBeforeUnmount(() => stop())\n \n </script>\n"
+                }
+            ],
+            "date": 1669686952890,
+            "name": "Commit-0",
+            "content": "<template>\n  <div>\n    <template v-if=\"pending\">加载中。。。</template>\n    <template v-else-if=\"error\">{{ error?.data }}</template>\n  </div>\n</template>\n<script setup>\ndefineProps({\n    pending: {\n        type:\n    }\n })\n</script>\n"
+        }
+    ]
+}

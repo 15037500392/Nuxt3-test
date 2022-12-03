@@ -1,0 +1,38 @@
+{
+    "sourceFile": "composables/useHttp.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1669558877514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669558995592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n };\n function useGetFetchOptions(options = {}) {\n   options.baseURL = options.baseURL ?? fetchConfig.baseURL;\n   options.headers = options.headers ?? {\n-    appid: fetchConfig.appid,\n+    appid: fetchConfig.headers.appid,\n   };\n   options.initialCache = options.initialCache ?? false;\n   options.lazy = options.lazy ?? false;\n   return options;\n"
+                },
+                {
+                    "date": 1670051257397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const fetchConfig = {\n   baseURL: \"http://demonuxtapi.dishait.cn\",\n   headers: {\n-    appid: \"bd9d01ecc75dbbaaefce\",\n+    appid: \"bd9d01ecc75dbbaaefc1e\",\n   },\n };\n function useGetFetchOptions(options = {}) {\n   options.baseURL = options.baseURL ?? fetchConfig.baseURL;\n"
+                },
+                {
+                    "date": 1670051267000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const fetchConfig = {\n   baseURL: \"http://demonuxtapi.dishait.cn\",\n   headers: {\n-    appid: \"bd9d01ecc75dbbaaefc1e\",\n+    appid: \"bd9d01ecc75dbbaaefce\",\n   },\n };\n function useGetFetchOptions(options = {}) {\n   options.baseURL = options.baseURL ?? fetchConfig.baseURL;\n"
+                },
+                {
+                    "date": 1670051338541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const fetchConfig = {\n   baseURL: \"http://demonuxtapi.dishait.cn\",\n   headers: {\n-    appid: \"bd9d01ecc75dbbaaefce\",\n+    appid: \"bd9d01ecc75dbbaaefce1\",\n   },\n };\n function useGetFetchOptions(options = {}) {\n   options.baseURL = options.baseURL ?? fetchConfig.baseURL;\n"
+                },
+                {
+                    "date": 1670051833128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const fetchConfig = {\n   baseURL: \"http://demonuxtapi.dishait.cn\",\n   headers: {\n-    appid: \"bd9d01ecc75dbbaaefce1\",\n+    appid: \"bd9d01ecc75dbbaaefce\",\n   },\n };\n function useGetFetchOptions(options = {}) {\n   options.baseURL = options.baseURL ?? fetchConfig.baseURL;\n"
+                }
+            ],
+            "date": 1669558877514,
+            "name": "Commit-0",
+            "content": "const fetchConfig = {\n  baseURL: \"http://demonuxtapi.dishait.cn\",\n  headers: {\n    appid: \"bd9d01ecc75dbbaaefce\",\n  },\n};\nfunction useGetFetchOptions(options = {}) {\n  options.baseURL = options.baseURL ?? fetchConfig.baseURL;\n  options.headers = options.headers ?? {\n    appid: fetchConfig.appid,\n  };\n  options.initialCache = options.initialCache ?? false;\n  options.lazy = options.lazy ?? false;\n  return options;\n}\nexport async function useHttp(key, url, options = {}) {\n  options = useGetFetchOptions(options);\n  options.key = key;\n  let res = await useFetch(url, {\n    ...options,\n    transform: (res) => {\n      return res.data;\n    },\n  });\n  return res;\n}\n\n//GET\nexport function useHttpGet(key, url, options = {}) {\n    options.method = \"GET\"\n    return useHttp(key, url, options)\n}\n//POST\nexport function useHttpPost(key, url, options = {}) {\n    options.method = \"POST\"\n    return useHttp(key, url, options)\n}\n"
+        }
+    ]
+}

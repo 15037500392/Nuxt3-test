@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1669291972533,
@@ -40,6 +40,50 @@
                 {
                     "date": 1669293920535,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n       <span class=\"font-bold w-full truncate font-semibold\">\n         {{ data.title }}</span\n       >\n     </div>\n-    <div class=\" flex items-end\">\n-      <Price :value=\"data.price\" class=\"mt-2\"></Price>\n+    <div class=\" mt-2 flex items-end\">\n+      <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n   </n-card>\n </template>\n"
+                },
+                {
+                    "date": 1669431543886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,14 @@\n     <div class=\" mt-2 flex items-end\">\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n+    <template #footer>\n+      <div class=\" bg-yellow-500 text-white p-3 text-xs flex items-center\">\n+      拼团中。。\n+</div> \n+    </template>\n+   \n   </n-card>\n </template>\n <script setup>\n import { NCard } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1669431568627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,27 @@\n <template>\n-  <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\">\n+  <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\" footer-style=\"padding:0\">\n     <template #cover>\n       <img :src=\"data.cover\" class=\"h-[150px]\" />\n     </template>\n     <div class=\"pt-2\">\n       <span class=\"font-bold w-full truncate font-semibold\">\n         {{ data.title }}</span\n       >\n     </div>\n-    <div class=\" mt-2 flex items-end\">\n+    <div class=\"mt-2 flex items-end\">\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n     <template #footer>\n-      <div class=\" bg-yellow-500 text-white p-3 text-xs flex items-center\">\n-      拼团中。。\n-</div> \n+      <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center\">\n+        拼团中。。\n+      </div>\n     </template>\n-   \n   </n-card>\n </template>\n <script setup>\n import { NCard } from \"naive-ui\";\n defineProps({\n-  data: Array\n+  data: Array,\n });\n </script>\n"
+                },
+                {
+                    "date": 1669431594040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n     <template #footer>\n-      <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center\">\n+      <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n         拼团中。。\n       </div>\n     </template>\n   </n-card>\n"
+                },
+                {
+                    "date": 1669431607829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n     <template #footer>\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n-        拼团中。。\n+        拼团中\n       </div>\n     </template>\n   </n-card>\n </template>\n"
+                },
+                {
+                    "date": 1669431790791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n     </div>\n     <template #footer>\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n         拼团中\n+        <div class=\"ml-auto flex items-center\"></div>\n       </div>\n     </template>\n   </n-card>\n </template>\n"
+                },
+                {
+                    "date": 1669431796658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n     </div>\n     <template #footer>\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n         拼团中\n-        <div class=\"ml-auto flex items-center\"></div>\n+        <div class=\"ml-auto flex items-center\">\n+          倒计时\n+        </div>\n       </div>\n     </template>\n   </n-card>\n </template>\n"
+                },
+                {
+                    "date": 1669431886514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,13 +11,14 @@\n     <div class=\"mt-2 flex items-end\">\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n-    <template #footer>\n+    <template #footer v-if=\"item.group_id\">\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n         拼团中\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n+          <CountDown></CountDown>\n         </div>\n       </div>\n     </template>\n   </n-card>\n"
+                },
+                {
+                    "date": 1669431894974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n         拼团中\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n-          <CountDown></CountDown>\n+          <CountDown/>\n         </div>\n       </div>\n     </template>\n   </n-card>\n"
+                },
+                {
+                    "date": 1669431919918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     <div class=\"mt-2 flex items-end\">\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n-    <template #footer v-if=\"item.group_id\">\n+    <template #footer v-if=\"data.group_id\">\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n         拼团中\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n"
+                },
+                {
+                    "date": 1669431951903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n     <template #footer v-if=\"data.group_id\">\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n-        拼团中\n+         {{ data.group_id ? '拼团中' : '秒杀中'}}\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n           <CountDown/>\n         </div>\n"
+                },
+                {
+                    "date": 1669432439404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n          {{ data.group_id ? '拼团中' : '秒杀中'}}\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n-          <CountDown/>\n+          <CountDown :time=\"data.end_time\"/>\n         </div>\n       </div>\n     </template>\n   </n-card>\n"
                 }
             ],
             "date": 1669291972533,
