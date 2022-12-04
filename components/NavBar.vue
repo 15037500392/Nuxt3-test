@@ -13,7 +13,7 @@
             {{ item.name }}
           </ui-menu-item>
         </ui-menu>
-        <n-button circle class="ml-auto mr-3">
+        <n-button circle class="ml-auto mr-3" @click="openSearch">
           <template #icon>
             <n-icon><Search /></n-icon>
           </template>
@@ -32,11 +32,14 @@
         </n-dropdown>
       </div>
     </div>
+    <SearchBar ref="SearchBarRef"/>
   </div>
+ 
 </template>
 <script setup>
 import { NButton, NIcon, NDropdown, NAvatar } from "naive-ui";
 import { Search } from "@vicons/ionicons5";
+import { tr } from "date-fns/locale";
 const route = useRoute();
 console.log(route, "router");
 const userOptions = [
@@ -173,6 +176,11 @@ const IsMenuItemActive = (item) => {
   }
   return item.path === route.path;
 };
+
+const SearchBarRef = ref(null)
+const openSearch = () => {
+  SearchBarRef.value.open()
+}
 </script>
 <style scoped>
 .navbar {

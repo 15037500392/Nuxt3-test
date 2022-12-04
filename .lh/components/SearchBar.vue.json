@@ -1,0 +1,90 @@
+{
+    "sourceFile": "components/SearchBar.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1670056785985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1670056797394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-      <n-drawer v-model:show=\"active\" :width=\"502\" :placement=\"placement\">\n+      <n-drawer v-model:show=\"active\" :width=\"502\" placement=\"top\">\n     <n-drawer-content title=\"斯通纳\">\n       《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。\n     </n-drawer-content>\n   </n-drawer>\n"
+                },
+                {
+                    "date": 1670057209291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,16 @@\n <template>\n-      <n-drawer v-model:show=\"active\" :width=\"502\" placement=\"top\">\n+      <n-drawer v-model:show=\"visible\" :width=\"502\" placement=\"top\">\n     <n-drawer-content title=\"斯通纳\">\n       《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。\n     </n-drawer-content>\n   </n-drawer>\n </template>\n <script setup>\n-import { NDrawer,NDrawerContent} from 'naive-ui'\n+import { NDrawer, NDrawerContent } from 'naive-ui'\n+defineProps({\n+    visible: {\n+        type: Boolean,\n+        default: false\n+    }\n+})\n </script>\n"
+                },
+                {
+                    "date": 1670057235276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n <template>\n-      <n-drawer v-model:show=\"visible\" :width=\"502\" placement=\"top\">\n+  <n-drawer v-model:show=\"visible\" placement=\"top\">\n     <n-drawer-content title=\"斯通纳\">\n       《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。\n     </n-drawer-content>\n   </n-drawer>\n </template>\n <script setup>\n-import { NDrawer, NDrawerContent } from 'naive-ui'\n+import { NDrawer, NDrawerContent } from \"naive-ui\";\n defineProps({\n-    visible: {\n-        type: Boolean,\n-        default: false\n-    }\n-})\n+  visible: {\n+    type: Boolean,\n+    default: false,\n+  },\n+});\n </script>\n"
+                },
+                {
+                    "date": 1670057553987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,16 @@\n   </n-drawer>\n </template>\n <script setup>\n import { NDrawer, NDrawerContent } from \"naive-ui\";\n+import { ref} from 'vue' \n defineProps({\n   visible: {\n     type: Boolean,\n     default: false,\n   },\n });\n+const visible = ref(false)\n+const open = () => {\n+    visible.value = true\n+}\n </script>\n"
+                },
+                {
+                    "date": 1670124316005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,5 +17,8 @@\n const visible = ref(false)\n const open = () => {\n     visible.value = true\n }\n+defineExpose({\n+    open\n+})\n </script>\n"
+                },
+                {
+                    "date": 1670128139874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,21 @@\n <template>\n   <n-drawer v-model:show=\"visible\" placement=\"top\">\n-    <n-drawer-content title=\"斯通纳\">\n-      《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。\n-    </n-drawer-content>\n+   <div class=\"h-full flex justify-center items-center\">\n+    <n-input-group>\n+      <n-button type=\"primary\">\n+        搜索\n+      </n-button>\n+      <n-input :style=\"{ width: '50%' }\" />\n+      <n-button type=\"primary\" ghost>\n+        搜索\n+      </n-button>\n+    </n-input-group>\n+   </div>\n   </n-drawer>\n </template>\n <script setup>\n-import { NDrawer, NDrawerContent } from \"naive-ui\";\n+import { NDrawer, NInputGroup,NButton, NInput } from \"naive-ui\";\n import { ref} from 'vue' \n defineProps({\n   visible: {\n     type: Boolean,\n"
+                },
+                {
+                    "date": 1670128555099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,9 @@\n <template>\n   <n-drawer v-model:show=\"visible\" placement=\"top\">\n    <div class=\"h-full flex justify-center items-center\">\n     <n-input-group>\n-      <n-button type=\"primary\">\n-        搜索\n-      </n-button>\n-      <n-input :style=\"{ width: '50%' }\" />\n+      <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" style=\"{ width: '50%' }\" />\n       <n-button type=\"primary\" ghost>\n         搜索\n       </n-button>\n     </n-input-group>\n"
+                },
+                {
+                    "date": 1670128570679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n     default: false,\n   },\n });\n const visible = ref(false)\n+const keyword = ref(null)\n const open = () => {\n     visible.value = true\n }\n defineExpose({\n"
+                },
+                {
+                    "date": 1670128601717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <n-drawer v-model:show=\"visible\" placement=\"top\">\n    <div class=\"h-full flex justify-center items-center\">\n-    <n-input-group>\n-      <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" style=\"{ width: '50%' }\" />\n+    <n-input-group class=\"flex justify-center items-center\">\n+      <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" style=\"{ width: '500px' }\" />\n       <n-button type=\"primary\" ghost>\n         搜索\n       </n-button>\n     </n-input-group>\n"
+                },
+                {
+                    "date": 1670128629279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <n-drawer v-model:show=\"visible\" placement=\"top\">\n    <div class=\"h-full flex justify-center items-center\">\n     <n-input-group class=\"flex justify-center items-center\">\n-      <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" style=\"{ width: '500px' }\" />\n+      <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" :style=\"{ width: '500px' }\" />\n       <n-button type=\"primary\" ghost>\n         搜索\n       </n-button>\n     </n-input-group>\n"
+                },
+                {
+                    "date": 1670128996773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   <n-drawer v-model:show=\"visible\" placement=\"top\">\n    <div class=\"h-full flex justify-center items-center\">\n     <n-input-group class=\"flex justify-center items-center\">\n       <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" :style=\"{ width: '500px' }\" />\n-      <n-button type=\"primary\" ghost>\n+      <n-button type=\"primary\" @click=\"handleSearch\">\n         搜索\n       </n-button>\n     </n-input-group>\n    </div>\n@@ -21,10 +21,29 @@\n });\n const visible = ref(false)\n const keyword = ref(null)\n const open = () => {\n+    keyword.value = ''\n     visible.value = true\n }\n+const close = () => {\n+    visible.value = false\n+}\n+const handleSearch = () => {\n+    setTimeout(() => {\n+        close()\n+    },1000)\n+    navigateTo({\n+        name: \"search-type-page\",\n+        params: {\n+            type: \"course\",\n+            page:1\n+        },\n+        query: {\n+            keyword:keyword.value\n+        }\n+    })\n+}\n defineExpose({\n     open\n })\n </script>\n"
+                },
+                {
+                    "date": 1670129042034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,11 @@\n const close = () => {\n     visible.value = false\n }\n const handleSearch = () => {\n-    setTimeout(() => {\n-        close()\n-    },1000)\n+    // setTimeout(() => {\n+    //     close()\n+    // },1000)\n     navigateTo({\n         name: \"search-type-page\",\n         params: {\n             type: \"course\",\n"
+                },
+                {
+                    "date": 1670129223310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n const close = () => {\n     visible.value = false\n }\n const handleSearch = () => {\n+    console.log(keyword.value,'ss')\n     // setTimeout(() => {\n     //     close()\n     // },1000)\n     navigateTo({\n"
+                },
+                {
+                    "date": 1670129383101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n   <n-drawer v-model:show=\"visible\" placement=\"top\">\n    <div class=\"h-full flex justify-center items-center\">\n     <n-input-group class=\"flex justify-center items-center\">\n-      <n-input v-model=\"keyword\" placeholder=\"请输入关键词\" :style=\"{ width: '500px' }\" />\n+      <n-input v-model:value=\"keyword\" placeholder=\"请输入关键词\" :style=\"{ width: '500px' }\" />\n       <n-button type=\"primary\" @click=\"handleSearch\">\n         搜索\n       </n-button>\n     </n-input-group>\n"
+                },
+                {
+                    "date": 1670129400926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,11 +29,11 @@\n     visible.value = false\n }\n const handleSearch = () => {\n     console.log(keyword.value,'ss')\n-    // setTimeout(() => {\n-    //     close()\n-    // },1000)\n+    setTimeout(() => {\n+        close()\n+    },1000)\n     navigateTo({\n         name: \"search-type-page\",\n         params: {\n             type: \"course\",\n"
+                },
+                {
+                    "date": 1670129484740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,14 @@\n             keyword:keyword.value\n         }\n     })\n }\n+function handleEnterEvent(e) {\n+    console.log(e,'ee')\n+}\n+const addKeydownEvent = () => {\n+    document.addEventListener(\"keydown\",handleEnterEvent)\n+}\n defineExpose({\n     open\n })\n </script>\n"
+                },
+                {
+                    "date": 1670129566238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <template>\n-  <n-drawer v-model:show=\"visible\" placement=\"top\">\n+  <n-drawer v-model:show=\"visible\" placement=\"top\" :on-after-enter=\"addKeydownEvent\">\n    <div class=\"h-full flex justify-center items-center\">\n     <n-input-group class=\"flex justify-center items-center\">\n       <n-input v-model:value=\"keyword\" placeholder=\"请输入关键词\" :style=\"{ width: '500px' }\" />\n       <n-button type=\"primary\" @click=\"handleSearch\">\n"
+                },
+                {
+                    "date": 1670129709835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,56 +1,70 @@\n <template>\n-  <n-drawer v-model:show=\"visible\" placement=\"top\" :on-after-enter=\"addKeydownEvent\">\n-   <div class=\"h-full flex justify-center items-center\">\n-    <n-input-group class=\"flex justify-center items-center\">\n-      <n-input v-model:value=\"keyword\" placeholder=\"请输入关键词\" :style=\"{ width: '500px' }\" />\n-      <n-button type=\"primary\" @click=\"handleSearch\">\n-        搜索\n-      </n-button>\n-    </n-input-group>\n-   </div>\n+  <n-drawer\n+    v-model:show=\"visible\"\n+    placement=\"top\"\n+    :on-after-enter=\"addKeydownEvent\"\n+    :on-after-leave=\"removeKeydownEvent\"\n+  >\n+    <div class=\"h-full flex justify-center items-center\">\n+      <n-input-group class=\"flex justify-center items-center\">\n+        <n-input\n+          v-model:value=\"keyword\"\n+          placeholder=\"请输入关键词\"\n+          :style=\"{ width: '500px' }\"\n+        />\n+        <n-button type=\"primary\" @click=\"handleSearch\"> 搜索 </n-button>\n+      </n-input-group>\n+    </div>\n   </n-drawer>\n </template>\n <script setup>\n-import { NDrawer, NInputGroup,NButton, NInput } from \"naive-ui\";\n-import { ref} from 'vue' \n+import { NDrawer, NInputGroup, NButton, NInput } from \"naive-ui\";\n+import { ref } from \"vue\";\n defineProps({\n   visible: {\n     type: Boolean,\n     default: false,\n   },\n });\n-const visible = ref(false)\n-const keyword = ref(null)\n+const visible = ref(false);\n+const keyword = ref(null);\n const open = () => {\n-    keyword.value = ''\n-    visible.value = true\n-}\n+  keyword.value = \"\";\n+  visible.value = true;\n+};\n const close = () => {\n-    visible.value = false\n-}\n+  visible.value = false;\n+};\n const handleSearch = () => {\n-    console.log(keyword.value,'ss')\n-    setTimeout(() => {\n-        close()\n-    },1000)\n-    navigateTo({\n-        name: \"search-type-page\",\n-        params: {\n-            type: \"course\",\n-            page:1\n-        },\n-        query: {\n-            keyword:keyword.value\n-        }\n-    })\n-}\n+  console.log(keyword.value, \"ss\");\n+  setTimeout(() => {\n+    close();\n+  }, 1000);\n+  navigateTo({\n+    name: \"search-type-page\",\n+    params: {\n+      type: \"course\",\n+      page: 1,\n+    },\n+    query: {\n+      keyword: keyword.value,\n+    },\n+  });\n+};\n function handleEnterEvent(e) {\n-    console.log(e,'ee')\n+  if (e.key === \"Enter\" && keyword.value) {\n+    handleSearch();\n+  }\n }\n const addKeydownEvent = () => {\n-    document.addEventListener(\"keydown\",handleEnterEvent)\n-}\n+  document.addEventListener(\"keydown\", handleEnterEvent);\n+};\n+\n+const removeKeydownEvent = () => {\n+  document.removeEventListener(\"keydown\", handleEnterEvent);\n+};\n+\n defineExpose({\n-    open\n-})\n+  open,\n+});\n </script>\n"
+                }
+            ],
+            "date": 1670056785985,
+            "name": "Commit-0",
+            "content": "<template>\n      <n-drawer v-model:show=\"active\" :width=\"502\" :placement=\"placement\">\n    <n-drawer-content title=\"斯通纳\">\n      《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。\n    </n-drawer-content>\n  </n-drawer>\n</template>\n<script setup>\nimport { NDrawer,NDrawerContent} from 'naive-ui'\n</script>\n"
+        }
+    ]
+}
