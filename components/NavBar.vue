@@ -39,9 +39,7 @@
 <script setup>
 import { NButton, NIcon, NDropdown, NAvatar } from "naive-ui";
 import { Search } from "@vicons/ionicons5";
-import { tr } from "date-fns/locale";
 const route = useRoute();
-console.log(route, "router");
 const userOptions = [
   {
     label: "用户中心",

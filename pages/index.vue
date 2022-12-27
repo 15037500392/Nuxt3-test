@@ -85,5 +85,4 @@ const listData = computed(() => {
     }) || [];
   return filterData;
 });
-console.log(listData, "listData");
 </script>

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1669291972533,
@@ -84,6 +84,14 @@
                 {
                     "date": 1669432439404,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n          {{ data.group_id ? '拼团中' : '秒杀中'}}\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n-          <CountDown/>\n+          <CountDown :time=\"data.end_time\"/>\n         </div>\n       </div>\n     </template>\n   </n-card>\n"
+                },
+                {
+                    "date": 1670141478525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\" footer-style=\"padding:0\">\n     <template #cover>\n-      <img :src=\"data.cover\" class=\"h-[150px]\" />\n+      <UiImage :src=\"data.cover\" class=\"h-[150px]\"></UiImage>\n     </template>\n     <div class=\"pt-2\">\n       <span class=\"font-bold w-full truncate font-semibold\">\n         {{ data.title }}</span\n"
+                },
+                {
+                    "date": 1670142200966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n <template>\n-  <n-card class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\" footer-style=\"padding:0\">\n+  <n-card\n+    class=\"mb-6 mb-5 shadow-md cursor-pointer !border-0\"\n+    footer-style=\"padding:0\"\n+  >\n     <template #cover>\n       <UiImage :src=\"data.cover\" class=\"h-[150px]\"></UiImage>\n     </template>\n     <div class=\"pt-2\">\n@@ -12,13 +15,15 @@\n       <Price :value=\"data.price\"></Price>\n       <Price :value=\"data.t_price\" :through=\"true\" class=\"ml-2\"></Price>\n     </div>\n     <template #footer v-if=\"data.group_id\">\n-      <div class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\">\n-         {{ data.group_id ? '拼团中' : '秒杀中'}}\n+      <div\n+        class=\"bg-yellow-500 text-white p-3 text-xs flex items-center rounded-b\"\n+      >\n+        {{ data.group_id ? \"拼团中\" : \"秒杀中\" }}\n         <div class=\"ml-auto flex items-center\">\n           倒计时\n-          <CountDown :time=\"data.end_time\"/>\n+          <CountDown :time=\"data.end_time\" />\n         </div>\n       </div>\n     </template>\n   </n-card>\n"
                 }
             ],
             "date": 1669291972533,

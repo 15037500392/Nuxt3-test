@@ -36,7 +36,6 @@ const close = () => {
   visible.value = false;
 };
 const handleSearch = () => {
-  console.log(keyword.value, "ss");
   setTimeout(() => {
     close();
   }, 1000);

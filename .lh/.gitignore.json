@@ -3,11 +3,59 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1669204022409,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1672151937823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,6 @@\n .cache\n .output\n .env\n .vue.json\n+.lh\n dist\n"
+                },
+                {
+                    "date": 1672151948953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,6 @@\n .cache\n .output\n .env\n .vue.json\n-.lh\n+*.lh\n dist\n"
+                },
+                {
+                    "date": 1672151963378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,6 @@\n .cache\n .output\n .env\n .vue.json\n-*.lh\n+.lh/*\n dist\n"
+                },
+                {
+                    "date": 1672151974443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n .nitro\n .cache\n .output\n .env\n-.vue.json\n+*.vue.json\n .lh/*\n dist\n"
+                },
+                {
+                    "date": 1672151983308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,8 @@\n .nitro\n .cache\n .output\n .env\n-*.vue.json\n+.vue.json\n .lh/*\n dist\n+.lh/.gitignore.json\n"
+                },
+                {
+                    "date": 1672151991550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,4 +8,5 @@\n .vue.json\n .lh/*\n dist\n .lh/.gitignore.json\n+.lh/*\n"
+                },
+                {
+                    "date": 1672152001511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,4 +9,5 @@\n .lh/*\n dist\n .lh/.gitignore.json\n .lh/*\n+.lh/components/CountDown.vue.json\n"
+                },
+                {
+                    "date": 1672152010114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,4 +10,6 @@\n dist\n .lh/.gitignore.json\n .lh/*\n .lh/components/CountDown.vue.json\n+.gitignore\n+.gitignore\n"
+                },
+                {
+                    "date": 1672152015330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,4 +12,5 @@\n .lh/*\n .lh/components/CountDown.vue.json\n .gitignore\n .gitignore\n+.lh/components/CountDown.vue.json\n"
+                },
+                {
+                    "date": 1672152023933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n .cache\n .output\n .env\n .vue.json\n-.lh/*\n+.lh\n dist\n .lh/.gitignore.json\n .lh/*\n .lh/components/CountDown.vue.json\n"
+                },
+                {
+                    "date": 1672152047210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,4 +13,13 @@\n .lh/components/CountDown.vue.json\n .gitignore\n .gitignore\n .lh/components/CountDown.vue.json\n+.lh/components/CountDown.vue.json\n+.lh/components/CourseList.vue.json\n+.lh/components/ListCard.vue.json\n+.lh/components/NavBar.vue.json\n+.lh/components/SearchBar.vue.json\n+.lh/components/Loading/Group.vue.json\n+.lh/components/Ui/MenuItem.vue.json\n+.lh/pages/index.vue.json\n+.lh/pages/search/[type]/[page].vue.json\n"
+                },
+                {
+                    "date": 1672152061158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,4 +22,5 @@\n .lh/components/Loading/Group.vue.json\n .lh/components/Ui/MenuItem.vue.json\n .lh/pages/index.vue.json\n .lh/pages/search/[type]/[page].vue.json\n+.lh/components/CountDown.vue.json\n"
                 }
             ],
             "date": 1669204022409,

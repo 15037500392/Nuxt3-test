@@ -1,7 +1,9 @@
 <template>
   <div>
     <template v-if="loading">
-      <LoadingSkeleton></LoadingSkeleton>
+      <slot name="loading">
+        <LoadingSkeleton></LoadingSkeleton>
+      </slot>
     </template>
     <template v-else-if="error">
       <n-result
@@ -34,14 +36,11 @@ const props = defineProps({
   },
 });
 const loading = ref(false)
-console.log(loading,'loading')
 const stop = watchEffect(() => {
-  console.log(props.pending,loading.value,'props.pending')
   if (props.pending && !loading.value) {
     loading.value = true
   } else {
     setTimeout(() => {
-      console.log('ee')
       loading.value = false
     },200)
   }

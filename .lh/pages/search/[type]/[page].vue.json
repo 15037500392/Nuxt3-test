@@ -3,11 +3,271 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 65,
             "patches": [
                 {
                     "date": 1670128765767,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1670131193022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n <template>\n     <div>\n         {{$route.params.type}} ~{{$route.params.page}} ~\n     </div>\n-</template>\n\\ No newline at end of file\n+</template>\n+<script setup>\n+definePageMeta({\n+    middleware:[\"search\"]\n+})\n+</script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670132827927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,13 @@\n         {{$route.params.type}} ~{{$route.params.page}} ~\n     </div>\n </template>\n <script setup>\n+const route = useRoute()\n+const title = ref(route.query.keyword)\n+useHead({\n+    title\n+})\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670133146600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n <template>\n     <div>\n-        {{$route.params.type}} ~{{$route.params.page}} ~\n+       <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n     </div>\n </template>\n <script setup>\n const route = useRoute()\n"
+                },
+                {
+                    "date": 1670133271104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n+       <UiTab>\n+        112\n+       </UiTab>\n     </div>\n </template>\n <script setup>\n const route = useRoute()\n"
+                },
+                {
+                    "date": 1670133431383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        112\n+        <UiMenuItem>课程</UiMenuItem>\n+        <UiMenuItem>专栏</UiMenuItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1670133738772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiMenuItem>课程</UiMenuItem>\n+        <UiMenuItem active>课程</UiMenuItem>\n         <UiMenuItem>专栏</UiMenuItem>\n        </UiTab>\n     </div>\n </template>\n"
+                },
+                {
+                    "date": 1670133958329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiMenuItem active>课程</UiMenuItem>\n-        <UiMenuItem>专栏</UiMenuItem>\n+        <UiTabItem active>课程</UiTabItem>\n+        <UiTabItem >专栏</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1670137071916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,15 @@\n const title = ref(route.query.keyword)\n useHead({\n     title\n })\n+const tabs = [{\n+    label: \"课程\",\n+    value:\"course\"\n+}, {\n+    label: \"专栏\",\n+    value:\"column\"\n+}]\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137356735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiTabItem active>课程</UiTabItem>\n-        <UiTabItem >专栏</UiTabItem>\n+        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"(active === item.label)\">{{item.label}}</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n@@ -12,15 +11,17 @@\n const title = ref(route.query.keyword)\n useHead({\n     title\n })\n+\n const tabs = [{\n     label: \"课程\",\n     value:\"course\"\n }, {\n     label: \"专栏\",\n     value:\"column\"\n-}]\n+    }]\n+    const active = ref(tabs[0].value)\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137374126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"(active === item.label)\">{{item.label}}</UiTabItem>\n+        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"active === item.label\">{{item.label}}</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1670137383708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"active === item.label\">{{item.label}}</UiTabItem>\n+        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"activeLabel === item.label\">{{item.label}}</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n@@ -19,9 +19,9 @@\n }, {\n     label: \"专栏\",\n     value:\"column\"\n     }]\n-    const active = ref(tabs[0].value)\n+    const activeLabel = ref(tabs[0].value)\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137400003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n }, {\n     label: \"专栏\",\n     value:\"column\"\n     }]\n-    const activeLabel = ref(tabs[0].value)\n+const activeLabel = ref(tabs[0].value)\n+    connsole.log(activeLabel,'activeLabel')\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137405426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     label: \"专栏\",\n     value:\"column\"\n     }]\n const activeLabel = ref(tabs[0].value)\n-    connsole.log(activeLabel,'activeLabel')\n+    conn')\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137421826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"activeLabel === item.label\">{{item.label}}</UiTabItem>\n+        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"activeLabel.value === item.label\">{{item.label}}</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n@@ -20,9 +20,9 @@\n     label: \"专栏\",\n     value:\"column\"\n     }]\n const activeLabel = ref(tabs[0].value)\n-    conn')\n+    console.log(activeLabel,'activeLabel')\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137431418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     label: \"专栏\",\n     value:\"column\"\n     }]\n const activeLabel = ref(tabs[0].value)\n-    console.log(activeLabel,'activeLabel')\n+    console.log(activeLabel.value,'activeLabel')\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137447498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"activeLabel.value === item.label\">{{item.label}}</UiTabItem>\n+        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"(activeLabel === item.value)\">{{item.label}}</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n"
+                },
+                {
+                    "date": 1670137497822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <template>\n     <div>\n        <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n        <UiTab>\n-        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"(activeLabel === item.value)\">{{item.label}}</UiTabItem>\n+        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"(activeLabel === item.value)\" @click=\"handleSelect(item)\">{{item.label}}</UiTabItem>\n        </UiTab>\n     </div>\n </template>\n <script setup>\n@@ -20,9 +20,11 @@\n     label: \"专栏\",\n     value:\"column\"\n     }]\n const activeLabel = ref(tabs[0].value)\n-    console.log(activeLabel.value,'activeLabel')\n+const handleSelect = (data) => {\n+    activeLabel.value = data.value\n+}\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670137616483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,20 +8,21 @@\n </template>\n <script setup>\n const route = useRoute()\n const title = ref(route.query.keyword)\n+const type = ref(route.params.type)\n useHead({\n     title\n })\n-\n+const activeLabel = ref(type)\n const tabs = [{\n     label: \"课程\",\n     value:\"course\"\n }, {\n     label: \"专栏\",\n     value:\"column\"\n     }]\n-const activeLabel = ref(tabs[0].value)\n+\n const handleSelect = (data) => {\n     activeLabel.value = data.value\n }\n definePageMeta({\n"
+                },
+                {
+                    "date": 1670137763880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,17 @@\n     value:\"column\"\n     }]\n \n const handleSelect = (data) => {\n-    activeLabel.value = data.value\n+    navigateTo({\n+        params: {\n+            ...route.params,\n+            type:data.value\n+        },\n+        query: {\n+            ...route.query,\n+        }\n+    })\n }\n definePageMeta({\n     middleware:[\"search\"]\n })\n"
+                },
+                {
+                    "date": 1670137983870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,11 @@\n             ...route.query,\n         }\n     })\n }\n+onMounted(() => {\n+    console.log('进来欧')\n+})\n definePageMeta({\n     middleware:[\"search\"]\n })\n </script>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670138619963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,14 @@\n         }\n     })\n }\n onMounted(() => {\n-    console.log('进来欧')\n+    console.log(route,'进来欧')\n+    // useSearchListApi({\n+    //     keyword: route.query.,\n+    //     type: '',\n+    //     page: '',\n+    // })\n })\n definePageMeta({\n     middleware:[\"search\"]\n })\n"
+                },
+                {
+                    "date": 1670138637878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n         }\n     })\n }\n onMounted(() => {\n-    console.log(route,'进来欧')\n+    console.log(route.params,'进来欧')\n     // useSearchListApi({\n     //     keyword: route.query.,\n     //     type: '',\n     //     page: '',\n"
+                },
+                {
+                    "date": 1670138699482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,14 +33,13 @@\n         }\n     })\n }\n onMounted(() => {\n-    console.log(route.params,'进来欧')\n-    // useSearchListApi({\n-    //     keyword: route.query.,\n-    //     type: '',\n-    //     page: '',\n-    // })\n+ const data = useSearchListApi({\n+        ...route.params,\n+        ...route.params\n+ })\n+console.log(data,'')\n })\n definePageMeta({\n     middleware:[\"search\"]\n })\n"
+                },
+                {
+                    "date": 1670138828836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,12 +34,12 @@\n     })\n }\n onMounted(() => {\n  const data = useSearchListApi({\n-        ...route.params,\n+        ...route.query,\n         ...route.params\n  })\n-console.log(data,'')\n+console.log(data,'de')\n })\n definePageMeta({\n     middleware:[\"search\"]\n })\n"
+                },
+                {
+                    "date": 1670138887288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n         }\n     })\n }\n onMounted(() => {\n- const data = useSearchListApi({\n+    const { data } = useSearchListApi({\n         ...route.query,\n         ...route.params\n  })\n console.log(data,'de')\n"
+                },
+                {
+                    "date": 1670138933436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n             ...route.query,\n         }\n     })\n }\n-onMounted(() => {\n-    const { data } = useSearchListApi({\n+onMounted(async () => {\n+    const { data } = await useSearchListApi({\n         ...route.query,\n         ...route.params\n  })\n console.log(data,'de')\n"
+                },
+                {
+                    "date": 1670139492796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,14 +32,11 @@\n             ...route.query,\n         }\n     })\n }\n-onMounted(async () => {\n-    const { data } = await useSearchListApi({\n+const { data } = await useSearchListApi({\n         ...route.query,\n         ...route.params\n- })\n-console.log(data,'de')\n })\n definePageMeta({\n     middleware:[\"search\"]\n })\n"
+                },
+                {
+                    "date": 1670139504584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,43 +1,53 @@\n <template>\n-    <div>\n-       <h5 class=\"text-lg my-3\">\"{{title}}\"的搜索相关结果</h5>\n-       <UiTab>\n-        <UiTabItem v-for=\"(item,index) in tabs\" :key=\"index\" :active=\"(activeLabel === item.value)\" @click=\"handleSelect(item)\">{{item.label}}</UiTabItem>\n-       </UiTab>\n-    </div>\n+  <div>\n+    <h5 class=\"text-lg my-3\">\"{{ title }}\"的搜索相关结果</h5>\n+    <UiTab>\n+      <UiTabItem\n+        v-for=\"(item, index) in tabs\"\n+        :key=\"index\"\n+        :active=\"activeLabel === item.value\"\n+        @click=\"handleSelect(item)\"\n+        >{{ item.label }}</UiTabItem\n+      >\n+    </UiTab>\n+  </div>\n </template>\n <script setup>\n-const route = useRoute()\n-const title = ref(route.query.keyword)\n-const type = ref(route.params.type)\n+const route = useRoute();\n+const title = ref(route.query.keyword);\n+const type = ref(route.params.type);\n useHead({\n-    title\n-})\n-const activeLabel = ref(type)\n-const tabs = [{\n+  title,\n+});\n+const activeLabel = ref(type);\n+const tabs = [\n+  {\n     label: \"课程\",\n-    value:\"course\"\n-}, {\n+    value: \"course\",\n+  },\n+  {\n\\ No newline at end of file\n     label: \"专栏\",\n-    value:\"column\"\n-    }]\n+    value: \"column\",\n+  },\n+];\n \n const handleSelect = (data) => {\n-    navigateTo({\n-        params: {\n-            ...route.params,\n-            type:data.value\n-        },\n-        query: {\n-            ...route.query,\n-        }\n-    })\n-}\n+  navigateTo({\n+    params: {\n+      ...route.params,\n+      type: data.value,\n+    },\n+    query: {\n+      ...route.query,\n+    },\n+  });\n+};\n const { data } = await useSearchListApi({\n-        ...route.query,\n-        ...route.params\n-})\n+  ...route.query,\n+  ...route.params,\n+});\n+console.log(data,'dd')\n definePageMeta({\n-    middleware:[\"search\"]\n-})\n-</script>\n+  middleware: [\"search\"],\n+});\n+</script>\n"
+                },
+                {
+                    "date": 1670140544841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,13 +41,15 @@\n       ...route.query,\n     },\n   });\n };\n-const { data } = await useSearchListApi({\n-  ...route.query,\n-  ...route.params,\n+const page = ref(parseInt(route.params.page));\n+const { data, pending, error } = await useSearchListApi({\n+  page: page.value,\n+  keyword: encodeURIComponent(title.value),\n+  type: type.value,\n });\n\\ No newline at end of file\n-console.log(data,'dd')\n+console.log(data, \"dd\");\n definePageMeta({\n   middleware: [\"search\"],\n });\n-</script>\n+</script>\n"
+                },
+                {
+                    "date": 1670140647608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n+    {{data.value}}\n   </div>\n </template>\n <script setup>\n const route = useRoute();\n@@ -51,5 +52,5 @@\n console.log(data, \"dd\");\n definePageMeta({\n   middleware: [\"search\"],\n });\n-</script>\n\\ No newline at end of file\n+</script>\n"
+                },
+                {
+                    "date": 1670140841116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    {{data.value}}\n+    {{data}}\n   </div>\n </template>\n <script setup>\n const route = useRoute();\n@@ -48,9 +48,9 @@\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n });\n-console.log(data, \"dd\");\n+// console.log(data, \"dd\");\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1670140898016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n });\n-// console.log(data, \"dd\");\n+const rows = computed(() => data.value?.rows ?? [])\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1670140915831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    {{data}}\n+    {{rows}}\n   </div>\n </template>\n <script setup>\n const route = useRoute();\n"
+                },
+                {
+                    "date": 1670141079807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,20 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    {{rows}}\n+    <n-grid x-gap=\"20\" :cols=\"4\" >\n+      <n-gi v-for=\"item in rows\" :key=\"item.id\">\n+        <n-card class=\"cursor-pointer\">\n+          <CourseList :data=\"item\"></CourseList>\n+        </n-card>\n+      </n-gi>\n+    </n-grid>\n+    {{ rows }}\n   </div>\n </template>\n <script setup>\n+import { NGrid, NGi } from \"naive-ui\";\n const route = useRoute();\n const title = ref(route.query.keyword);\n const type = ref(route.params.type);\n useHead({\n@@ -48,9 +56,9 @@\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n });\n-const rows = computed(() => data.value?.rows ?? [])\n+const rows = computed(() => data.value?.rows ?? []);\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1670141134456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,16 +9,17 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    <n-grid x-gap=\"20\" :cols=\"4\" >\n+    <LoadingGroup>\n+        <n-grid x-gap=\"20\" :cols=\"4\" >\n       <n-gi v-for=\"item in rows\" :key=\"item.id\">\n         <n-card class=\"cursor-pointer\">\n           <CourseList :data=\"item\"></CourseList>\n         </n-card>\n       </n-gi>\n     </n-grid>\n-    {{ rows }}\n+    </LoadingGroup>\n   </div>\n </template>\n <script setup>\n import { NGrid, NGi } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1670726060440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,13 @@\n         </n-card>\n       </n-gi>\n     </n-grid>\n     </LoadingGroup>\n+    <n-pagination v-model:page=\"page\" :page-count=\"100\" />\n   </div>\n </template>\n <script setup>\n-import { NGrid, NGi } from \"naive-ui\";\n+import { NGrid, NGi, NPagination } from \"naive-ui\";\n const route = useRoute();\n const title = ref(route.query.keyword);\n const type = ref(route.params.type);\n useHead({\n"
+                },
+                {
+                    "date": 1670726202250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         </n-card>\n       </n-gi>\n     </n-grid>\n     </LoadingGroup>\n-    <n-pagination v-model:page=\"page\" :page-count=\"100\" />\n+    <n-pagination v-model:page=\"page\" :page-count=\"total\" />\n   </div>\n </template>\n <script setup>\n import { NGrid, NGi, NPagination } from \"naive-ui\";\n@@ -59,8 +59,12 @@\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n });\n const rows = computed(() => data.value?.rows ?? []);\n+const total = computed(() => {\n+  let total = data.value?.count ?? 0\n+  return Math.floor(total/10)\n+});\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1670726217437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,9 +61,9 @@\n });\n const rows = computed(() => data.value?.rows ?? []);\n const total = computed(() => {\n   let total = data.value?.count ?? 0\n-  return Math.floor(total/10)\n+  return Math.ceil(total/10)\n });\n definePageMeta({\n   middleware: [\"search\"],\n });\n"
+                },
+                {
+                    "date": 1670726301892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         </n-card>\n       </n-gi>\n     </n-grid>\n     </LoadingGroup>\n-    <n-pagination v-model:page=\"page\" :page-count=\"total\" />\n+    <n-pagination v-model:page=\"page\" :page-count=\"total\" @change=\"handlePageChange\" />\n   </div>\n </template>\n <script setup>\n import { NGrid, NGi, NPagination } from \"naive-ui\";\n@@ -63,8 +63,11 @@\n const total = computed(() => {\n   let total = data.value?.count ?? 0\n   return Math.ceil(total/10)\n });\n+const handlePageChange = (ee) => {\n+  console.log(ee,'ee')\n+}\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1670726337896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         </n-card>\n       </n-gi>\n     </n-grid>\n     </LoadingGroup>\n-    <n-pagination v-model:page=\"page\" :page-count=\"total\" @change=\"handlePageChange\" />\n+    <n-pagination v-model:page=\"page\" :page-count=\"total\" on-update:page=\"handlePageChange\" />\n   </div>\n </template>\n <script setup>\n import { NGrid, NGi, NPagination } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1670726354554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         </n-card>\n       </n-gi>\n     </n-grid>\n     </LoadingGroup>\n-    <n-pagination v-model:page=\"page\" :page-count=\"total\" on-update:page=\"handlePageChange\" />\n+    <n-pagination v-model:page=\"page\" :page-count=\"total\" @update:page=\"handlePageChange\" />\n   </div>\n </template>\n <script setup>\n import { NGrid, NGi, NPagination } from \"naive-ui\";\n"
+                },
+                {
+                    "date": 1670726422179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,20 +53,25 @@\n     },\n   });\n };\n const page = ref(parseInt(route.params.page));\n-const { data, pending, error } = await useSearchListApi({\n+const getData = async () => {\n+  const { data, pending, error } = await useSearchListApi({\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n });\n+}\n+getData()\n+\n const rows = computed(() => data.value?.rows ?? []);\n const total = computed(() => {\n   let total = data.value?.count ?? 0\n   return Math.ceil(total/10)\n });\n-const handlePageChange = (ee) => {\n-  console.log(ee,'ee')\n+const handlePageChange = (data) => {\n+  page.value = data\n+  getData()\n }\n definePageMeta({\n   middleware: [\"search\"],\n });\n"
+                },
+                {
+                    "date": 1670726513654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,14 +53,20 @@\n     },\n   });\n };\n const page = ref(parseInt(route.params.page));\n+const data = ref(null)\n+const pending = ref(false)\n+const error = ref(null)\n const getData = async () => {\n-  const { data, pending, error } = await useSearchListApi({\n+  const res = await useSearchListApi({\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n-});\n+  });\n+  data.value = res.data\n+  pending.value = res.pending\n+  error.value = res.error\n }\n getData()\n \n const rows = computed(() => data.value?.rows ?? []);\n"
+                },
+                {
+                    "date": 1670726544590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,8 +65,9 @@\n   });\n   data.value = res.data\n   pending.value = res.pending\n   error.value = res.error\n+  console.log(data,'data')\n }\n getData()\n \n const rows = computed(() => data.value?.rows ?? []);\n"
+                },
+                {
+                    "date": 1670726582533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,9 @@\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n   });\n+  console.log(res,'res')\n   data.value = res.data\n   pending.value = res.pending\n   error.value = res.error\n   console.log(data,'data')\n"
+                },
+                {
+                    "date": 1670726610010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,11 +63,11 @@\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n   });\n   console.log(res,'res')\n-  data.value = res.data\n-  pending.value = res.pending\n-  error.value = res.error\n+  data.value = res.data.value\n+  pending.value = res.pending.value\n+  error.value = res.error.value\n   console.log(data,'data')\n }\n getData()\n \n"
+                },
+                {
+                    "date": 1670726760521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n   pending.value = res.pending.value\n   error.value = res.error.value\n   console.log(data,'data')\n }\n-getData()\n+// getData()\n \n const rows = computed(() => data.value?.rows ?? []);\n const total = computed(() => {\n   let total = data.value?.count ?? 0\n"
+                },
+                {
+                    "date": 1670726771462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,9 @@\n   pending.value = res.pending.value\n   error.value = res.error.value\n   console.log(data,'data')\n }\n-// getData()\n+getData()\n \n const rows = computed(() => data.value?.rows ?? []);\n const total = computed(() => {\n   let total = data.value?.count ?? 0\n"
+                },
+                {
+                    "date": 1670726794386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,13 +62,11 @@\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n   });\n-  console.log(res,'res')\n   data.value = res.data.value\n   pending.value = res.pending.value\n   error.value = res.error.value\n-  console.log(data,'data')\n }\n getData()\n \n const rows = computed(() => data.value?.rows ?? []);\n"
+                },
+                {
+                    "date": 1671955373234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,17 +10,21 @@\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n     <LoadingGroup>\n-        <n-grid x-gap=\"20\" :cols=\"4\" >\n-      <n-gi v-for=\"item in rows\" :key=\"item.id\">\n-        <n-card class=\"cursor-pointer\">\n-          <CourseList :data=\"item\"></CourseList>\n-        </n-card>\n-      </n-gi>\n-    </n-grid>\n+      <n-grid x-gap=\"20\" :cols=\"4\">\n+        <n-gi v-for=\"item in rows\" :key=\"item.id\">\n+          <n-card class=\"cursor-pointer\">\n+            <CourseList :data=\"item\"></CourseList>\n+          </n-card>\n+        </n-gi>\n+      </n-grid>\n     </LoadingGroup>\n-    <n-pagination v-model:page=\"page\" :page-count=\"total\" @update:page=\"handlePageChange\" />\n+    <n-pagination\n+      v-model:page=\"page\"\n+      :page-count=\"total\"\n+      @update:page=\"handlePageChange\"\n+    />\n   </div>\n </template>\n <script setup>\n import { NGrid, NGi, NPagination } from \"naive-ui\";\n@@ -53,32 +57,30 @@\n     },\n   });\n };\n const page = ref(parseInt(route.params.page));\n-const data = ref(null)\n-const pending = ref(false)\n-const error = ref(null)\n-const getData = async () => {\n-  const res = await useSearchListApi({\n+const { data, pending, error, refresh } = await useSearchListApi({\n   page: page.value,\n   keyword: encodeURIComponent(title.value),\n   type: type.value,\n-  });\n-  data.value = res.data.value\n-  pending.value = res.pending.value\n-  error.value = res.error.value\n-}\n-getData()\n+});\n \n const rows = computed(() => data.value?.rows ?? []);\n const total = computed(() => {\n-  let total = data.value?.count ?? 0\n-  return Math.ceil(total/10)\n+  let total = data.value?.count ?? 0;\n+  return Math.ceil(total / 10);\n });\n-const handlePageChange = (data) => {\n-  page.value = data\n-  getData()\n-}\n+const handlePageChange = (p) => {\n+  navigateTo({\n+        params:{\n+            ...route.params,\n+            page:p\n+        },\n+        query:{\n+            ...route.query\n+        }\n+    })\n+};\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1672147597365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,8 +79,12 @@\n             ...route.query\n         }\n     })\n };\n+\n+watch(() => route.query.keyword, (newValue) => {\n+  console.log(newValue,'newValue')\n+})\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1672147654929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -81,9 +81,9 @@\n     })\n };\n \n watch(() => route.query.keyword, (newValue) => {\n-  console.log(newValue,'newValue')\n+  refresh()\n })\n definePageMeta({\n   middleware: [\"search\"],\n });\n"
+                },
+                {
+                    "date": 1672147910376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,12 +57,14 @@\n     },\n   });\n };\n const page = ref(parseInt(route.params.page));\n-const { data, pending, error, refresh } = await useSearchListApi({\n-  page: page.value,\n-  keyword: encodeURIComponent(title.value),\n-  type: type.value,\n+const { data, pending, error, refresh } = await useSearchListApi(() => {\n+  return {\n+    page: page.value,\n+    keyword: encodeURIComponent(title.value),\n+    type: type.value,\n+  };\n });\n \n const rows = computed(() => data.value?.rows ?? []);\n const total = computed(() => {\n@@ -70,21 +72,24 @@\n   return Math.ceil(total / 10);\n });\n const handlePageChange = (p) => {\n   navigateTo({\n-        params:{\n-            ...route.params,\n-            page:p\n-        },\n-        query:{\n-            ...route.query\n-        }\n-    })\n+    params: {\n+      ...route.params,\n+      page: p,\n+    },\n+    query: {\n+      ...route.query,\n+    },\n+  });\n };\n \n-watch(() => route.query.keyword, (newValue) => {\n-  refresh()\n-})\n+watch(\n+  () => route.query.keyword,\n+  (newValue) => {\n+    refresh();\n+  }\n+);\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1672147980628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,8 +85,9 @@\n \n watch(\n   () => route.query.keyword,\n   (newValue) => {\n+    title.value = newValue\n     refresh();\n   }\n );\n definePageMeta({\n"
+                },
+                {
+                    "date": 1672148163080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,15 +82,16 @@\n     },\n   });\n };\n \n-watch(\n+ const stop = watch(\n   () => route.query.keyword,\n   (newValue) => {\n     title.value = newValue\n     refresh();\n   }\n-);\n+ );\n+onBeforeUnmount(() => stop())\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1672149364242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,24 +65,24 @@\n     type: type.value,\n   };\n });\n \n-const rows = computed(() => data.value?.rows ?? []);\n-const total = computed(() => {\n-  let total = data.value?.count ?? 0;\n-  return Math.ceil(total / 10);\n-});\n-const handlePageChange = (p) => {\n-  navigateTo({\n-    params: {\n-      ...route.params,\n-      page: p,\n-    },\n-    query: {\n-      ...route.query,\n-    },\n-  });\n-};\n+// const rows = computed(() => data.value?.rows ?? []);\n+// const total = computed(() => {\n+//   let total = data.value?.count ?? 0;\n+//   return Math.ceil(total / 10);\n+// });\n+// const handlePageChange = (p) => {\n+//   navigateTo({\n+//     params: {\n+//       ...route.params,\n+//       page: p,\n+//     },\n+//     query: {\n+//       ...route.query,\n+//     },\n+//   });\n+// };\n \n  const stop = watch(\n   () => route.query.keyword,\n   (newValue) => {\n"
+                },
+                {
+                    "date": 1672149593678,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,16 +56,26 @@\n       ...route.query,\n     },\n   });\n };\n-const page = ref(parseInt(route.params.page));\n-const { data, pending, error, refresh } = await useSearchListApi(() => {\n-  return {\n-    page: page.value,\n-    keyword: encodeURIComponent(title.value),\n-    type: type.value,\n-  };\n-});\n+// const page = ref(parseInt(route.params.page));\n+const { page, limit, total, handlePageChange, rows, pending, refresh } =\n+  await usePage(({ page, limit }) =>\n+    useSearchListApi(() => {\n+      return {\n+        page: page.value,\n+        keyword: encodeURIComponent(title.value),\n+        type: type.value,\n+      };\n+    })\n+  );\n+// const { data, pending, error, refresh } = await useSearchListApi(() => {\n+//   return {\n+//     page: page.value,\n+//     keyword: encodeURIComponent(title.value),\n+//     type: type.value,\n+//   };\n+// });\n \n // const rows = computed(() => data.value?.rows ?? []);\n // const total = computed(() => {\n //   let total = data.value?.count ?? 0;\n@@ -82,16 +92,16 @@\n //     },\n //   });\n // };\n \n- const stop = watch(\n+const stop = watch(\n   () => route.query.keyword,\n   (newValue) => {\n-    title.value = newValue\n+    title.value = newValue;\n     refresh();\n   }\n- );\n-onBeforeUnmount(() => stop())\n+);\n+onBeforeUnmount(() => stop());\n definePageMeta({\n   middleware: [\"search\"],\n });\n </script>\n"
+                },
+                {
+                    "date": 1672149671130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,11 +56,11 @@\n       ...route.query,\n     },\n   });\n };\n-// const page = ref(parseInt(route.params.page));\n const { page, limit, total, handlePageChange, rows, pending, refresh } =\n   await usePage(({ page, limit }) =>\n+  console.log(page,'page')\n     useSearchListApi(() => {\n       return {\n         page: page.value,\n         keyword: encodeURIComponent(title.value),\n"
+                },
+                {
+                    "date": 1672149678105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n   });\n };\n const { page, limit, total, handlePageChange, rows, pending, refresh } =\n   await usePage(({ page, limit }) =>\n-  console.log(page,'page')\n+ \n     useSearchListApi(() => {\n       return {\n         page: page.value,\n         keyword: encodeURIComponent(title.value),\n"
+                },
+                {
+                    "date": 1672149689861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,10 +58,10 @@\n   });\n };\n const { page, limit, total, handlePageChange, rows, pending, refresh } =\n   await usePage(({ page, limit }) =>\n- \n     useSearchListApi(() => {\n+      console.log(page,'page1')\n       return {\n         page: page.value,\n         keyword: encodeURIComponent(title.value),\n         type: type.value,\n"
+                },
+                {
+                    "date": 1672149701318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,8 @@\n };\n const { page, limit, total, handlePageChange, rows, pending, refresh } =\n   await usePage(({ page, limit }) =>\n     useSearchListApi(() => {\n-      console.log(page,'page1')\n       return {\n         page: page.value,\n         keyword: encodeURIComponent(title.value),\n         type: type.value,\n"
+                },
+                {
+                    "date": 1672151549039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,11 @@\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n     <LoadingGroup>\n+      <template #loading>\n+        <LoadingCourseSkeleton></LoadingCourseSkeleton>\n+      </template>\n       <n-grid x-gap=\"20\" :cols=\"4\">\n         <n-gi v-for=\"item in rows\" :key=\"item.id\">\n           <n-card class=\"cursor-pointer\">\n             <CourseList :data=\"item\"></CourseList>\n"
+                },
+                {
+                    "date": 1672151788780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    <LoadingGroup>\n+    <LoadingGroup :loading=\"pending\">\n       <template #loading>\n         <LoadingCourseSkeleton></LoadingCourseSkeleton>\n       </template>\n       <n-grid x-gap=\"20\" :cols=\"4\">\n"
+                },
+                {
+                    "date": 1672151814061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    <LoadingGroup :loading=\"pending\">\n+    <LoadingGroup :pending=\"pending\">\n       <template #loading>\n         <LoadingCourseSkeleton></LoadingCourseSkeleton>\n       </template>\n       <n-grid x-gap=\"20\" :cols=\"4\">\n"
+                },
+                {
+                    "date": 1672151822832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         @click=\"handleSelect(item)\"\n         >{{ item.label }}</UiTabItem\n       >\n     </UiTab>\n-    <LoadingGroup :pending=\"pending\">\n+    <LoadingGroup :pending=\"pending\" :error=\"error\">\n       <template #loading>\n         <LoadingCourseSkeleton></LoadingCourseSkeleton>\n       </template>\n       <n-grid x-gap=\"20\" :cols=\"4\">\n"
                 }
             ],
             "date": 1670128765767,

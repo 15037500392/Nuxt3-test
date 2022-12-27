@@ -19,8 +19,6 @@ const props = defineProps({
 
 const emit = defineEmits(["start", "end"]);
 const data = useCountDown(props.time);
-console.log(data,'data')
-//
 function useCountDown(end_time) {
   const timeout = ref(0);
   const Timer = ref(null);

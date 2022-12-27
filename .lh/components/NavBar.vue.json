@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 59,
+            "activePatchIndex": 60,
             "patches": [
                 {
                     "date": 1669119842224,
@@ -244,6 +244,10 @@
                 {
                     "date": 1670057555384,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n           />\n         </n-dropdown>\n       </div>\n     </div>\n-    <SearchBar :visible=\"drawer.value\"></SearchBar>\n+    <SearchBar ref=\"SearchBarRef\"/>\n   </div>\n  \n </template>\n <script setup>\n@@ -175,11 +175,12 @@\n     return i !== -1;\n   }\n   return item.path === route.path;\n };\n-const drawer = ref(false)\n+\n+const SearchBarRef = ref(null)\n const openSearch = () => {\n-  drawer.value = true\n+  SearchBarRef.value.open()\n }\n </script>\n <style scoped>\n .navbar {\n"
+                },
+                {
+                    "date": 1672149822902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,11 +38,9 @@\n </template>\n <script setup>\n import { NButton, NIcon, NDropdown, NAvatar } from \"naive-ui\";\n import { Search } from \"@vicons/ionicons5\";\n-import { tr } from \"date-fns/locale\";\n const route = useRoute();\n-console.log(route, \"router\");\n const userOptions = [\n   {\n     label: \"用户中心\",\n     key: \"center\",\n"
                 }
             ],
             "date": 1669119842224,

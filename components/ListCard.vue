@@ -24,13 +24,4 @@ import { NButton, NGrid, NGi } from "naive-ui";
 defineProps({
   data: Array,
 });
-// console.log(data.value,'ddd')
-const CourseData = computed(() => {
-  return 
-  // if (data.value.title) {
-  //   return data.value.data;
-  // } else {
-  //   return data.value.rows;
-  // }
-});
 </script>

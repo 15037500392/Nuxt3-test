@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 36,
+            "activePatchIndex": 37,
             "patches": [
                 {
                     "date": 1669431906684,
@@ -152,6 +152,10 @@
                 {
                     "date": 1669520176787,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n <template>\n   <div class=\"count-down\" v-if=\"data\">\n     <small class=\"count-box\">{{data.days}}</small>天\n-    <small>{{data.hours}}</small>:\n-    <small>{{data.minutes}}</small>:\n-    <small>{{data.seconds}}</small>\n+    <small class=\"count-box\">{{data.hours}}</small>:\n+    <small class=\"count-box\">{{data.minutes}}</small>:\n+    <small class=\"count-box\">{{data.seconds}}</small>\n   </div>\n </template>\n <script setup>\n import { Timer } from \"@vicons/ionicons5\";\n@@ -85,7 +85,7 @@\n     background: white;\n     border-radius: 2px;\n     padding: 2px 3px;\n     margin: 0 3px;\n-    @apply text-yellow-500\n+    @apply text-yellow-500;\n   }\n </style>\n"
+                },
+                {
+                    "date": 1672149825820,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,8 @@\n });\n \n const emit = defineEmits([\"start\", \"end\"]);\n const data = useCountDown(props.time);\n-console.log(data,'data')\n-//\n function useCountDown(end_time) {\n   const timeout = ref(0);\n   const Timer = ref(null);\n   if (typeof end_time === \"string\") {\n"
                 }
             ],
             "date": 1669431906684,

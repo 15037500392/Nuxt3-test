@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 106,
+            "activePatchIndex": 109,
             "patches": [
                 {
                     "date": 1669105633077,
@@ -432,6 +432,18 @@
                 {
                     "date": 1670052327677,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n <template>\n- \n-    <LoadingGroup :pending=\"pending\" :error=\"error\">\n-      <template>\n+  <LoadingGroup :pending=\"pending\" :error=\"error\">\n+    <div>\n       <!-- 轮播图-start -->\n       <Banner :data=\"swiperData.data\"></Banner>\n       <!-- 轮播图-end -->\n       <!-- 图片分栏 -->\n@@ -11,27 +10,29 @@\n       <ImageAd :data=\"imageAd.data\"></ImageAd>\n       <!-- 拼团 -->\n       <ListCard :data=\"pinData\"></ListCard>\n       <!-- 列表 -->\n-      <ListCard v-for=\"(item,index) in listData\" :key=\"index\" :data=\"item\"></ListCard>\n-    </template>\n-    </LoadingGroup>\n-\n-  \n+      <ListCard\n+        v-for=\"(item, index) in listData\"\n+        :key=\"index\"\n+        :data=\"item\"\n+      ></ListCard>\n+    </div>\n+  </LoadingGroup>\n </template>\n <script setup>\n import { throwError } from \"naive-ui/es/_utils\";\n import { reactive, computed, isRef, ref } from \"vue\";\n useHead({\n-  title:'首页'\n-})\n-const { data, pending, error } = await useIndexDataApi()\n+  title: \"首页\",\n+});\n+const { data, pending, error } = await useIndexDataApi();\n \n // 获取拼团数据\n const { data: pinData } = await usePinTeamApi({\n   page: 1,\n-  usable:8\n-})\n+  usable: 8,\n+});\n \n // // 服务器错误处理\n // if (process.server && error.value) {\n //   throwError(error.value?.data?.data);\n@@ -83,6 +84,6 @@\n       return item.type === \"list\";\n     }) || [];\n   return filterData;\n });\n-console.log(listData,'listData')\n+console.log(listData, \"listData\");\n </script>\n"
+                },
+                {
+                    "date": 1670132705941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,12 @@\n   page: 1,\n   usable: 8,\n });\n \n-// // 服务器错误处理\n-// if (process.server && error.value) {\n-//   throwError(error.value?.data?.data);\n-// }\n+// 服务器错误处理\n+if (process.server && error.value) {\n+  throwError(error.value?.data?.data);\n+}\n \n // // 轮播图数据\n const swiperData = computed(() => {\n   let filterData =\n"
+                },
+                {
+                    "date": 1670132751744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,12 @@\n   page: 1,\n   usable: 8,\n });\n \n-// 服务器错误处理\n-if (process.server && error.value) {\n-  throwError(error.value?.data?.data);\n-}\n+// // 服务器错误处理\n+// if (process.server && error.value) {\n+//   throwError(error.value?.data?.data);\n+// }\n \n // // 轮播图数据\n const swiperData = computed(() => {\n   let filterData =\n"
+                },
+                {
+                    "date": 1672149805996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,6 +84,5 @@\n       return item.type === \"list\";\n     }) || [];\n   return filterData;\n });\n-console.log(listData, \"listData\");\n </script>\n"
                 }
             ],
             "date": 1669105633077,

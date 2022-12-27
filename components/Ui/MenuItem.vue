@@ -11,7 +11,7 @@ defineProps({
   },
 });
 </script>
-<style>
+<style scoped>
 .menu-item {
   transition: all 0.2s;
   @apply px-2 py-1 mx-1 rounded cursor-pointer hover:(bg-blue-50 text-blue-700) active:(!bg-blue-100);
